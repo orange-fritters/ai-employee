@@ -31,6 +31,14 @@ def cleanse(file_name: str):
         if tag.name == "table" and tag.get('border') == '1':
             continue
         del tag['class']
+        del tag['cellpadding']
+        del tag['cellspacing']
+
+    for tag in soup.find_all(True, {'bgcolor': True}):
+        del tag['bgcolor']
+
+    for tag in soup.find_all(True, {'valign': True}):
+        del tag['valign']
 
     tags_with_target_style = soup.find_all(has_subsection_style)
     for i, tag in enumerate(tags_with_target_style, start=1):
@@ -44,7 +52,6 @@ def cleanse(file_name: str):
         div.parent.unwrap()
 
     subsections = soup.find_all('div', {'class': 'subsection'})
-
     for index, subsection in enumerate(subsections):
         elems = []
         next_subsection = subsections[index + 1] if index + 1 < len(subsections) else None
@@ -56,15 +63,13 @@ def cleanse(file_name: str):
                 continue
             elems.append(sibling.extract())
 
-        # Create new div and append all extracted elements to it
-        new_div = soup.new_tag('div')  # Create a new div tag
+        new_div = soup.new_tag('div')
         new_div['class'] = 'section'
         new_div.append(subsection.extract())
 
         for e in elems:
             new_div.append(e)
 
-        # Insert the new div after the subsection
         soup.append(new_div)
 
     tags_with_article_style = soup.find_all(has_article_style)
@@ -91,21 +96,28 @@ def cleanse(file_name: str):
             for e in elems:
                 new_div.append(e)
 
-            # Insert the new div after the subsection
             section.append(new_div)
 
     for tag in soup.find_all(True, {'style': True}):
         del tag['style']
 
     for tag in soup.find_all('table'):
-        # give table a border.
         tag['border'] = '1'
 
-    # for tag with class article, first span inside it should be bolded
     for tag in soup.find_all('div', {'class': 'article'}):
         span = tag.find('span')
         if span is not None:
             span['style'] = 'font-weight:bold'
+
+    soup.find('div').unwrap()
+
+    for p in soup.find_all('p'):
+        if len(p.contents) == 0:
+            p.extract()
+
+    for p in soup.find_all('p'):
+        if len(p.contents) == 1:
+            p.replace_with(p.contents[0])
 
     with open("file.html", "w") as file:
         file.write(str(soup.prettify()))
