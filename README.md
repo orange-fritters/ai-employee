@@ -4,8 +4,11 @@
 
 - Langchain으로 Hallucination 탐지
 - 지니랩스 tts, sst로 배리어프리 App 구현?
+- IR의 경우, first stage + reranking으로 구현
 
 ## Links
+
+### Postings
 
 [개발자로서 LLM 사용을 위해 알아두면 좋은 내용들](https://haandol.github.io/2023/05/02/llm-for-ordinary-developers.html#fn:13)
 
@@ -16,6 +19,8 @@
 
 - 프롬프트 엔지니어링 가이드
 
+### LLMs
+
 [koAlpaca 조금 써본 거](https://chat.koalpaca.com/r/2xWRgdz)
 
 - fine tuning 없이는 그닥
@@ -24,6 +29,12 @@
 
 - 코알파카보다 훨씬 잘하는데 API만 활용해도 충분할 것 같다.
 - 과장 좀 보태면 목요일까지 프로토타입 만들기 가능...
+
+### Info Retrieval
+
+[awesome-information-retrieval](https://github.com/harpribot/awesome-information-retrieval)
+
+[awesome-pretrained-models-for-information-retrieval](https://github.com/ict-bigdatalab/awesome-pretrained-models-for-information-retrieval)
 
 ## Commit Message Convention
 
@@ -68,3 +79,7 @@ TODO
 ```
 
 ## papers
+
+- [Generation-Augmented Retrieval for Open-Domain Question Answering](https://arxiv.org/pdf/2009.08553.pdf)
+
+- [Enhancing Retrieval-Augmented Large Language Models with Iterative Retrieval-Generation Synergy](https://arxiv.org/pdf/2305.15294.pdf)

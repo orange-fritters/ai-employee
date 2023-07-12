@@ -15,8 +15,10 @@ def has_article_style(tag):
     return False
 
 
-def cleanse(file_name: str):
-    with open(file_name, "r") as file:
+def cleanse(infile_name: str,
+            outfile_name: str,
+            theme: str = "default"):
+    with open(infile_name, "r") as file:
         content = file.read()
     soup = BeautifulSoup(content, 'html.parser')
 
@@ -74,7 +76,8 @@ def cleanse(file_name: str):
 
     tags_with_article_style = soup.find_all(has_article_style)
     for article in tags_with_article_style:
-        article.parent.unwrap()
+        if article.parent is not None and article.parent.parent is not None:
+            article.parent.unwrap()
 
     for section in soup.find_all('div', {'class': 'section'}):
         articles = section.find_all(has_article_style)
@@ -119,9 +122,39 @@ def cleanse(file_name: str):
         if len(p.contents) == 1:
             p.replace_with(p.contents[0])
 
-    with open("file.html", "w") as file:
-        file.write(str(soup.prettify()))
+    try:
+        with open(outfile_name, "w") as file:
+            # file.write(soup.prettify().encode('euc-kr', 'ignore').decode('utf-8'))
+            file.write(soup.prettify())
+    except:
+        with open(outfile_name, "w") as file:
+            file.write(soup.prettify().encode('utf-8', 'surrogatepass').decode('utf-8', 'replace'))
 
 
 if __name__ == "__main__":
-    cleanse("data/first.html")
+    ...
+    # ! issue (manual fix needed, list of issues below)
+    # ! data/cleansed/기타지원.html ** issue
+    # ! data/cleansed/임신보육지원.html ** issue
+    # ! data/cleansed/청소년청년지원.html ** issue
+
+    # cleanse(infile_name="data/section/기타지원.html",
+    #         outfile_name="data/cleansed/기타지원.html",)
+    # cleanse(infile_name="data/section/노령층지원.html",
+    #         outfile_name="data/cleansed/노령층지원.html",)
+    # cleanse(infile_name="data/section/법률금융복지지원.html",
+    #         outfile_name="data/cleansed/법률금융복지지원.html",)
+    # cleanse(infile_name="data/section/보건의료지원.html",
+    #         outfile_name="data/cleansed/보건의료지원.html",)
+    # cleanse(infile_name="data/section/보훈대상자지원.html",
+    #         outfile_name="data/cleansed/보훈대상자지원.html",)
+    # cleanse(infile_name="data/section/생계지원.html",
+    #         outfile_name="data/cleansed/생계지원.html",)
+    # cleanse(infile_name="data/section/장애인지원.html",
+    #         outfile_name="data/cleansed/장애인지원.html",)
+    # cleanse(infile_name="data/section/청소년청년지원.html",
+    #         outfile_name="data/cleansed/청소년청년지원.html",)
+    # cleanse(infile_name="data/section/취업지원.html",
+    #         outfile_name="data/cleansed/취업지원.html",)
+    # cleanse(infile_name="data/section/임신보육지원.html",
+    #         outfile_name="data/cleansed/임신보육지원.html",)
