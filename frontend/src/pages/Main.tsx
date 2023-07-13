@@ -5,6 +5,39 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { Message, IMessage } from "../components/Message";
 
+const ChatApp: React.FC = () => {
+  const [messages, setMessages] = useState<IMessage[]>(defaultMessages);
+
+  // Scroll to bottom part.
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [messages]);
+
+  const handleResponse = (text: string, who: "bot" | "user") => {
+    setMessages((prev) => [...prev, { sender: who, text: text }]);
+  };
+
+  return (
+    <Background>
+      <Container>
+        <Header />
+        <Window ref={containerRef}>
+          {messages.map((message, i) => (
+            <Message key={i} sender={message.sender}>
+              {message.text}
+            </Message>
+          ))}
+        </Window>
+        <SearchBar handleMessages={handleResponse} />
+      </Container>
+    </Background>
+  );
+};
+
 const defaultMessages: IMessage[] = [
   {
     sender: "bot",
@@ -30,51 +63,10 @@ const defaultMessages: IMessage[] = [
   },
 ];
 
-const ChatApp: React.FC = () => {
-  const [messages, setMessages] = useState<IMessage[]>(defaultMessages);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.scrollTop = container.scrollHeight;
-    }
-  }, [messages]);
-
-  const search = (query: string) => {
-    axios
-      .get(`http://0.0.0.0:8001/ask/${encodeURIComponent(query)}`)
-      .then((response: AxiosResponse) => {
-        console.log(response.data);
-        setMessages((prev) => [
-          ...prev,
-          { sender: "bot", text: response.data },
-        ]);
-      })
-      .catch((error: AxiosError) => {
-        console.error("Error:", error);
-      });
-  };
-
-  const handleUserMessage = (text: string) => {
-    setMessages((prev) => [...prev, { sender: "user", text: text }]);
-    search(text);
-  };
-
-  return (
-    <Background>
-      <Header />
-      <Window ref={containerRef}>
-        {messages.map((message, i) => (
-          <Message key={i} sender={message.sender}>
-            {message.text}
-          </Message>
-        ))}
-      </Window>
-      <SearchBar onSearch={handleUserMessage} />
-    </Background>
-  );
-};
+const Container = styled.div`
+  width: 500px;
+  height: 100vh;
+`;
 
 const Background = styled.div`
   display: flex;
@@ -98,15 +90,13 @@ const Window = styled.div`
   flex-direction: column;
   background-color: white;
 
-  width: 35%;
-  height: 100%;
+  width: 100%;
+  height: 75vh;
 
   overflow-y: scroll;
   scroll-behavior: smooth;
 
-  & > * + * {
-    margin-top: 20px;
-  }
+  gap: 20px;
 `;
 
 export default ChatApp;
