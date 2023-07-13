@@ -9,7 +9,6 @@ notes/.obsidian/workspace.json
 frontend/src/conifig.json
 server/articles/
 server/env/
-server/config.json
+# server/config.json
 .vscode/settings.json
-server/server.py
 server/__pycache__/server.cpython-38.pyc
