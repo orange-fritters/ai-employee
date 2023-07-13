@@ -10,7 +10,7 @@ from urllib.parse import unquote
 
 
 class Query(BaseModel):
-    text: str
+    query: str
 
 
 app = FastAPI()
@@ -27,8 +27,8 @@ with open("config.json") as config_file:
     openai.api_key = config_data["chatgpt"]["secret"]
 
 
-@app.get("/ask/{text}")
-async def search(text: str):
+@app.post("/query")
+async def get_chat_response(query: Query):
     documents = ['articles/취업지원_1.html',
                  'articles/취업지원_2.html',
                  'articles/취업지원_3.html',
@@ -47,22 +47,27 @@ async def search(text: str):
     {document}
 
     ### 질문 :
-    {unquote(text)}
+    {query.query}
     """
     print(prompt)
-    # Send a request to the OpenAI API
+
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "user", "content": prompt},
+            {
+                "role": "system",
+                "content": "You are a helpful assistant."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
         ]
     )
-    print(response)
 
-    return JSONResponse({
-        "data": response.choices[0].message['content']
-    })
+    return JSONResponse({"response": response['choices'][0]['message']['content']})
 
+app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="build")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
