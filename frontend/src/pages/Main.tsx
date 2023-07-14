@@ -18,7 +18,28 @@ const ChatApp: React.FC = () => {
   }, [messages]);
 
   const handleResponse = (text: string, who: "bot" | "user") => {
+    console.log(messages);
     setMessages((prev) => [...prev, { sender: who, text: text }]);
+  };
+
+  const handleStream = (text: string) => {
+    if (messages[messages.length - 1].sender === "bot") {
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        {
+          sender: "bot",
+          text: text,
+        },
+      ]);
+    } else {
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: " ",
+        },
+      ]);
+    }
   };
 
   return (
@@ -32,7 +53,10 @@ const ChatApp: React.FC = () => {
             </Message>
           ))}
         </Window>
-        <SearchBar handleMessages={handleResponse} />
+        <SearchBar
+          handleMessages={handleResponse}
+          handleStream={handleStream}
+        />
       </Container>
     </Background>
   );
@@ -91,7 +115,9 @@ const Window = styled.div`
   background-color: white;
 
   width: 100%;
-  height: 75vh;
+  height: 70vh;
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
 
   overflow-y: scroll;
   scroll-behavior: smooth;

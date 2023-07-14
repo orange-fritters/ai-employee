@@ -2,11 +2,10 @@ import uvicorn
 import openai
 from fastapi.middleware.cors import CORSMiddleware
 import json
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from starlette.responses import JSONResponse
-from urllib.parse import unquote
 
 
 class Query(BaseModel):
@@ -27,17 +26,34 @@ with open("config.json") as config_file:
     openai.api_key = config_data["chatgpt"]["secret"]
 
 
+async def get_response_openai(prompt):
+    try:
+        prompt = prompt
+        response = await openai.ChatCompletion.acreate(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "user", "content": prompt},
+            ],
+            stream=True,
+        )
+
+        print("Got response from OpenAI")
+        async for chunk in response:
+            current_content = chunk["choices"][0]["delta"].get("content", "")
+            print(current_content)
+            if current_content:
+                yield current_content
+
+    except Exception as e:
+        print("OpenAI Response (Streaming) Error: " + str(e))
+        raise HTTPException(503, "OpenAI server is busy, try again later")
+
+
 @app.post("/query")
 async def get_chat_response(query: Query):
-    documents = ['articles/취업지원_1.html',
-                 'articles/취업지원_2.html',
-                 'articles/취업지원_3.html',
-                 'articles/취업지원_4.html',
-                 'articles/취업지원_5.html']
-
-    html_url = documents[-1]
-    with open(html_url, 'r', encoding='utf-8') as f:
-        document = f.read()
+    document = "articles/취업지원_1.html"
+    with open(document, 'r', encoding='utf-8') as f:
+        document = f.read()[:1000]
 
     prompt = f"""
     오로지 아래 내용에만 기반하여 질문에 대해 답해주십시오.
@@ -49,25 +65,6 @@ async def get_chat_response(query: Query):
     ### 질문 :
     {query.query}
     """
-    print(prompt)
-
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a helpful assistant."
-            },
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    )
-
-    return JSONResponse({"response": response['choices'][0]['message']['content']})
+    return StreamingResponse(get_response_openai(prompt), media_type="text/event-stream")
 
 app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="build")
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
