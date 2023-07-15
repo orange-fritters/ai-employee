@@ -12,6 +12,12 @@
 
 ### Postings
 
+[OpenAI Text Embedding](https://openai.com/blog/introducing-text-and-code-embeddings/)
+
+- OpenAI에서 제공하는 text embedding
+- 상당히 저렴함
+- Document Retrieval에 활용
+
 [개발자로서 LLM 사용을 위해 알아두면 좋은 내용들](https://haandol.github.io/2023/05/02/llm-for-ordinary-developers.html#fn:13)
 
 - koAlpaca 사용시 유용한 내용들 다수 포함
