@@ -62,7 +62,7 @@
 🐛 [Fix] Fix bugs
 🛠️ [Git] resolve merge conflict
 🛠️ [Git] .gitignore
-✨ [Feat] Implement main logics (incomplete)
+🔥 [Feat] Implement main logics (incomplete)
 📝 [Docs] Update git files
 📝 [Docs] Add TODO
 🪮 [Style] Fix typo
@@ -71,7 +71,7 @@
 2. type
 
 ```
-✨ Feat : 새로운 기능 추가
+🔥 Feat : 새로운 기능 추가
 ✨ Add : 기능은 아닌 코드 추가
 🐛 Fix : 버그 수정
 📝 Docs : 문서 수정
@@ -86,7 +86,7 @@
 
 ```
 Ex
-✨ [Feat] Implement main logics (incomplete)
+🔥 [Feat] Implement main logics (incomplete)
 
 TODO
 - vehicle_update 함수 수정 필요
