@@ -10,6 +10,10 @@
 
 ## Links
 
+### Lecture
+
+[한 입 크기로 잘라먹는 리액트](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8)
+
 ### Postings
 
 [OpenAI Text Embedding](https://openai.com/blog/introducing-text-and-code-embeddings/)
@@ -17,6 +21,10 @@
 - OpenAI에서 제공하는 text embedding
 - 상당히 저렴함
 - Document Retrieval에 활용
+
+[OpenAI Better Result](https://platform.openai.com/docs/guides/gpt-best-practices/strategy-provide-reference-text)
+
+- OpenAI API를 활용한 방법론
 
 [개발자로서 LLM 사용을 위해 알아두면 좋은 내용들](https://haandol.github.io/2023/05/02/llm-for-ordinary-developers.html#fn:13)
 
