@@ -14,7 +14,19 @@
 
 [한 입 크기로 잘라먹는 리액트](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8)
 
-### Postings
+### OpenAI
+
+[Best practices for prompt engineering (OpenAI community)](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api)
+
+[Data Augmentation Example](https://chat.openai.com/share/e03baffc-b954-478b-b4a9-344fefbc88e1)
+
+- OpenAI API를 활용한 Data Augmentation Example
+
+[GPT API pricing](https://openai.com/pricing)
+
+[Is openai text-embedding-ada-002 the best embeddings model?](https://www.reddit.com/r/MachineLearning/comments/13aaj2w/d_is_openai_textembeddingada002_the_best/)
+
+- includes various talks about text embedding
 
 [OpenAI Text Embedding](https://openai.com/blog/introducing-text-and-code-embeddings/)
 
@@ -25,6 +37,8 @@
 [OpenAI Better Result](https://platform.openai.com/docs/guides/gpt-best-practices/strategy-provide-reference-text)
 
 - OpenAI API를 활용한 방법론
+
+### Postings
 
 [개발자로서 LLM 사용을 위해 알아두면 좋은 내용들](https://haandol.github.io/2023/05/02/llm-for-ordinary-developers.html#fn:13)
 
