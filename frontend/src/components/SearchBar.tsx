@@ -1,53 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { handleResponse, handleStream } from "../redux/message.slice";
 
-interface ISearchBarProps {
-  handleMessages: (query: string, who: "bot" | "user") => void;
-  handleStream: (text: string) => void;
-}
-
-const SearchBar: React.FC<ISearchBarProps> = ({
-  handleMessages,
-  handleStream,
-}) => {
-  const PUBLIC_URL = process.env.PUBLIC_URL;
-  const sendButton = `${PUBLIC_URL}/icon.svg`;
+const SearchBar: React.FC = () => {
+  const dispatch = useDispatch();
+  const sendButton = `${process.env.PUBLIC_URL}/icon.svg`;
 
   const [input, setInput] = useState<string>("");
-  const [query, setQuery] = useState<string>("");
-  const [response, setResponse] = useState<string>("");
 
-  useEffect(() => {
-    if (response) {
-      handleStream(response);
-    }
-  }, [response]);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-    setQuery(event.target.value);
-  };
-
-  const streamResponse = async (
-    reader: ReadableStreamDefaultReader<Uint8Array>,
-    decoder: TextDecoder
-  ) => {
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-
-      const text = decoder.decode(value);
-      setResponse((prev) => prev + text);
-    }
-  };
-
-  const sendServerRequest = async (query: string) => {
+  const sendServerRequest = async () => {
     const response = await fetch("/query", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query: query }),
+      body: JSON.stringify({ query: input }),
     });
 
     if (!response.ok) {
@@ -57,20 +25,33 @@ const SearchBar: React.FC<ISearchBarProps> = ({
     return response;
   };
 
+  const streamResponse = async (
+    reader: ReadableStreamDefaultReader<Uint8Array>,
+    decoder: TextDecoder
+  ) => {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) {
+        dispatch(handleStream({ text: " ", loading: false }));
+        break;
+      }
+      const text = decoder.decode(value);
+      dispatch(handleStream({ text: text, loading: true }));
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      handleMessages(input, "user");
+      dispatch(handleResponse({ text: input, who: "user", loading: false }));
       setInput("");
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      const response = await sendServerRequest(query);
+      const response = await sendServerRequest();
       if (response.body) {
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         await streamResponse(reader, decoder);
       }
-      setQuery("");
-      setResponse("");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -83,7 +64,9 @@ const SearchBar: React.FC<ISearchBarProps> = ({
           placeholder="   질문을 입력해주세요."
           type="text"
           value={input}
-          onChange={handleInputChange}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setInput(e.target.value)
+          }
         />
         <SmallSendButton type="submit">
           <img src={sendButton} />
