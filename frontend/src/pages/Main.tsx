@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import { Message, IMessage } from "../components/Message";
+import Message from "../components/Message";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const ChatApp: React.FC = () => {
-  const [messages, setMessages] = useState<IMessage[]>(defaultMessages);
+  const messages = useSelector((state: RootState) => state.message.messages);
 
-  // Scroll to bottom part.
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const container = containerRef.current;
@@ -17,75 +17,25 @@ const ChatApp: React.FC = () => {
     }
   }, [messages]);
 
-  const handleResponse = (text: string, who: "bot" | "user") => {
-    console.log(messages);
-    setMessages((prev) => [...prev, { sender: who, text: text }]);
-  };
-
-  const handleStream = (text: string) => {
-    if (messages[messages.length - 1].sender === "bot") {
-      setMessages((prev) => [
-        ...prev.slice(0, -1),
-        {
-          sender: "bot",
-          text: text,
-        },
-      ]);
-    } else {
-      setMessages((prev) => [
-        ...prev,
-        {
-          sender: "bot",
-          text: " ",
-        },
-      ]);
-    }
-  };
-
   return (
     <Background>
       <Container>
         <Header />
         <Window ref={containerRef}>
-          {messages.map((message, i) => (
-            <Message key={i} sender={message.sender}>
-              {message.text}
-            </Message>
+          {messages.map((message) => (
+            <Message
+              sender={message.sender}
+              text={message.text}
+              type={message.type}
+              loading={message.loading}
+            />
           ))}
         </Window>
-        <SearchBar
-          handleMessages={handleResponse}
-          handleStream={handleStream}
-        />
+        <SearchBar />
       </Container>
     </Background>
   );
 };
-
-const defaultMessages: IMessage[] = [
-  {
-    sender: "bot",
-    text:
-      "무엇을 도와드릴까요? 당신에게 가장 적절한 복지 서비스를 찾아드려요! EX. 취업 예정인데 도와주세요!",
-  },
-  {
-    sender: "user",
-    text: "취업 예정인데 도와주세요!",
-  },
-  {
-    sender: "bot",
-    text:
-      "취업을 위한 복지 서비스를 찾아드릴게요! \n - 실업 급여 \n - 국민연금 실업크레딧 \n - 건강보험 임의계속가입제도 \n - 국민취업지원제도 \n - 국민내일배움카드제 ",
-  },
-  {
-    sender: "user",
-    text: "국민내일배움카드제에 대해 알려주세요",
-  },
-  {
-    sender: "bot",
-    text: "무엇을 도와드릴까요?",
-  },
-];
 
 const Container = styled.div`
   width: 500px;

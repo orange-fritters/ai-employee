@@ -2,7 +2,6 @@ import openai
 import os
 import json
 import tiktoken
-import random
 
 
 def count_tokens(text: str):
