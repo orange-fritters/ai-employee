@@ -122,5 +122,5 @@ if __name__ == "__main__":
         print(response)
         print()
 
-        with open('data/summary/summary.json', 'w', encoding='utf-8') as f:
+        with open('data/summary/some_file.json', 'w', encoding='utf-8') as f:
             json.dump(summary_dict, f, indent=4, ensure_ascii=False)
