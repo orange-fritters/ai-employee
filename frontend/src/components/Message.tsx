@@ -1,6 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import Button from "./Button";
 import React from "react";
+import {
+  IRecElement,
+  handleRecommendation,
+} from "../redux/recommendation.slicer";
+import { useDispatch } from "react-redux";
+import { requestQuery } from "./utils/requestQuery";
+import { streamResponse } from "./utils/streamResponse";
 
 /** Message type
  *
@@ -27,16 +34,62 @@ export interface IMessage {
   text: string;
   type: "default" | "response" | "recommendation";
   loading: boolean;
+  recArr?: IRecElement[];
 }
 
-const Message = ({ sender, text, type, loading }: IMessage) => {
+const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
+  // const dispatch = useDispatch();
+  // const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   if (recArr) {
+  //     const title = event.currentTarget.textContent;
+  //     const changeRec = recArr.find((rec) => rec.title === title);
+  //     const currRec = recArr.find((rec) => rec.rank === 1);
+  //     const currRank = currRec?.rank;
+
+  //     if (changeRec && currRank) {
+  //       dispatch(handleRecommendation({ recommendationResponse: [] }));
+  //       dispatch(
+  //         handleRecommendation({
+  //           recommendationResponse: [
+  //             ...recArr.filter(
+  //               (rec) => rec.rank !== currRank && rec.rank !== 1
+  //             ),
+  //             { ...changeRec, rank: 1 },
+  //             { ...currRec, rank: currRank },
+  //           ],
+  //         })
+  //       );
+  //       const response = await requestQuery(
+  //         `${changeRec.title}에 대해 요약해줘.`,
+  //         changeRec.title
+  //       );
+  //       if (response.body) {
+  //         const reader = response.body.getReader();
+  //         const decoder = new TextDecoder("utf-8");
+  //         await streamResponse(dispatch, reader, decoder);
+  //       }
+  //     }
+  //   }
+  // };
+
   if (type === "recommendation") {
+    console.log(recArr);
+    console.log(typeof recArr);
     return (
-      <SingleResponse sender={sender} type={type}>
-        <MessageBox sender={sender} type={type}>
-          <Button type="home" loading={loading} />
-        </MessageBox>
-      </SingleResponse>
+      <RecResponse>
+        {recArr ? (
+          recArr.slice(1).map((rec) => (
+            // <Recommendation onClick={handleRecClick}>
+            <Recommendation>{rec.title}</Recommendation>
+          ))
+        ) : (
+          <SingleResponse sender={sender} type={type}>
+            <MessageBox sender={sender} type={type}>
+              추천할 서비스가 없습니다.
+            </MessageBox>
+          </SingleResponse>
+        )}
+      </RecResponse>
     );
   } else if (type === "response") {
     return (
@@ -102,7 +155,7 @@ const ButtonBox = styled.div<{
   position: relative;
   align-self: "flex-start";
   text-align: "left";
-  background-color: #7478b0;
+  background-color: #648fd9;
   color: "#000";
   max-width: ${(props) => (props.type === "default" ? "60%" : "100%")};
   margin-left: ${(props) => (props.type === "default" ? "25px" : "0px")};
@@ -135,4 +188,46 @@ const SingleResponse = styled.div<{
   grid-column-gap: 12px;
   grid-row-gap: 15px;
   margin-left: 25px;
+`;
+
+const RecResponse = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 55%;
+  margin-left: 25px;
+  margin-right: 0px;
+  align-self: flex-start;
+  grid-row-gap: 12px;
+  padding: 2.5%;
+
+  justify-items: center;
+  position: relative;
+  background-color: rgb(100, 143, 217);
+  border-radius: 5px 17px 17px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+  transition: height 1s ease-in-out 0s;
+  animation: 1s ease-out 0s 1 normal none running bxdTFl;
+`;
+
+const Recommendation = styled.button`
+  position: relative;
+  align-self: "flex-start";
+  text-align: "center";
+  background-color: #6e9ef0;
+  color: white;
+  border: none;
+  font-weight: 550;
+  font-size: 16px;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  &:hover {
+    background-color: #2162d1;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px;
+    font-weight: 600;
+  }
+  width: 100%;
 `;

@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import styled from "styled-components";
+
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Message from "../components/Message";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 
 const ChatApp: React.FC = () => {
-  const messages = useSelector((state: RootState) => state.message.messages);
+  const messages = useSelector((state: RootState) => state.chat.messages);
 
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -28,6 +29,7 @@ const ChatApp: React.FC = () => {
               text={message.text}
               type={message.type}
               loading={message.loading}
+              recArr={message.recArr}
             />
           ))}
         </Window>

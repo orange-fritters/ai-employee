@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import messageReducer from "./message.slice";
+import recommendationSlicer from "./recommendation.slicer";
 
 const store = configureStore({
   reducer: {
-    message: messageReducer,
+    chat: messageReducer,
+    recommendation: recommendationSlicer,
   },
 });
 

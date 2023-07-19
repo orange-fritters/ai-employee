@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMessage } from "../components/Message";
+import { IRecElement } from "./recommendation.slicer";
 
-const IMessages: IMessage[] = [
+export const dMessages: IMessage[] = [
   {
     sender: "bot",
     text: "무엇을 도와드릴까요? 당신에게 가장 적절한 복지 서비스를 찾아드려요!",
@@ -20,24 +21,27 @@ const IMessages: IMessage[] = [
 export const messageSlice = createSlice({
   name: "chat",
   initialState: {
-    messages: IMessages,
+    messages: dMessages,
   },
   reducers: {
     handleResponse: (
       state,
       action: PayloadAction<{
         text: string;
-        who: "bot" | "user";
+        sender: "bot" | "user";
         loading: boolean;
+        type?: "default" | "response" | "recommendation";
+        recArr?: IRecElement[];
       }>
     ) => {
       state.messages = [
         ...state.messages,
         {
-          sender: action.payload.who,
+          sender: action.payload.sender,
           text: action.payload.text,
-          type: "default",
+          type: action.payload.type || "default",
           loading: action.payload.loading,
+          recArr: action.payload.recArr || [],
         },
       ];
       console.log(state.messages);
@@ -62,7 +66,6 @@ export const messageSlice = createSlice({
           loading: action.payload.loading,
         });
       }
-      console.log(state.messages);
     },
   },
 });

@@ -1,59 +1,70 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { handleResponse, handleStream } from "../redux/message.slice";
+import { dMessages, handleResponse } from "../redux/message.slice";
+import { requestQuery } from "./utils/requestQuery";
+import { streamResponse } from "./utils/streamResponse";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { getRecommendation } from "./utils/requestRecommendation";
+import {
+  handleRecommendation,
+  handleState,
+} from "../redux/recommendation.slicer";
+import { selectFirstRecommendation } from "../redux/selectors";
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
-  const sendButton = `${process.env.PUBLIC_URL}/icon.svg`;
-
   const [input, setInput] = useState<string>("");
-
-  const sendServerRequest = async () => {
-    const response = await fetch("/query", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query: input }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response;
-  };
-
-  const streamResponse = async (
-    reader: ReadableStreamDefaultReader<Uint8Array>,
-    decoder: TextDecoder
-  ) => {
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) {
-        dispatch(handleStream({ text: " ", loading: false }));
-        break;
-      }
-      const text = decoder.decode(value);
-      dispatch(handleStream({ text: text, loading: true }));
-    }
-  };
+  const state = useSelector((state: RootState) => state.recommendation.now);
+  const rec = useSelector(selectFirstRecommendation);
+  const sendButton = `${process.env.PUBLIC_URL}/icon.svg`;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      dispatch(handleResponse({ text: input, who: "user", loading: false }));
+    if (state.now === "home") {
+      getRecommendation(input, dispatch);
+      dispatch(handleResponse({ text: input, sender: "user", loading: false }));
       setInput("");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const response = await sendServerRequest();
-      if (response.body) {
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder("utf-8");
-        await streamResponse(reader, decoder);
+      dispatch(handleState({ recommendationState: { now: "asking" } }));
+    } else if (state.now == "asking") {
+      try {
+        dispatch(
+          handleResponse({ text: input, sender: "user", loading: false })
+        );
+        setInput("");
+        if (rec !== undefined) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          const response = await requestQuery(input, rec.title);
+          if (response.body) {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            await streamResponse(dispatch, reader, decoder);
+          }
+        } else {
+          dispatch(
+            handleResponse({
+              text: "오류가 발생하였습니다. 처음으로 돌아갑니다.",
+              sender: "bot",
+              loading: false,
+            })
+          );
+          dispatch(handleState({ recommendationState: { now: "home" } }));
+          dispatch(handleResponse({ ...dMessages[0] }));
+          dispatch(handleResponse({ ...dMessages[1] }));
+          dispatch(handleRecommendation({ recommendationResponse: [] }));
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
+    } else {
+      dispatch(
+        handleResponse({
+          text: "원하시는 제도를 선택해주세요.",
+          sender: "bot",
+          loading: false,
+        })
+      );
     }
   };
 
@@ -109,12 +120,13 @@ const SearchInput = styled.input`
   border: none;
   outline: none;
   font-size: 16px;
+  height: 20px;
   background-color: transparent;
   padding-left: 40px;
   &::placeholder {
     color: lightgray;
-    font-size: 20px; /* Adjust the font size as needed */
-    line-height: 1; /* Ensures vertical centering */
+    font-size: 20px;
+    line-height: 1;
   }
 `;
 
