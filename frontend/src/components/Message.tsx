@@ -6,9 +6,7 @@ import {
   handleState,
   swapRank,
 } from "../redux/recommendation.slicer";
-import { useDispatch, useSelector } from "react-redux";
-import { requestQuery } from "./utils/requestQuery";
-import { streamResponse } from "./utils/streamResponse";
+import { useDispatch } from "react-redux";
 import { handleResponse } from "../redux/message.slice";
 import { requestSummary } from "./utils/requestSummary";
 

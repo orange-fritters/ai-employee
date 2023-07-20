@@ -58,7 +58,7 @@ const Button = ({ type, loading }: IButton) => {
 
   return (
     <StyledButton onClick={handleClick} type={type} loading={loading}>
-      {type === "home" ? "처음으로" : "서비스 더보기"}
+      {type === "home" ? "처음으로" : "비슷한 서비스"}
     </StyledButton>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { dMessages, handleResponse } from "../redux/message.slice";
+import { initMessage, dMessages, handleResponse } from "../redux/message.slice";
 import { requestQuery } from "./utils/requestQuery";
 import { streamResponse } from "./utils/streamResponse";
 import { useSelector } from "react-redux";
@@ -50,6 +50,7 @@ const SearchBar: React.FC = () => {
             })
           );
           dispatch(handleState({ recommendationState: { now: "home" } }));
+          dispatch(initMessage);
           dispatch(handleResponse({ ...dMessages[0] }));
           dispatch(handleResponse({ ...dMessages[1] }));
           dispatch(handleRecommendation({ recommendationResponse: [] }));

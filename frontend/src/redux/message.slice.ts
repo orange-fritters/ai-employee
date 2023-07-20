@@ -24,6 +24,9 @@ export const messageSlice = createSlice({
     messages: dMessages,
   },
   reducers: {
+    initMessage: (state, action: PayloadAction) => {
+      state.messages = dMessages;
+    },
     handleResponse: (
       state,
       action: PayloadAction<{
@@ -44,7 +47,6 @@ export const messageSlice = createSlice({
           recArr: action.payload.recArr || [],
         },
       ];
-      console.log(state.messages);
     },
     handleStream: (
       state,
@@ -71,5 +73,9 @@ export const messageSlice = createSlice({
   },
 });
 
-export const { handleResponse, handleStream } = messageSlice.actions;
+export const {
+  initMessage,
+  handleResponse,
+  handleStream,
+} = messageSlice.actions;
 export default messageSlice.reducer;
