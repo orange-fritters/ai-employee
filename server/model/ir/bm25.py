@@ -1,5 +1,6 @@
 import os
 import re
+import json
 import pickle
 from rank_bm25 import BM25Okapi
 from bs4 import BeautifulSoup as bs
@@ -7,15 +8,20 @@ from kiwipiepy import Kiwi
 
 ### data 예상 구조
 ### data/articles/*.html
-### data/articles_summerized/*.html
+### data/summary.json
 
 ### tokenized data 예상 구조
 ### data/tokenized/articles.pkl
-### data/tokenized/articles_summerized.pkl
-
+### data/tokenized/summary.pkt
 
 class BM25():
-    def __init__(self, articles_path, tokenize_including_pos = None, tokenize_excluding_pos = "", tokenize_min_len = 1, update_data = True):
+    def __init__(self, 
+                articles_path,
+                data_type = "html",
+                tokenize_including_pos = None, 
+                tokenize_excluding_pos = "", 
+                tokenize_min_len = 1, 
+                update_data = True,):
         ## articles_path: article data(.html format) 위치 _ ex. "/data/articles/"
         ## tokenize_including_pos: 포함할 품사 list _ ex. ["NNG", "NNP"]
         ## tokenize_excluding_pos: 제외할 품사 list _ ex. ["JKS", "JKC"]
@@ -23,6 +29,7 @@ class BM25():
         ## update_data: data 전처리 진행 및 업데이트 여부
         
         self.articles_path = articles_path 
+        self.data_type = data_type
         self.tokenize_including_pos = tokenize_including_pos 
         self.tokenize_excluding_pos = tokenize_excluding_pos 
         self.tokenize_min_len = tokenize_min_len 
@@ -30,25 +37,33 @@ class BM25():
         self.tokenizer = Kiwi()
 
         self.get_preprocessed_articles()
-        self.bm25()
+        self.initialize_bm25()
 
 
     def html_to_text(self, pth):
         ## html files -> list(str)
-        
-        articles_id = os.listdir(pth)
-        articles_id.sort()
-        
+
         articles = []
-        
-        for id in articles_id:
-            f = open(pth + id, 'r')
-            html = f.read()
-            f.close()
+
+        if self.data_type == "html":
+
+            articles_id = os.listdir(pth)
+            articles_id.sort()
             
-            article = bs(html, 'html.parser')
-            article = " ".join(article.text.replace("\n", "").split())
-            articles.append(article)
+            for id in articles_id:
+                with open(pth + id, 'r') as f:
+                    html = f.read()
+                
+                article = bs(html, 'html.parser')
+                article = " ".join(article.text.replace("\n", "").split())
+                articles.append(article)
+
+        elif self.data_type == "summary":
+            with open(pth) as f:
+                summary = json.load(f)
+
+            for key, value in summary.items():
+                articles.append(value['summary'])
 
         return articles
 
@@ -91,6 +106,7 @@ class BM25():
 
     def get_preprocessed_articles(self):
         ## articles_path: /data/articles/ 형태로 받아온다고 가정
+        ## -> summary 는 /data/summary.json ...
 
         ## upate_data: True -> data 다시 전처리해서 저장
         ## data/articles/*.html -> data/tokenized_data/articles.pkl 으로 저장
@@ -102,7 +118,9 @@ class BM25():
             articles = self.html_to_text(self.articles_path)
             articles_processed = [self.text_preprocess(article) for article in articles]
 
-            data_path, file_ver = self.articles_path.rstrip("/").rsplit("/", 1)
+            data_path = self.articles_path.rstrip("/").rsplit("/", 1)[0]
+            file_ver = self.data_type
+
             save_path = data_path + "/tokenized_articles/"
             file_name = file_ver + ".pkl"
 
@@ -114,7 +132,9 @@ class BM25():
 
         else:
             
-            data_path, file_ver = self.articles_path.rstrip("/").rsplit("/", 1)
+            data_path = self.articles_path.rstrip("/").rsplit("/", 1)[0]
+            file_ver = self.data_type
+
             save_path = data_path + "/tokenized_articles/"
             file_name = file_ver + ".pkl"
 
@@ -124,16 +144,17 @@ class BM25():
             self.tokenized_articles = articles_processed
 
 
-    def bm25(self):
-        bm25 = BM25Okapi(self.tokenized_articles)
-        self.bm25 = bm25
-
+    def initialize_bm25(self):
+        model = BM25Okapi(self.tokenized_articles)
+        self.model = model
 
 
     def get_score(self, query):
         tokenized_query = self.text_preprocess(query)
-        score = self.bm25.get_scores(tokenized_query)
+        score = self.model.get_scores(tokenized_query)
         return score
+
+
 
 if __name__ == "__main__":
     ## example
