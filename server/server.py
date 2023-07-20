@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from model.sample import Model
 from model.utils.get_response_openai import get_response_openai
+from model.ir.recommendation import Recommendation
 
 
 class Query(BaseModel):
@@ -27,16 +28,18 @@ app.add_middleware(
 )
 
 model = Model('model/info_sheet.csv')
-
-
-@app.post("/recommendation")
-async def get_recommendation(query: SingleString):
-    return model.get_recommendation(query.query)
+rec = Recommendation('model/info_sheet.csv',
+                     'articles/')
 
 
 @app.post("/summary")
 async def get_summary(query: SingleString):
     return model.get_summary(query.query)
+
+
+@app.post("/recommendation")
+async def get_recommendation(query: SingleString):
+    return rec.get_bm25(query.query)
 
 
 @app.post("/query")
