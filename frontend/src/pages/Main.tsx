@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Message from "../components/Message";
+import { selectRecommendations } from "../redux/selectors";
 
 const ChatApp: React.FC = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
@@ -17,6 +18,11 @@ const ChatApp: React.FC = () => {
       container.scrollTop = container.scrollHeight;
     }
   }, [messages]);
+
+  const recommendations = useSelector(selectRecommendations);
+  useEffect(() => {
+    console.log(recommendations);
+  }, [recommendations]);
 
   return (
     <Background>

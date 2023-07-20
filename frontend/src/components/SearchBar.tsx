@@ -33,7 +33,7 @@ const SearchBar: React.FC = () => {
           handleResponse({ text: input, sender: "user", loading: false })
         );
         setInput("");
-        if (rec !== undefined) {
+        if (rec !== undefined && rec !== null) {
           await new Promise((resolve) => setTimeout(resolve, 1000));
           const response = await requestQuery(input, rec.title);
           if (response.body) {

@@ -3,11 +3,14 @@ import Button from "./Button";
 import React from "react";
 import {
   IRecElement,
-  handleRecommendation,
+  handleState,
+  swapRank,
 } from "../redux/recommendation.slicer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { requestQuery } from "./utils/requestQuery";
 import { streamResponse } from "./utils/streamResponse";
+import { handleResponse } from "../redux/message.slice";
+import { requestSummary } from "./utils/requestSummary";
 
 /** Message type
  *
@@ -38,50 +41,78 @@ export interface IMessage {
 }
 
 const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
-  // const dispatch = useDispatch();
-  // const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   if (recArr) {
-  //     const title = event.currentTarget.textContent;
-  //     const changeRec = recArr.find((rec) => rec.title === title);
-  //     const currRec = recArr.find((rec) => rec.rank === 1);
-  //     const currRank = currRec?.rank;
+  const dispatch = useDispatch();
+  const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const titleClicked = event.currentTarget.textContent;
+    if (recArr && titleClicked) {
+      dispatch(
+        handleResponse({
+          sender: "user",
+          loading: false,
+          text: `${titleClicked}에 대해 더 자세하게 알려줘!`,
+        })
+      );
+      dispatch(swapRank({ titleClicked }));
 
-  //     if (changeRec && currRank) {
-  //       dispatch(handleRecommendation({ recommendationResponse: [] }));
-  //       dispatch(
-  //         handleRecommendation({
-  //           recommendationResponse: [
-  //             ...recArr.filter(
-  //               (rec) => rec.rank !== currRank && rec.rank !== 1
-  //             ),
-  //             { ...changeRec, rank: 1 },
-  //             { ...currRec, rank: currRank },
-  //           ],
-  //         })
-  //       );
-  //       const response = await requestQuery(
-  //         `${changeRec.title}에 대해 요약해줘.`,
-  //         changeRec.title
-  //       );
-  //       if (response.body) {
-  //         const reader = response.body.getReader();
-  //         const decoder = new TextDecoder("utf-8");
-  //         await streamResponse(dispatch, reader, decoder);
-  //       }
-  //     }
-  //   }
-  // };
+      const summary = await requestSummary(titleClicked);
+      dispatch(
+        handleResponse({
+          sender: "bot",
+          text: `${titleClicked}은 어때요?`,
+          type: "default",
+          loading: false,
+        })
+      );
+      dispatch(
+        handleResponse({
+          sender: "bot",
+          text: `${summary}`,
+          type: "default",
+          loading: false,
+        })
+      );
+      dispatch(
+        handleResponse({
+          sender: "bot",
+          text: `${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
+          type: "response",
+          loading: false,
+        })
+      );
+
+      // const response = await requestQuery(
+      //   `${titleClicked}에 대해 요약해줘.`,
+      //   titleClicked
+      // );
+      // if (response.body) {
+      //   const reader = response.body.getReader();
+      //   const decoder = new TextDecoder("utf-8");
+      //   await streamResponse(dispatch, reader, decoder);
+      // }
+    } else {
+      dispatch(
+        handleResponse({
+          sender: "bot",
+          loading: false,
+          text: "가장 최근의 더보기를 눌러주세요!",
+        })
+      );
+    }
+
+    dispatch(handleState({ recommendationState: { now: "asking" } }));
+  };
 
   if (type === "recommendation") {
-    console.log(recArr);
-    console.log(typeof recArr);
     return (
       <RecResponse>
         {recArr ? (
-          recArr.slice(1).map((rec) => (
-            // <Recommendation onClick={handleRecClick}>
-            <Recommendation>{rec.title}</Recommendation>
-          ))
+          recArr
+            .slice(1)
+            .map((rec) => (
+              <Recommendation onClick={handleRecClick}>
+                {rec.title}
+              </Recommendation>
+            ))
         ) : (
           <SingleResponse sender={sender} type={type}>
             <MessageBox sender={sender} type={type}>

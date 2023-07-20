@@ -1,11 +1,21 @@
-import { RootState } from "./store"; // Import your RootState
+import { RootState } from "./store";
 
-// Selectors for recommendationSlice
 export const selectRecommendations = (state: RootState) =>
   state.recommendation.recommendations;
 
-export const selectFirstRecommendation = (state: RootState) =>
-  state.recommendation.recommendations.find((elem) => elem.rank === 1);
+export const selectFirstRecommendation = (state: RootState) => {
+  const firstRecommendation = state.recommendation.recommendations.find(
+    (elem) => elem.rank === 1
+  );
+  return firstRecommendation || null; // Return null if no first recommendation found
+};
+
+export const selectFirstTitle = (state: RootState) => {
+  const firstRecommendation = state.recommendation.recommendations.find(
+    (elem) => elem.rank === 1
+  );
+  return firstRecommendation ? firstRecommendation.title : null; // Return null if no first recommendation found
+};
 
 export const selectMessages = (state: RootState) => state.chat.messages;
 

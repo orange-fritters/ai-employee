@@ -53,7 +53,8 @@ export const messageSlice = createSlice({
       const text = action.payload.text;
       if (
         state.messages.length > 0 &&
-        state.messages[state.messages.length - 1].sender === "bot"
+        state.messages[state.messages.length - 1].sender === "bot" &&
+        state.messages[state.messages.length - 1].type === "response"
       ) {
         state.messages[state.messages.length - 1].text += text;
         state.messages[state.messages.length - 1].loading =
