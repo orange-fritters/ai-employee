@@ -19,8 +19,9 @@ class Model:
     def get_questions(self, filename: str):
         return self.data[self.data['filename'] == filename]['queries'].tolist()
 
-    def get_summary(self, filename: str):
-        return self.data[self.data['filename'] == filename]['summary']
+    def get_summary(self, title: str):
+        print(self.data[self.data['title'] == title]['summary'])
+        return json.dumps(self.data[self.data['title'] == title]['summary'].item())
 
     def get_keywords(self, filename: str):
         return self.data[self.data['filename'] == filename]['keywords'].tolist()

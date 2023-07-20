@@ -13,7 +13,7 @@ class Query(BaseModel):
     title: str
 
 
-class Situation(BaseModel):
+class SingleString(BaseModel):
     query: str
 
 
@@ -30,8 +30,13 @@ model = Model('model/info_sheet.csv')
 
 
 @app.post("/recommendation")
-async def get_recommendation(query: Situation):
+async def get_recommendation(query: SingleString):
     return model.get_recommendation(query.query)
+
+
+@app.post("/summary")
+async def get_summary(query: SingleString):
+    return model.get_summary(query.query)
 
 
 @app.post("/query")
