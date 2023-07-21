@@ -6,7 +6,7 @@
 - 지니랩스 tts, sst로 배리어프리 App 구현?
 - IR의 경우, first stage + reranking으로 구현
 - gpt api 중에 **text embedding**이 있음
-  - 복지 제도 400개를 미리 embedding해두고 user query와 가장 유사한 복지 제도를 찾는 방식
+  - 복지 제도 400개를 미리 embedding해두고 user query와 가장 유사한 복지 제도를 찾는 방식 -z
 
 ## Links
 
@@ -39,6 +39,14 @@
 - OpenAI API를 활용한 방법론
 
 ### Postings
+
+[LLM QA 블로그](https://georgesung.github.io/ai/llm-qa-eval-wikipedia/)
+
+- LLM QA에 대한 자세한 비교
+
+[GCP 액션](https://bitrader.tistory.com/457)
+
+- git action을 활용한 GCP 배포
 
 [개발자로서 LLM 사용을 위해 알아두면 좋은 내용들](https://haandol.github.io/2023/05/02/llm-for-ordinary-developers.html#fn:13)
 
@@ -79,7 +87,7 @@
 🔥 [Feat] Implement main logics (incomplete)
 📝 [Docs] Update git files
 📝 [Docs] Add TODO
-🪮 [Style] Fix typo
+📝 [Style] Fix typo
 ```
 
 2. type
@@ -89,7 +97,7 @@
 ✨ Add : 기능은 아닌 코드 추가
 🐛 Fix : 버그 수정
 📝 Docs : 문서 수정
-🪮 Style : 코드 포맷팅, 세미콜론 누락, 코드 리프랙터, 코드 변경이 없는 경우
+📝 Style : 코드 포맷팅, 세미콜론 누락, 코드 리프랙터, 코드 변경이 없는 경우
 🛠️ Git : 깃허브 관련
 ```
 

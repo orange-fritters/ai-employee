@@ -21,3 +21,9 @@ class Recommendation:
         titles = self.data.loc[top_n_index]['title'].tolist()
         response = [{"rank": i + 1, "title": title} for i, title in enumerate(titles)]
         return json.dumps(response)
+
+    def get_bm25_python(self, query, n=5):
+        score = self.bm25.get_score(query)
+        top_n_index = np.argsort(score)[::-1][:n]
+        titles = self.data.loc[top_n_index]['title'].tolist()
+        return titles

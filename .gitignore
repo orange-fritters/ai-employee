@@ -12,3 +12,10 @@ server/env/
 server/config.json
 .vscode/settings.json
 server/__pycache__/server.cpython-38.pyc
+server/model/utils/config.json
+*.pyc
+preprocess/embedding/embeddings.csv
+preprocess/embedding/embeddings.json
+preprocess/embedding/query_embed.json
+preprocess/embedding/ir/
+preprocess/embedding/query_doc_similarity.json
