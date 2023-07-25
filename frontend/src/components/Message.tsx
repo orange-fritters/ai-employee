@@ -9,6 +9,8 @@ import {
 import { useDispatch } from "react-redux";
 import { handleResponse } from "../redux/message.slice";
 import { requestSummary } from "./utils/requestSummary";
+import { useSelector } from "react-redux";
+import { selectFirstTitle } from "../redux/selectors";
 
 /** Message type
  *
@@ -40,6 +42,7 @@ export interface IMessage {
 
 const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
   const dispatch = useDispatch();
+  const first = useSelector(selectFirstTitle);
   const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const titleClicked = event.currentTarget.textContent;
     if (recArr && titleClicked) {
@@ -47,7 +50,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
         handleResponse({
           sender: "user",
           loading: false,
-          text: `${titleClicked}에 대해 더 자세하게 알려줘!`,
+          text: `${titleClicked}에 대해\n 더 자세하게 알려줘!`,
         })
       );
       dispatch(swapRank({ titleClicked }));
@@ -56,23 +59,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       dispatch(
         handleResponse({
           sender: "bot",
-          text: `${titleClicked}은 어때요?`,
-          type: "default",
-          loading: false,
-        })
-      );
-      dispatch(
-        handleResponse({
-          sender: "bot",
-          text: `${summary}`,
-          type: "default",
-          loading: false,
-        })
-      );
-      dispatch(
-        handleResponse({
-          sender: "bot",
-          text: `${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
+          text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
           type: "response",
           loading: false,
         })
@@ -100,6 +87,24 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
     dispatch(handleState({ recommendationState: { now: "asking" } }));
   };
 
+  const handleRefClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    // frontend/public/title_id.json
+    if (first) {
+      const response = await fetch(`${process.env.PUBLIC_URL}/title_id.json`);
+      const titleId = await response.json();
+      const id = titleId[first];
+      window.open(`/api/articles/view/${id}`, "_blank");
+    } else {
+      dispatch(
+        handleResponse({
+          sender: "bot",
+          loading: false,
+          text: "오류가 발생하였습니다!",
+        })
+      );
+    }
+  };
+
   if (type === "recommendation") {
     return (
       <RecResponse>
@@ -124,7 +129,13 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
     return (
       <SingleResponse sender={sender} type={type}>
         <MessageBox sender={sender} type={type}>
-          {text}
+          {text.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+          {<FloatingButton onClick={handleRefClick}>문서</FloatingButton>}
         </MessageBox>
         {!loading && (
           <ButtonBox loading={loading} type={type}>
@@ -135,12 +146,19 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       </SingleResponse>
     );
   } else {
-    return (
+    return text ? (
       <SingleResponse sender={sender} type={type}>
         <MessageBox sender={sender} type={type}>
-          {text}
+          {text.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
         </MessageBox>
       </SingleResponse>
+    ) : (
+      <></>
     );
   }
 };
@@ -209,6 +227,7 @@ const SingleResponse = styled.div<{
   max-width: 60%;
   grid-template-columns: ${(props) =>
     props.type === "default" ? "1fr" : "1fr 1fr"};
+  margin-top: ${(props) => (props.type === "response" ? "15px" : "0px")};
   margin-left: ${(props) => (props.sender === "bot" ? "25px" : "0px")};
   margin-right: ${(props) => (props.sender === "bot" ? "0px" : "25px")};
   align-self: ${(props) =>
@@ -259,4 +278,26 @@ const Recommendation = styled.button`
     font-weight: 600;
   }
   width: 100%;
+`;
+
+const FloatingButton = styled.button`
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  background: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+
+  &:hover {
+    background: #0073e6;
+  }
 `;

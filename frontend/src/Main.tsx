@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "./redux/store";
 import styled from "styled-components";
 
-import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
-import Message from "../components/Message";
-import { selectRecommendations } from "../redux/selectors";
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import Message from "./components/Message";
+import { selectRecommendations } from "./redux/selectors";
 
 const ChatApp: React.FC = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);

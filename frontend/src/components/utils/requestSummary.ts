@@ -2,7 +2,7 @@ import { unicodeToChar } from "./decoder";
 
 export const requestSummary = async (title: string) => {
   try {
-    const response = await fetch("/summary", {
+    const response = await fetch("/api/summary", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

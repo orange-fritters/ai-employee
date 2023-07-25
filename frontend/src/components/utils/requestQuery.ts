@@ -1,5 +1,5 @@
 export const requestQuery = async (input: string, title: string) => {
-  const response = await fetch("/query", {
+  const response = await fetch("/api/query", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

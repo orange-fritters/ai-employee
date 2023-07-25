@@ -5,14 +5,8 @@ import { IRecElement } from "./recommendation.slicer";
 export const dMessages: IMessage[] = [
   {
     sender: "bot",
-    text: "무엇을 도와드릴까요? 당신에게 가장 적절한 복지 서비스를 찾아드려요!",
-    type: "default",
-    loading: false,
-  },
-  {
-    sender: "bot",
     text:
-      "EX. 저는 직장을 다니고 있어요, 그런데 아이 돌보기와 일상 생활을 균형잡기 힘들어요",
+      "당신의 상황에 알맞은 복지 서비스를 찾아줄게요!\n\nEX. 저는 직장을 다니고 있어요,\n 그런데 아이 돌보기와 일상 생활을 균형잡기 힘들어요",
     type: "default",
     loading: false,
   },
