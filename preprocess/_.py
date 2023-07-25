@@ -59,11 +59,15 @@ def count_tokens():
 
 
 if __name__ == '__main__':
+    info = pd.read_csv("/content/drive/MyDrive/ai-employee/info_sheet.csv")
+    title_index = dict(zip(info['title'], info['index']))
 
-    df = pd.read_csv('preprocess/embedding/info_sheet.csv')
-    title_dir_map = {}
-    for i, row in df.iterrows():
-        title_dir_map[row['title']] = i
+    articles = pd.read_parquet("/content/drive/MyDrive/ai-employee/articles_embed.parquet")
+    queries = pd.read_parquet("/content/drive/MyDrive/ai-employee/query_embed.parquet")
 
-    with open('preprocess/title_id.json', 'w', encoding='utf-8') as f:
-        json.dump(title_dir_map, f, ensure_ascii=False, indent=2)
+    articles['label'] = articles['title'].apply(lambda x: title_index[x])
+
+    labels = articles['label'].unique().tolist()
+
+    # for queries with index not in labels, drop row
+    queries = queries[queries['index'].isin(labels)]

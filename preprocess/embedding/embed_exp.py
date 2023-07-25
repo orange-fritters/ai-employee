@@ -3,6 +3,7 @@ import json
 import random
 import numpy as np
 import pandas as pd
+import tiktoken
 from ir.recommendation import Recommendation
 
 # print(len(pd.read_parquet('preprocess/embedding/embeddings.parquet')))
@@ -199,20 +200,47 @@ def make_data_for_eda():
 def random_result():
     result = pd.read_parquet('preprocess/embedding/result.parguet')
     sample = result.sample(1).reset_index(drop=True)
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
 
     question = sample['query'][0]
-    bm25_titles = sample['bm25_titles'][0]
+    # bm25_titles = sample['bm25_titles'][0]
     embed_titles = sample['embed_titles'][0]
 
+    # print(f'embed: ')
+    # for title in embed_titles:
+    #     print(f'    {title}')
+
+    # print(f'bm25: ')
+    # for title in bm25_titles:
+    #     print(f'    {title}')
+    info_sheet = pd.read_csv('preprocess/embedding/info_sheet.csv', encoding='utf-8')
+    notags = info_sheet[info_sheet['title'].isin(embed_titles)]['article_notag'].tolist()
+
+    targets = []
+    try:
+        for notag in notags:
+            with open(notag, 'r', encoding='utf-8') as f:
+                notag = f.read()
+            targets.append(notag.split('1. 대상')[1].split('2. 내용')[:-1])
+    except IndexError:
+        with open(notags[0], 'r', encoding='utf-8') as f:
+            notag = f.read()
+
+    total_token_counts = 0
+    total_token_counts += len(encoding.encode(question))
+    for notag in notags:
+        with open(notag, 'r', encoding='utf-8') as f:
+            notag = f.read()
+        total_token_counts += len(encoding.encode(notag))
+
+    # print(f'총 토큰 수: {total_token_counts}')
+    print("대상:")
+    for title, target in zip(embed_titles, targets):
+        print(f'<{title}>의 대상: {target}')
+    print()
     print(f'질문: {question}')
 
-    print(f'embed: ')
-    for title in embed_titles:
-        print(f'    {title}')
-
-    print(f'bm25: ')
-    for title in bm25_titles:
-        print(f'    {title}')
+    return question, total_token_counts
 
 
 def print_some_queries():
