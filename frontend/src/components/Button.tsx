@@ -29,29 +29,39 @@ const Button = ({ type, loading }: IButton) => {
         dispatch(handleRecommendation({ recommendationResponse: [] }));
         break;
       case "recommendation":
-        if (recommendations) {
+        if (recommendations.length > 0) {
           dispatch(
             handleState({ recommendationState: { now: "recommendation" } })
           );
+
+          dispatch(
+            handleResponse({
+              sender: "bot",
+              text:
+                "4가지 제도를 추천해드려요! 더 알아보고 싶은 제도를 선택해주세요.",
+              type: "default",
+              loading: false,
+            })
+          );
+          dispatch(
+            handleResponse({
+              sender: "bot",
+              text: "",
+              type: "recommendation",
+              loading: false,
+              recArr: recommendations,
+            })
+          );
+        } else {
+          dispatch(
+            handleResponse({
+              sender: "bot",
+              text: "추천할 서비스가 없습니다. 처음으로 돌아가주세요",
+              type: "response",
+              loading: false,
+            })
+          );
         }
-        dispatch(
-          handleResponse({
-            sender: "bot",
-            text:
-              "4가지 제도를 추천해드려요! 더 알아보고 싶은 제도를 선택해주세요.",
-            type: "default",
-            loading: false,
-          })
-        );
-        dispatch(
-          handleResponse({
-            sender: "bot",
-            text: "",
-            type: "recommendation",
-            loading: false,
-            recArr: recommendations,
-          })
-        );
         break;
     }
   };

@@ -1,41 +1,69 @@
+import pandas as pd
+import tiktoken
 import json
-import re
 
 
-def check_format(text):
-    lines = text.split('\n\n')
+def random_result(i):
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+
+    result = pd.read_parquet('preprocess/embedding/result.parguet')
+    sample = result.iloc[i]
+
+    question = sample['query']
+    embed_titles = sample['embed_titles']
+
+    info_sheet = pd.read_csv('preprocess/embedding/info_sheet.csv', encoding='utf-8')
+    notags = info_sheet[info_sheet['title'].isin(embed_titles)]['article_notag'].tolist()
+
+    targets = []
     try:
-        # Check the format of the summary
-        if not lines[0].startswith('요약:'):
-            print('Invalid format: Missing 요약')
-            return False
+        for notag in notags:
+            with open(notag, 'r', encoding='utf-8') as f:
+                notag = f.read()
+            targets.append(notag.split('1. 대상')[1].split('2. 내용')[0])
+    except IndexError:
+        with open(notags[0], 'r', encoding='utf-8') as f:
+            notag = f.read()
 
-        # Check the format of the keyword section
-        if not lines[1].startswith('키워드:'):
-            print('Invalid format: Missing 키워드:')
-            return False
+    total_token_counts = 0
+    total_token_counts += len(encoding.encode(question))
+    for notag in notags:
+        with open(notag, 'r', encoding='utf-8') as f:
+            notag = f.read()
+        total_token_counts += len(encoding.encode(notag))
 
-        # Check the format of the keywords
-        keyword_pattern = re.compile(r'\d+\. .*(#\w+ )+#\w+')
-        for line in lines[2:]:
-            if not keyword_pattern.match(line):
-                print(f'Invalid keyword format: {line}')
-                return False
-    except:
-        return False
-        # If no issues are found, return True
-    return True
+    # print(f'총 토큰 수: {total_token_counts}')
+    # print("대상:")
+    # for title, target in zip(embed_titles, targets):
+    #     print(f'<{title}>의 대상: {target}')
+    # print()
+    # print(f'질문: {question}')
+
+    return question, total_token_counts
 
 
-with open('data/summary/summary.json') as file:
-    summary = json.load(file)
+def count_tokens():
+    result = pd.read_parquet('preprocess/embedding/result.parguet')
 
-count = 0
-for key, value in summary.items():
-    if not check_format(value['summary']):
-        print(key)
-        print(value['summary'])
-        print()
-        count += 1
+    tokens = pd.DataFrame(columns=['question', 'total_token_counts'])
+    for i, row in enumerate(result.iterrows()):
+        question, total_token_counts = random_result(i)
+        new_row = {'question': question, 'total_token_counts': total_token_counts}
+        tokens.loc[i] = new_row
+        if i % 100 == 0:
+            print(f'{i}번째 질문 완료')
 
-print(f'Total: {count}')
+    tokens.to_csv('preprocess/mt_tokens.csv', index=False)
+    tokens.sort_values(by=['total_token_counts'], ascending=False, inplace=True)
+    tokens.to_html('preprocess/mt_tokens.html')
+
+
+if __name__ == '__main__':
+
+    df = pd.read_csv('preprocess/embedding/info_sheet.csv')
+    title_dir_map = {}
+    for i, row in df.iterrows():
+        title_dir_map[row['title']] = i
+
+    with open('preprocess/title_id.json', 'w', encoding='utf-8') as f:
+        json.dump(title_dir_map, f, ensure_ascii=False, indent=2)

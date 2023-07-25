@@ -1,7 +1,7 @@
 import os
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, RedirectResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from model.sample import Model
@@ -27,22 +27,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+# @app.get("/{full_path:path}", include_in_schema=False)
+# async def catch_all(full_path: str):
+#     return FileResponse('../frontend/build/index.html')
+
 model = Model('model/info_sheet.csv')
 rec = Recommendation('model/info_sheet.csv',
                      'articles/')
 
 
-@app.post("/summary")
+@app.post("/api/summary")
 async def get_summary(query: SingleString):
     return model.get_summary(query.query)
 
 
-@app.post("/recommendation")
+@app.post("/api/recommendation")
 async def get_recommendation(query: SingleString):
     return rec.get_bm25(query.query)
 
 
-@app.post("/query")
+@app.post("/api/query")
 async def get_chat_response(query: Query):
     document = model.get_filename(query.title)
     document = os.path.join('articles', document)
@@ -60,5 +65,19 @@ async def get_chat_response(query: Query):
     {query.query}
     """
     return StreamingResponse(get_response_openai(prompt), media_type="text/event-stream")
+
+
+@app.get("/articles/{id}")
+async def get_article(id: str):
+    filename = model.data.iloc[int(id)]['filename']
+    filepath = os.path.join('articles', filename)
+    return FileResponse(filepath, media_type='text/html')
+
+
+@app.get("/api/articles/view/{id}")
+async def view_article(id: str):
+    filename = model.data.iloc[int(id)]['filename']
+    return RedirectResponse(url=f'/articles/{id}')
+
 
 app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="build")
