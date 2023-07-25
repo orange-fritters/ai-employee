@@ -17,6 +17,9 @@ export const selectFirstTitle = (state: RootState) => {
   return firstRecommendation ? firstRecommendation.title : null; // Return null if no first recommendation found
 };
 
+export const selectLastMessage = (state: RootState) =>
+  state.chat.messages[state.chat.messages.length - 1];
+
 export const selectMessages = (state: RootState) => state.chat.messages;
 
 export const selectNow = (state: RootState) => state.recommendation.now;

@@ -38,7 +38,7 @@ const Button = ({ type, loading }: IButton) => {
             handleResponse({
               sender: "bot",
               text:
-                "4가지 제도를 추천해드려요! 더 알아보고 싶은 제도를 선택해주세요.",
+                "4가지 제도를 추가로 추천해드릴게요!\n더 알아보고 싶은 제도를 선택해주세요.",
               type: "default",
               loading: false,
             })

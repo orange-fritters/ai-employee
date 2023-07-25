@@ -11,6 +11,8 @@ import { handleResponse } from "../redux/message.slice";
 import { requestSummary } from "./utils/requestSummary";
 import { useSelector } from "react-redux";
 import { selectFirstTitle } from "../redux/selectors";
+import { requestQuery } from "./utils/requestQuery";
+import { streamResponse } from "./utils/streamResponse";
 
 /** Message type
  *
@@ -50,7 +52,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
         handleResponse({
           sender: "user",
           loading: false,
-          text: `${titleClicked}에 대해\n 더 자세하게 알려줘!`,
+          text: `${titleClicked}에 대해 더 자세하게 알려줘!`,
         })
       );
       dispatch(swapRank({ titleClicked }));
@@ -59,21 +61,26 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       dispatch(
         handleResponse({
           sender: "bot",
-          text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
-          type: "response",
+          // text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
+          text: `${titleClicked}은 어때요?`,
+          type: "default",
           loading: false,
         })
       );
 
-      // const response = await requestQuery(
-      //   `${titleClicked}에 대해 요약해줘.`,
-      //   titleClicked
-      // );
-      // if (response.body) {
-      //   const reader = response.body.getReader();
-      //   const decoder = new TextDecoder("utf-8");
-      //   await streamResponse(dispatch, reader, decoder);
-      // }
+      const response = await requestQuery(
+        `${titleClicked}의 대상과 내용에 대해 쉬운 말로 세 문장 이내로 요약하시오. 
+        - 마침표 이후에는 \n을 사용하시오. 
+        - 오로지 요약문만 출력하시오. 
+        - 존댓말을 사용하시오.
+        - 문의 방법은 절대 포함하지 마시오.`,
+        titleClicked
+      );
+      if (response.body) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        await streamResponse(dispatch, reader, decoder);
+      }
     } else {
       dispatch(
         handleResponse({
@@ -227,7 +234,6 @@ const SingleResponse = styled.div<{
   max-width: 60%;
   grid-template-columns: ${(props) =>
     props.type === "default" ? "1fr" : "1fr 1fr"};
-  margin-top: ${(props) => (props.type === "response" ? "15px" : "0px")};
   margin-left: ${(props) => (props.sender === "bot" ? "25px" : "0px")};
   margin-right: ${(props) => (props.sender === "bot" ? "0px" : "25px")};
   align-self: ${(props) =>
@@ -280,11 +286,25 @@ const Recommendation = styled.button`
   width: 100%;
 `;
 
+const popIn = keyframes`
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 const FloatingButton = styled.button`
   position: absolute;
-  top: -20px;
-  right: -10px;
-  background: #0084ff;
+  top: -10px;
+  right: -5px;
+  background: #6a5acd;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -300,4 +320,8 @@ const FloatingButton = styled.button`
   &:hover {
     background: #0073e6;
   }
+
+  animation: ${popIn} 0.5s ease;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
 `;

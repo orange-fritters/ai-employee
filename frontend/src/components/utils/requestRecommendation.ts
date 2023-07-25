@@ -37,20 +37,4 @@ export const getRecommendation = async (
       loading: false,
     })
   );
-  // dispatch(
-  //   handleResponse({
-  //     sender: "bot",
-  //     text: `${summary}`,
-  //     type: "default",
-  //     loading: false,
-  //   })
-  // );
-  // dispatch(
-  //   handleResponse({
-  //     sender: "bot",
-  //     text: `${first.title}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
-  //     type: "response",
-  //     loading: false,
-  //   })
-  // );
 };
