@@ -150,7 +150,6 @@ def translate_to_english():
     start = time.time()
     for i, row in df.iterrows():
         if i % 10 == 0 and i != 0:
-            df.to_parquet(f'preprocess/experiments/files/backup/articles_eng_{i}.parquet')
             print(f"[{i}/{len(df)}] {i/len(df) * 100}%, {time.time() - start}(s) {60 / (time.time() - start)}/min")
         content = row['content']
         target = row['target']
