@@ -1,10 +1,12 @@
-from time import sleep
+import time
 from typing import List
 import pandas as pd
 import json
 import numpy as np
 import openai
 from tenacity import retry, stop_after_attempt, wait_random_exponential
+import tiktoken
+
 
 with open('server/model/utils/config.json') as f:
     config = json.load(f)
@@ -121,34 +123,38 @@ def embed():
     df.to_parquet('preprocess/experiments/files/articles_eng.parquet')
 
 
-def translate_test(query, method):
+def translate(query, method):
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
     prompt_message = [
-        {"role": "assistant",
+        {"role": "system",
             "content": """
                 - You must translate the following sentence into English.
                 - Output only translation, No prose or explanation, indicators.
                 """},
-        {"role": "user",
+        {"role": "assistant",
             "content": f"Translate {query} to english keeping the format."
          },
-        {"role": "system",
+        {"role": "user",
             "content": """
                 - You are an Korean English translator. 
                 - Query is used for document search with embedding.
                 - You only contain information inside the query.
-                - Translation output must be in form of "The asker is { description of whom } is in situation of { situation }\" ".
+                - Translation output must be in form of 
+                "The asker is { description of whom } is in situation of { situation }.
+                So the asker might need service for example { possible services } "
                 """},
     ]
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=prompt_message,
+            temperature=0
         )
     except:
-        return "Error"
+        return "Error", 0
 
     translated = response['choices'][0]['message']['content']
-    translated += "So, the asker is looking for a social welfare service that can help the asker."
+
     df = pd.read_parquet('preprocess/experiments/files/articles_eng.parquet')
     df = df.dropna(axis=0)
     df['total_embed'] = df['total_embed'].apply(lambda x: np.array(x))
@@ -158,9 +164,12 @@ def translate_test(query, method):
     content_eng_embed = np.array(df['content_eng_embed'].tolist())
     target_eng_embed = np.array(df['target_eng_embed'].tolist())
 
-    query_embed = openai.Embedding.create(
-        engine="text-embedding-ada-002",
-        input=[translated])
+    try:
+        query_embed = openai.Embedding.create(
+            engine="text-embedding-ada-002",
+            input=[translated])
+    except:
+        return "Error", 0
 
     query_embed = np.array(query_embed["data"][0]["embedding"]).reshape(-1, 1)
 
@@ -191,51 +200,90 @@ def translate_test(query, method):
     else:
         raise ValueError("Invalid method")
 
-    top_10_idx = np.argsort(similarity)[-15:]
-    return df.iloc[top_10_idx]['title'].values.tolist()
+    in_token = len(encoding.encode(query))
+    for prompt in prompt_message:
+        in_token += len(encoding.encode(prompt['content']))
+    embed_token = len(encoding.encode(translated))
+    out_token = len(encoding.encode(translated))
+
+    total_dollar = 0.0015 * in_token + 0.0001 * embed_token + 0.002 * out_token
+    total_won = total_dollar * 1.3
+    top_10_idx = np.argsort(similarity)[-10:]
+    return df.iloc[top_10_idx]['title'].values.tolist(), total_won
 
 
 def rerank_gpt(method="total"):
+    result_dict = {}
     query_df = pd.read_parquet('preprocess/experiments/files/query_embed.parquet')
+    encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    articles = pd.read_parquet('preprocess/experiments/files/articles_eng.parquet')
+    for i in range(625, len(query_df), 25):
 
-    for i in range(0, len(query_df), 20 * 5 + 5):
         query = query_df.iloc[i]['query']
-        print(query)
-        titles = translate_test(query, method)
-        # titles are of strings. join them with comma
-        string = ", ".join(titles)
+        print(f"[Query {i}]", query)
+        start = time.time()
+        titles, total_won = translate(query, method)
+
+        articles = articles[articles['title'].isin(titles)]
+
+        string = ""
+        for title in titles:
+            string += title + ", "
 
         prompt_message = [
-            {"role": "assistant",
-             "content": """
-                - You are an Korean AI social welfare counsellor.
-                - You are helping the asker to find the appropriate social welfare service.
-                """},
-            {"role": "user",
-             "content": f"The situation : {query} \n Services : {string}"
-             },
             {"role": "system",
              "content": """
-                - You have to rank the title of services in order of possibility to benfit from it given a situation.
-                - Only top 4 title of services are needed.
+                - You are RankGPT, an intelligent assistant that can rank service based on their relevancy to the situation.
+                """},
+            {"role": "assistant",
+             "content": f"The situation : {query} \n Services : {string}"
+             },
+            {"role": "user",
+             "content": """
+                - Among the given services, You have to rank the top three most relevant services to the situation.
+                - Do not include prose or explanation, indicators, Only korean titles.
+                - You must only contain services that the asker is able to benefit from.
+                
                 - Output must be in form of 
-                   "1. { Most probable title }
-                    2. { Second most probable title }
-                    ...
-                    4. { Fourth most probable title }".
-                - Include only titles in Korean, no prose or explanation, indicators, no translation to English.
-                - You only contain title from the Services.
-                - You only contain titles the asker can benefit from.
+                " 
+                { 1. Most relevant sercvice  }
+                { 2. Second relevant sercvice }
+                { 3. Third relevant sercvice }
+                "
+
+                - You only contain title from the Services given.
                 """},
         ]
+        for prompt in prompt_message:
+            total_won += 0.0015 * len(encoder.encode(prompt['content'])) * 1.3
 
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=prompt_message,
-        )
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=prompt_message,
+                temperature=0
+            )
+        except Exception as e:
+            print(e)
+            continue
 
-        print(response['choices'][0]['message']['content'])
+        response = response['choices'][0]['message']['content']
+
+        response = response.split("\n")
+        response = [r[3:].strip() for r in response]
+        # response = [response[2], response[1], response[0]]
+        total_won += 0.002 * len(encoder.encode(response[0])) * 1.3
+        total_won += 0.002 * len(encoder.encode(response[1])) * 1.3
+        total_won += 0.002 * len(encoder.encode(response[2])) * 1.3
+        for title in response:
+            print(title)
+        print(f"[{time.time() - start:.2f}초 {total_won:.2f}원]")
         print()
+        result_dict[i] = [query, titles, response[0], response[1], response[2]]
+
+        result_df = pd.DataFrame.from_dict(result_dict, orient='index',
+                                           columns=['query', 'titles', '1', '2', '3'])
+        result_df.to_csv('preprocess/experiments/files/rerank_gpt_2.csv')
 
 
 def translate_rerank(query, method):
@@ -322,7 +370,7 @@ def random_query(method="total"):
 def query_by_20(method):
     query_df = pd.read_parquet('preprocess/experiments/files/query_embed.parquet')
 
-    for i in range(0, len(query_df), 20 * 5):
+    for i in range(0, len(query_df), 5):
         query = query_df.iloc[i]['query']
         print(query)
         translate_rerank(query, method)
@@ -334,3 +382,5 @@ if __name__ == '__main__':
     # print_some()
     # embed()
     rerank_gpt()
+    # articles = pd.read_parquet('preprocess/experiments/files/articles_eng.parquet')
+    # print(articles.iloc[0]['target_eng'])
