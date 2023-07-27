@@ -168,8 +168,9 @@ def translate(query, method):
         query_embed = openai.Embedding.create(
             engine="text-embedding-ada-002",
             input=[translated])
-    except:
-        return "Error", 0
+    except Exception as e:
+        print(e)
+        return ["Error"]*10, 0
 
     query_embed = np.array(query_embed["data"][0]["embedding"]).reshape(-1, 1)
 
@@ -217,7 +218,7 @@ def rerank_gpt(method="total"):
     query_df = pd.read_parquet('preprocess/experiments/files/query_embed.parquet')
     encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
     articles = pd.read_parquet('preprocess/experiments/files/articles_eng.parquet')
-    for i in range(625, len(query_df), 25):
+    for i in range(975, len(query_df), 25):
 
         query = query_df.iloc[i]['query']
         print(f"[Query {i}]", query)
@@ -381,6 +382,10 @@ if __name__ == '__main__':
     # find_missing()
     # print_some()
     # embed()
-    rerank_gpt()
+    # rerank_gpt()
     # articles = pd.read_parquet('preprocess/experiments/files/articles_eng.parquet')
     # print(articles.iloc[0]['target_eng'])
+
+    df = pd.read_csv('preprocess/experiments/files/rerank_gpt.csv')
+    df = df[['query', '1', '2', '3']]
+    df.to_html('preprocess/experiments/files/rerank_gpt.html')
