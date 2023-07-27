@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IRecState {
-  now: "home" | "asking" | "recommendation";
+  now: "home" | "asking" | "recommendation" | "multiturn";
 }
 export interface IRecElement {
   rank: number;

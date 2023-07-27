@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { handleRecommendation } from "../../redux/recommendation.slicer";
-import { handleResponse } from "../../redux/message.slice";
+import { deleteLoading, handleResponse } from "../../redux/message.slice";
 import { requestSummary } from "./requestSummary";
 
 export const requestRecommendation = async (input: string) => {
@@ -25,6 +25,7 @@ export const getRecommendation = async (
   dispatch: ReturnType<typeof useDispatch>
 ) => {
   const converted = await requestRecommendation(input);
+  dispatch(deleteLoading());
   const first = converted[0];
   dispatch(handleRecommendation({ recommendationResponse: converted }));
   const summary = await requestSummary(first.title);

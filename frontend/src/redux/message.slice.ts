@@ -41,6 +41,10 @@ export const messageSlice = createSlice({
           recArr: action.payload.recArr || [],
         },
       ];
+      console.log(state.messages);
+    },
+    deleteLoading: (state) => {
+      state.messages = state.messages.filter((elem) => !elem.loading);
     },
     handleStream: (
       state,
@@ -71,5 +75,6 @@ export const {
   initMessage,
   handleResponse,
   handleStream,
+  deleteLoading,
 } = messageSlice.actions;
 export default messageSlice.reducer;

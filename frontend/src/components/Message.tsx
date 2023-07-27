@@ -11,8 +11,7 @@ import { handleResponse } from "../redux/message.slice";
 import { requestSummary } from "./utils/requestSummary";
 import { useSelector } from "react-redux";
 import { selectFirstTitle } from "../redux/selectors";
-import { requestQuery } from "./utils/requestQuery";
-import { streamResponse } from "./utils/streamResponse";
+import { SyncLoader } from "react-spinners";
 
 /** Message type
  *
@@ -61,26 +60,27 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       dispatch(
         handleResponse({
           sender: "bot",
-          // text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
-          text: `${titleClicked}은 어때요?`,
+          text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
+          // text: `${titleClicked}은 어때요?`
           type: "default",
           loading: false,
         })
       );
 
-      const response = await requestQuery(
-        `${titleClicked}의 대상과 내용에 대해 쉬운 말로 세 문장 이내로 요약하시오. 
-        - 마침표 이후에는 \n을 사용하시오. 
-        - 오로지 요약문만 출력하시오. 
-        - 존댓말을 사용하시오.
-        - 문의 방법은 절대 포함하지 마시오.`,
-        titleClicked
-      );
-      if (response.body) {
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder("utf-8");
-        await streamResponse(dispatch, reader, decoder);
-      }
+      // const response = await requestQuery(
+      //   `${titleClicked}의 대상과 내용에 대해 쉬운 말로 세 문장 이내로 요약하시오.
+      //   - 마침표 이후에는 \n을 사용하시오.
+      //   - 오로지 요약문만 출력하시오.
+      //   - 문의 방법은 절대 포함하지 마시오.
+      //   - 존댓말을 사용하시오 (습니다. 입니다. ~입니다.)
+      //   `,
+      //   titleClicked
+      // );
+      // if (response.body) {
+      //   const reader = response.body.getReader();
+      //   const decoder = new TextDecoder("utf-8");
+      //   await streamResponse(dispatch, reader, decoder);
+      // }
     } else {
       dispatch(
         handleResponse({
@@ -148,12 +148,19 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
           <ButtonBox loading={loading} type={type}>
             <Button type="home" loading={loading} />
             <Button type="recommendation" loading={loading} />
+            <Button type="more" loading={loading} />
           </ButtonBox>
         )}
       </SingleResponse>
     );
   } else {
-    return text ? (
+    return loading ? (
+      <SingleResponse sender={sender} type={type}>
+        <LoadingBox>
+          <SyncLoader color="#A9A9A9" />
+        </LoadingBox>
+      </SingleResponse>
+    ) : text ? (
       <SingleResponse sender={sender} type={type}>
         <MessageBox sender={sender} type={type}>
           {text.split("\n").map((line, index) => (
@@ -189,6 +196,19 @@ const MessageBox = styled.div<{
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
+const LoadingBox = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #eeeeee;
+  color: #000;
+  padding: 20px;
+  border-radius: 0px 30px 30px 30px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+`;
+
 const slideInFromLeft = keyframes`
   0% {
     transform: translateX(-100%);
@@ -204,7 +224,7 @@ const ButtonBox = styled.div<{
 }>`
   grid-column: 1 / 3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   position: relative;
   align-self: "flex-start";
@@ -246,7 +266,8 @@ const SingleResponse = styled.div<{
 
 const RecResponse = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  // grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   width: 55%;
   margin-left: 25px;
   margin-right: 0px;
@@ -302,8 +323,10 @@ const popIn = keyframes`
 
 const FloatingButton = styled.button`
   position: absolute;
-  top: -10px;
-  right: -5px;
+  top: 0px;
+  right: -50px;
+  box-shadow: 0px 1.5px 3px rgba(0, 0, 0, 0.16),
+    0px 1.5px 3px rgba(0, 0, 0, 0.23);
   background: #6a5acd;
   color: #fff;
   border: none;

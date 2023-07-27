@@ -33,3 +33,16 @@ export const findQuery = (state: RootState) => {
 
   return recentMessage ? recentMessage.text : undefined;
 };
+
+export const selectRecTitles = (state: RootState) => {
+  const titles = state.recommendation.recommendations.map((elem) => elem.title);
+  return titles ? titles : undefined;
+};
+
+export const selectUserMessages = (state: RootState) => {
+  const userMessages = state.chat.messages.filter(
+    (elem) => elem.sender === "user"
+  );
+  const context = userMessages.map((elem) => elem.text);
+  return context ? context : undefined;
+};

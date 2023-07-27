@@ -7,9 +7,11 @@ import {
 } from "../redux/recommendation.slicer";
 import { dMessages, handleResponse } from "../redux/message.slice";
 import { RootState } from "../redux/store";
+import { requestMultiturn } from "./utils/requestMultiTurn";
+import { streamResponse } from "./utils/streamResponse";
 
 interface IButton {
-  type: "home" | "recommendation";
+  type: "home" | "recommendation" | "more";
   loading: boolean;
   text?: string;
 }
@@ -38,6 +40,7 @@ const Button = ({ type, loading }: IButton) => {
             handleResponse({
               sender: "bot",
               text:
+                // "2가지 제도를 추가로 추천해드릴게요!\n더 알아보고 싶은 제도를 선택해주세요.",
                 "4가지 제도를 추가로 추천해드릴게요!\n더 알아보고 싶은 제도를 선택해주세요.",
               type: "default",
               loading: false,
@@ -63,12 +66,22 @@ const Button = ({ type, loading }: IButton) => {
           );
         }
         break;
+      case "more":
+        dispatch(handleState({ recommendationState: { now: "home" } }));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const response = await requestMultiturn("");
+        if (response.body) {
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+          await streamResponse(dispatch, reader, decoder);
+        }
+        break;
     }
   };
 
   return (
     <StyledButton onClick={handleClick} type={type} loading={loading}>
-      {type === "home" ? "처음으로" : "비슷한 서비스"}
+      {type === "home" ? "처음" : type === "recommendation" ? "추천" : "문답"}
     </StyledButton>
   );
 };
@@ -76,7 +89,7 @@ const Button = ({ type, loading }: IButton) => {
 export default Button;
 
 const StyledButton = styled.button<{
-  type: "home" | "recommendation";
+  type: "home" | "recommendation" | "more";
   loading: boolean;
 }>`
   position: relative;

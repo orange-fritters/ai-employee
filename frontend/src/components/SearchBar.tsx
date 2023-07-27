@@ -26,6 +26,14 @@ const SearchBar: React.FC = () => {
       getRecommendation(input, dispatch);
       dispatch(handleResponse({ text: input, sender: "user", loading: false }));
       setInput("");
+      dispatch(
+        handleResponse({
+          text: "",
+          sender: "bot",
+          loading: true,
+          type: "default",
+        })
+      );
       dispatch(handleState({ recommendationState: { now: "asking" } }));
     } else if (state.now == "asking") {
       try {
