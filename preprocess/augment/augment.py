@@ -4,9 +4,14 @@ import json
 import tiktoken
 
 
-def count_tokens(text: str):
+def count_token(text: str):
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
     return len(encoding.encode(text))
+
+
+def count_tokens(texts: list):
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    return sum(len(encoding.encode(text['content'])) for text in texts)
 
 
 def get_response_openai(prompt: str,
@@ -15,9 +20,9 @@ def get_response_openai(prompt: str,
     SYSTEM1 = prompt
     ASSISTANT1 = document
     USER1 = "Generate five different scenarios you recommending which service might fit the counselee based on the situation."
-    prompt_tokens += count_tokens(SYSTEM1)
-    prompt_tokens += count_tokens(ASSISTANT1)
-    prompt_tokens += count_tokens(USER1)
+    prompt_tokens += count_token(SYSTEM1)
+    prompt_tokens += count_token(ASSISTANT1)
+    prompt_tokens += count_token(USER1)
 
     try:
         response = openai.ChatCompletion.create(
@@ -37,7 +42,7 @@ def get_response_openai(prompt: str,
         print("OpenAI Response Error")
         return None, None, None
 
-    generated_tokens += count_tokens(response['choices'][0]['message']['content'])
+    generated_tokens += count_token(response['choices'][0]['message']['content'])
 
     SYSTEM2 = """
             You are a translator from English to Korean.Translated tone must be conversational.
@@ -56,9 +61,9 @@ def get_response_openai(prompt: str,
             Number them 1, 2, 3, 4, 5.
             """
 
-    prompt_tokens += count_tokens(SYSTEM2)
-    prompt_tokens += count_tokens(ASSISTANT2)
-    prompt_tokens += count_tokens(USER2)
+    prompt_tokens += count_token(SYSTEM2)
+    prompt_tokens += count_token(ASSISTANT2)
+    prompt_tokens += count_token(USER2)
 
     try:
         second_response = openai.ChatCompletion.create(
@@ -76,7 +81,7 @@ def get_response_openai(prompt: str,
     except:
         return None, None, None
 
-    generated_tokens += count_tokens(second_response['choices'][0]['message']['content'])
+    generated_tokens += count_token(second_response['choices'][0]['message']['content'])
 
     return second_response['choices'][0]['message']['content'], prompt_tokens, generated_tokens
 

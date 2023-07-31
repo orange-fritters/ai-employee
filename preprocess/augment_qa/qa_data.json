@@ -1,0 +1,2515 @@
+{
+  "0": {
+    "data": {
+      "changed_title_eng": "Emergency Care Service by Social Service Center",
+      "changed_title_kor": "사회서비스원 긴급돌봄 서비스",
+      "question_eng": "Who are the target beneficiaries of the Emergency Care Service provided by the Social Service Center?",
+      "question_kor": "사회서비스원이 제공하는 긴급돌봄 서비스의 대상 수혜자는 누구인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_01.html",
+      "title": "사회서비스원 긴급돌봄 사업",
+      "index": 0,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "3": {
+    "data": {
+      "changed_title_eng": "Family Counseling Hotline",
+      "changed_title_kor": "가족 상담 전화",
+      "question_eng": "Who can benefit from the Family Counseling Hotline service and what are the specific issues they can seek help for?",
+      "question_kor": "가족 상담 전화 서비스를 누가 이용할 수 있으며, 어떤 구체적인 문제에 대해 도움을 받을 수 있나요?"
+    },
+    "desc": {
+      "filename": "기타지원_04.html",
+      "title": "가족상담전화",
+      "index": 3,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "6": {
+    "data": {
+      "changed_title_eng": "Support for Education Expenses for Single-parent Families",
+      "changed_title_kor": "한부모가족을 위한 교육비 지원",
+      "question_eng": "Who is eligible for the education expense support for single-parent families?",
+      "question_kor": "한부모가족을 위한 교육비 지원의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_07.html",
+      "title": "한부모가족 자녀 교육비 지원",
+      "index": 6,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "9": {
+    "data": {
+      "changed_title_eng": "Comprehensive Support Service for Child Support Enforcement",
+      "changed_title_kor": "양육비 이행지원 종합서비스",
+      "question_eng": "Who is eligible for the Comprehensive Support Service for Child Support Enforcement and what does it include?",
+      "question_kor": "양육비 이행지원 종합서비스는 누구를 대상으로 하며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "기타지원_10.html",
+      "title": "양육비 이행지원 종합서비스",
+      "index": 9,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "12": {
+    "data": {
+      "changed_title_eng": "Housing Support for Multicultural Families",
+      "changed_title_kor": "다문화 가족을 위한 주거 지원",
+      "question_eng": "Who is eligible for the housing special supply service and what does it provide?",
+      "question_kor": "주택 특별공급 서비스를 받을 수 있는 대상은 누구이며 어떤 혜택을 제공하나요?"
+    },
+    "desc": {
+      "filename": "기타지원_13.html",
+      "title": "주거 지원",
+      "index": 12,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "15": {
+    "data": {
+      "changed_title_eng": "Social Integration Program (KIIP)",
+      "changed_title_kor": "사회통합프로그램 (KIIP)",
+      "question_eng": "Who is eligible for the Social Integration Program (KIIP) and what are the contents of the program?",
+      "question_kor": "사회통합프로그램 (KIIP)은 누구를 대상으로 하며 프로그램의 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_16.html",
+      "title": "사회통합프로그램",
+      "index": 15,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "18": {
+    "data": {
+      "changed_title_eng": "Multicultural Family Support Center",
+      "changed_title_kor": "다문화가족지원센터",
+      "question_eng": "What services are provided by the Multicultural Family Support Center and who are the target beneficiaries?",
+      "question_kor": "다문화가족지원센터에서는 어떤 서비스를 제공하며, 대상 수혜자는 누구인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_19.html",
+      "title": "다문화가족지원센터 이용",
+      "index": 18,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "21": {
+    "data": {
+      "changed_title_eng": "Vocational Training for Immigrant Women",
+      "changed_title_kor": "이민여성을 위한 직업교육훈련",
+      "question_eng": "Who is eligible for the vocational training for immigrant women?",
+      "question_kor": "이민여성을 위한 직업교육훈련은 누구에게 제공되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_22.html",
+      "title": "결혼이민여성 직업교육훈련",
+      "index": 21,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "24": {
+    "data": {
+      "changed_title_eng": "Support for Sexual Violence Survivors",
+      "changed_title_kor": "성폭력 피해자 지원",
+      "question_eng": "Who is eligible for the support service for sexual violence survivors and what kind of assistance is provided?",
+      "question_kor": "성폭력 피해자 지원 서비스는 누구를 대상으로 하며 어떤 종류의 지원이 제공되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_25.html",
+      "title": "성폭력 피해자 지원",
+      "index": 24,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "27": {
+    "data": {
+      "changed_title_eng": "Support for Victims of Domestic Violence",
+      "changed_title_kor": "가정폭력 피해자 지원",
+      "question_eng": "Who are the target beneficiaries of the support for victims of domestic violence?",
+      "question_kor": "가정폭력 피해자 지원의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_28.html",
+      "title": "가정폭력 피해자 지원",
+      "index": 27,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "30": {
+    "data": {
+      "changed_title_eng": "Support for Women Affected by Violence in Housing",
+      "changed_title_kor": "폭력에 시달리는 여성들을 위한 주거 지원",
+      "question_eng": "Who are the target individuals for this service and what does it provide?",
+      "question_kor": "이 서비스의 대상은 누구이며 어떤 지원을 제공합니까?"
+    },
+    "desc": {
+      "filename": "기타지원_31.html",
+      "title": "폭력 피해여성 주거 지원",
+      "index": 30,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "33": {
+    "data": {
+      "changed_title_eng": "Work-related Injury Worker's Livelihood Stability Fund Loan",
+      "changed_title_kor": "산업재해근로자 생활안정자금 융자",
+      "question_eng": "Who is eligible for the Work-related Injury Worker's Livelihood Stability Fund Loan and what are the loan limits for each category?",
+      "question_kor": "산업재해근로자 생활안정자금 융자를 받을 수 있는 자격은 누구이며, 각 융자 종류별 대출 한도는 어떻게 되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_34.html",
+      "title": "산재근로자 생활안정자금 융자",
+      "index": 33,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "36": {
+    "data": {
+      "changed_title_eng": "Vocational Training for Injured Workers",
+      "changed_title_kor": "부상근로자를 위한 직업훈련",
+      "question_eng": "Who is eligible for the vocational training for injured workers and what does it cover?",
+      "question_kor": "부상근로자를 위한 직업훈련은 누구에게 제공되며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "기타지원_37.html",
+      "title": "산재근로자 직업훈련",
+      "index": 36,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "39": {
+    "data": {
+      "changed_title_eng": "Work Injury Insurance Medical Aid",
+      "changed_title_kor": "산재보험 의료지원",
+      "question_eng": "Who is eligible for the work injury insurance medical aid and what does it cover?",
+      "question_kor": "산재보험 의료지원은 누구에게 지급되며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "기타지원_40.html",
+      "title": "산재보험 요양급여",
+      "index": 39,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "42": {
+    "data": {
+      "changed_title_eng": "Support for Social Insurance Premiums for Low-wage Workers, Artists, and Self-employed Workers",
+      "changed_title_kor": "저임금 근로자, 예술인 및 자영업자를 위한 사회보험료 지원",
+      "question_eng": "Who are the eligible individuals for the social insurance premium support?",
+      "question_kor": "사회보험료 지원의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_43.html",
+      "title": "저임금 근로자·예술인·노무제공자 사회보험료 지원(두루누리)",
+      "index": 42,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "45": {
+    "data": {
+      "changed_title_eng": "Agricultural Safety Insurance for Farmers",
+      "changed_title_kor": "농민을 위한 농업 안전보험",
+      "question_eng": "Who is eligible for the Agricultural Safety Insurance for Farmers and what does it cover?",
+      "question_kor": "농민을 위한 농업 안전보험은 누구를 대상으로 하며 어떤 내용을 보장합니까?"
+    },
+    "desc": {
+      "filename": "기타지원_46.html",
+      "title": "농업인 안전보험",
+      "index": 45,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "48": {
+    "data": {
+      "changed_title_eng": "Support for Vulnerable Rural Households (Happiness Sharing)",
+      "changed_title_kor": "취약농가 지원 서비스 (행복나눔이)",
+      "question_eng": "Who are the target beneficiaries of the Support for Vulnerable Rural Households service and what services are provided?",
+      "question_kor": "취약농가 지원 서비스의 대상 수혜자는 누구이며 어떤 서비스가 제공되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_49.html",
+      "title": "취약농가 인력 지원(행복나눔이)",
+      "index": 48,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "51": {
+    "data": {
+      "changed_title_eng": "Support for Vulnerable Fishermen in Need of Assistance",
+      "changed_title_kor": "지원이 필요한 취약한 어부들에 대한 지원",
+      "question_eng": "Who are the eligible beneficiaries of this service and what does it cover?",
+      "question_kor": "이 서비스의 대상자는 누구이며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "기타지원_52.html",
+      "title": "취약어가 인력 지원(어업활동 지원)",
+      "index": 51,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "54": {
+    "data": {
+      "changed_title_eng": "Encouragement Savings for Farmers and Fishermen",
+      "changed_title_kor": "농어가목돈마련저축 장려금",
+      "question_eng": "Who is eligible for the Encouragement Savings for Farmers and Fishermen?",
+      "question_kor": "농어가목돈마련저축 장려금은 누구에게 지급되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_55.html",
+      "title": "농어가 목돈마련 저축 장려금",
+      "index": 54,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "57": {
+    "data": {
+      "changed_title_eng": "Rural Childcare Center",
+      "changed_title_kor": "농촌 어린이 보육 센터",
+      "question_eng": "What are the target and contents of the Rural Childcare Center service?",
+      "question_kor": "농촌 어린이 보육 센터 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_58.html",
+      "title": "농번기 아이돌봄방",
+      "index": 57,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "60": {
+    "data": {
+      "changed_title_eng": "Support for Social Security for North Korean Defectors",
+      "changed_title_kor": "북한이탈주민 사회보장 지원 서비스",
+      "question_eng": "Who is eligible for the support and what are the specific benefits provided?",
+      "question_kor": "지원 대상은 누구이며 구체적으로 어떤 혜택을 받을 수 있나요?"
+    },
+    "desc": {
+      "filename": "기타지원_61.html",
+      "title": "북한이탈주민 사회보장 지원",
+      "index": 60,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "63": {
+    "data": {
+      "changed_title_eng": "Support for Settlement Allowance for North Korean Defectors",
+      "changed_title_kor": "북한이탈주민 정착금 지원 서비스",
+      "question_eng": "Who is eligible for the support and what are the details of the support provided?",
+      "question_kor": "지원 대상은 누구이며, 지원 내용은 어떻게 되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_64.html",
+      "title": "북한이탈주민 정착금 지원",
+      "index": 63,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "66": {
+    "data": {
+      "changed_title_eng": "Support for Education Expenses for North Korean Defectors",
+      "changed_title_kor": "북한이탈주민 교육비 지원 서비스",
+      "question_eng": "Who is eligible for the support for education expenses for North Korean defectors?",
+      "question_kor": "북한이탈주민 교육비 지원 서비스의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_67.html",
+      "title": "북한이탈주민 교육비 지원",
+      "index": 66,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "69": {
+    "data": {
+      "changed_title_eng": "Housing Support for North Korean Defectors",
+      "changed_title_kor": "북한이탈주민 주택 지원",
+      "question_eng": "What is the purpose of the housing support for North Korean defectors?",
+      "question_kor": "북한이탈주민 주택 지원의 목적은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_70.html",
+      "title": "북한이탈주민 주택알선 지원",
+      "index": 69,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "72": {
+    "data": {
+      "changed_title_eng": "Support for Homeless and Welfare",
+      "changed_title_kor": "노숙인 및 복지 지원",
+      "question_eng": "Who are the target beneficiaries of the Support for Homeless and Welfare service and what are the specific services provided?",
+      "question_kor": "노숙인 및 복지 지원 서비스의 대상 수혜자는 누구이며, 구체적으로 제공되는 서비스는 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_73.html",
+      "title": "노숙인 등 복지 지원",
+      "index": 72,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "75": {
+    "data": {
+      "changed_title_eng": "Support for Comfort Women Victims' Livelihood and Commemorative Projects",
+      "changed_title_kor": "일본군 '위안부' 피해자 생활안정 및 기념사업 지원",
+      "question_eng": "What are the target and contents of the support provided for Comfort Women victims?",
+      "question_kor": "일본군 '위안부' 피해자에게 제공되는 지원의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_76.html",
+      "title": "일본군 ‘위안부’ 피해자 생활안정 및 기념사업",
+      "index": 75,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "78": {
+    "data": {
+      "changed_title_eng": "Support for Victims of Hanseon",
+      "changed_title_kor": "한센인 피해자 지원",
+      "question_eng": "Who is eligible for the support for victims of Hanseon and what expenses are covered?",
+      "question_kor": "한센인 피해자 지원의 대상은 누구이며 어떤 경비가 지원되나요?"
+    },
+    "desc": {
+      "filename": "기타지원_79.html",
+      "title": "한센인 피해자 지원",
+      "index": 78,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "81": {
+    "data": {
+      "changed_title_eng": "Natural Disaster Insurance",
+      "changed_title_kor": "자연재해 보험",
+      "question_eng": "What is the target and contents of the Natural Disaster Insurance?",
+      "question_kor": "자연재해 보험의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_82.html",
+      "title": "풍수해보험",
+      "index": 81,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "84": {
+    "data": {
+      "changed_title_eng": "Support for Activating Social Relationships of Elderly Living Alone",
+      "changed_title_kor": "독거노인 사회관계 활성화를 위한 지원",
+      "question_eng": "Who are the target individuals for this service and what are the activities provided?",
+      "question_kor": "이 서비스의 대상은 누구이며 제공되는 활동은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "기타지원_85.html",
+      "title": "독거노인 사회관계 활성화 지원",
+      "index": 84,
+      "category": "기타지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "87": {
+    "data": {
+      "changed_title_eng": "Preparation for Retirement Service",
+      "changed_title_kor": "노후준비서비스",
+      "question_eng": "Who is eligible for the Preparation for Retirement Service and what does it include?",
+      "question_kor": "노후준비서비스는 누구를 대상으로 하며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "노령층지원_02.html",
+      "title": "노후준비서비스",
+      "index": 87,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "90": {
+    "data": {
+      "changed_title_eng": "Retirement Financial Academy",
+      "changed_title_kor": "은퇴금융 아카데미",
+      "question_eng": "Who can benefit from the Retirement Financial Academy and what are the topics covered in the education program?",
+      "question_kor": "은퇴금융 아카데미를 누가 이용할 수 있으며 교육 프로그램에서 다루는 주제는 무엇인가요?"
+    },
+    "desc": {
+      "filename": "노령층지원_05.html",
+      "title": "은퇴금융 아카데미",
+      "index": 90,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "93": {
+    "data": {
+      "changed_title_eng": "Digital Learning Center",
+      "changed_title_kor": "디지털 학습 센터",
+      "question_eng": "Who is eligible to receive free education through the Digital Learning Center?",
+      "question_kor": "디지털 학습 센터를 통해 무료 교육을 받을 수 있는 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "노령층지원_08.html",
+      "title": "디지털배움터",
+      "index": 93,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "96": {
+    "data": {
+      "changed_title_eng": "Support Program for Dementia Treatment and Management Expenses",
+      "changed_title_kor": "치매 치료 및 관리비 지원 프로그램",
+      "question_eng": "Who is eligible for the Support Program for Dementia Treatment and Management Expenses and what expenses are covered?",
+      "question_kor": "치매 치료 및 관리비 지원 프로그램은 누구를 대상으로 하며 어떤 비용을 지원해주나요?"
+    },
+    "desc": {
+      "filename": "노령층지원_11.html",
+      "title": "치매치료 관리비 지원사업",
+      "index": 96,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "99": {
+    "data": {
+      "changed_title_eng": "Elderly Dental Implant Support",
+      "changed_title_kor": "노인 치과 임플란트 지원",
+      "question_eng": "Who is eligible for the elderly dental implant support service and what does it cover?",
+      "question_kor": "노인 치과 임플란트 지원 서비스의 대상은 누구이며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "노령층지원_14.html",
+      "title": "노인 치과 임플란트 지원",
+      "index": 99,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "102": {
+    "data": {
+      "changed_title_eng": "Elderly Customized Care Service",
+      "changed_title_kor": "노인 맞춤 돌봄 서비스",
+      "question_eng": "Who are the target recipients of the Elderly Customized Care Service and how are they selected?",
+      "question_kor": "노인 맞춤 돌봄 서비스의 대상 수혜자는 누구이며 어떻게 선정되나요?"
+    },
+    "desc": {
+      "filename": "노령층지원_17.html",
+      "title": "노인맞춤돌봄서비스",
+      "index": 102,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "105": {
+    "data": {
+      "changed_title_eng": "Welfare Services for the Elderly",
+      "changed_title_kor": "노인을 위한 복지 서비스",
+      "question_eng": "Who is eligible for the transportation fare reduction for the elderly?",
+      "question_kor": "어르신을 위한 교통요금 감면 서비스는 누구에게 제공되나요?"
+    },
+    "desc": {
+      "filename": "노령층지원_20.html",
+      "title": "어르신을 위한 요금감면 제도",
+      "index": 105,
+      "category": "노령층지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "108": {
+    "data": {
+      "changed_title_eng": "Legal Culture Education Center",
+      "changed_title_kor": "법률문화교육센터",
+      "question_eng": "What are the target groups and contents of the Legal Culture Education Center?",
+      "question_kor": "법률문화교육센터의 대상 그리고 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_03.html",
+      "title": "법문화교육센터",
+      "index": 108,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "111": {
+    "data": {
+      "changed_title_eng": "Legal Aid Services for Low-income Individuals",
+      "changed_title_kor": "저소득자를 위한 법률구조 지원 서비스",
+      "question_eng": "Who is eligible for the legal aid services and what are the services provided?",
+      "question_kor": "법률구조 지원 서비스를 받을 수 있는 대상은 누구이며, 제공되는 서비스는 무엇인가요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_06.html",
+      "title": "법률구조 제도",
+      "index": 111,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "114": {
+    "data": {
+      "changed_title_eng": "Wage Payment Assistance Program",
+      "changed_title_kor": "임금 지급 지원 프로그램",
+      "question_eng": "Who is eligible for the Wage Payment Assistance Program and what does it cover?",
+      "question_kor": "임금 지급 지원 프로그램의 대상은 누구이며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_09.html",
+      "title": "대지급금 제도",
+      "index": 114,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "117": {
+    "data": {
+      "changed_title_eng": "Low-interest Small Loans for Diligent Repayers by Credit Recovery Committee",
+      "changed_title_kor": "신용회복위원회에 의한 성실한 상환자를 위한 저금리 소액대출",
+      "question_eng": "Who is eligible for the low-interest small loans provided by the Credit Recovery Committee?",
+      "question_kor": "신용회복위원회가 제공하는 저금리 소액대출의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_12.html",
+      "title": "신용회복위원회 성실상환자 소액대출",
+      "index": 117,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "120": {
+    "data": {
+      "changed_title_eng": "Youth Sun Loan",
+      "changed_title_kor": "청년 햇살론",
+      "question_eng": "Who is eligible for the Youth Sun Loan and what does it support?",
+      "question_kor": "청년 햇살론은 누구를 위한 것이며 어떤 지원을 제공하나요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_15.html",
+      "title": "햇살론 youth",
+      "index": 120,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "123": {
+    "data": {
+      "changed_title_eng": "Sunshine Loan Card",
+      "changed_title_kor": "햇살론 카드",
+      "question_eng": "Who is eligible for the Sunshine Loan Card and what are the benefits?",
+      "question_kor": "햇살론 카드는 누구에게 제공되며 혜택은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_18.html",
+      "title": "햇살론 카드",
+      "index": 123,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "126": {
+    "data": {
+      "changed_title_eng": "Support for Small Business Owners",
+      "changed_title_kor": "소상공인 지원",
+      "question_eng": "What are the eligibility criteria and loan details for the support provided to small business owners?",
+      "question_kor": "소상공인 지원을 받기 위한 자격 요건과 대출 세부 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_21.html",
+      "title": "소상공인 지원",
+      "index": 126,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "129": {
+    "data": {
+      "changed_title_eng": "Free Credit Education by Credit Recovery Committee",
+      "changed_title_kor": "신용회복위원회에 의한 무료 신용교육",
+      "question_eng": "Who are the target audience for the free credit education provided by the Credit Recovery Committee?",
+      "question_kor": "신용회복위원회가 제공하는 무료 신용교육의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "법률금융복지지원_24.html",
+      "title": "신용회복위원회 신용교육",
+      "index": 129,
+      "category": "법률금융복지지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "132": {
+    "data": {
+      "description": "건강보험 차상위 서비스에 대한 설명입니다.",
+      "renamed_title": "건강보험 차상위 서비스",
+      "converted_title": "건강보험 차상위 서비스 신청 방법",
+      "reason": "변경된 제목은 더 일상적이고 쉬운 톤으로 표현되었습니다. 이는 신청 방법에 대한 구체적인 정보를 제공하기 때문입니다.",
+      "question_eng": "What is the target and contents of the '건강보험 차상위 서비스 신청 방법'?",
+      "question_kor": "'건강보험 차상위 서비스 신청 방법'의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_03.html",
+      "title": "건강보험 차상위",
+      "index": 132,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "135": {
+    "data": {
+      "description": "재난적의료비 지원",
+      "renamed_title": "지원받을 수 있는 재난적의료비",
+      "converted_title": "재난적의료비를 받을 수 있는 방법",
+      "reason": "The converted title is more daily and easy because it focuses on the method of receiving the support for disaster medical expenses.",
+      "question_eng": "Who is eligible for the support and what are the contents of the service for disaster medical expenses?",
+      "question_kor": "재난적의료비 지원의 대상은 누구이며, 서비스 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_06.html",
+      "title": "재난적의료비 지원",
+      "index": 135,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "138": {
+    "data": {
+      "description": "This service provides exemption from personal burden for medical benefits.",
+      "renamed_title": "Medical Benefits Personal Burden Exemption",
+      "converted_title": "의료비 본인부담 면제",
+      "reason": "The converted title is more daily and easy because it uses common Korean words and phrases.",
+      "question_eng": "Who are the eligible recipients and what are the covered expenses for the Medical Benefits Personal Burden Exemption?",
+      "question_kor": "의료비 본인부담 면제의 대상자와 해당되는 비용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_09.html",
+      "title": "의료급여 본인부담 면제",
+      "index": 138,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "141": {
+    "data": {
+      "description": "국가건강검진제도",
+      "renamed_title": "국가건강검진제도",
+      "converted_title": "국가건강검진 서비스",
+      "reason": "The converted title is more daily and easy because it uses the word '서비스' which means 'service' and is commonly used in everyday language.",
+      "question_eng": "What are the target and contents of the national health screening service?",
+      "question_kor": "국가건강검진 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_12.html",
+      "title": "국가건강검진제도",
+      "index": 141,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo-16k"
+    }
+  },
+  "144": {
+    "data": {
+      "description": "암환자에게 연속 최대 3년 간 의료비 지원(연 최대 300만 원, 급여/비급여 구분 없음)",
+      "renamed_title": "암환자 의료비 지원",
+      "converted_title": "암환자를 위한 의료비 지원",
+      "reason": "The converted title is more daily and easy because it directly states that the service is for supporting medical expenses for cancer patients.",
+      "question_eng": "Who is eligible for the cancer patient medical expense support and what is the coverage?",
+      "question_kor": "암환자 의료비 지원의 대상은 누구이며, 어떤 내용을 지원받을 수 있나요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_15.html",
+      "title": "성인 암환자 의료비 지원",
+      "index": 144,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "147": {
+    "data": {
+      "description": "지원 대상은 입원·격리치료명령을 받아 소득을 상실한 결핵환자로, 가구별 중위소득의 120% 미만인 환자가구입니다.",
+      "renamed_title": "입원·격리치료명령 결핵환자 부양가족 생활보호비 지원",
+      "converted_title": "결핵환자 부양가족 생활보호비 지원",
+      "reason": "The converted title is more daily and easy because it focuses on the support provided to the family members of tuberculosis patients, which is a more relatable and understandable concept.",
+      "question_eng": "Who is eligible for the tuberculosis patient family living protection support and what does it cover?",
+      "question_kor": "결핵환자 부양가족 생활보호비 지원의 대상은 누구이며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_18.html",
+      "title": "입원·격리치료명령 결핵환자 부양가족 생활보호비 지원",
+      "index": 147,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "150": {
+    "data": {
+      "description": "A service that provides case management and social welfare services for homeless and vulnerable individuals with alcohol addiction problems.",
+      "renamed_title": "Management Program for Alcohol Addiction Problems in Homeless and Vulnerable Individuals",
+      "converted_title": "노숙인과 취약계층을 위한 알코올 중독문제 관리 프로그램",
+      "reason": "The converted title is more daily and easy because it uses simpler language and focuses on the target group and the issue being addressed.",
+      "question_eng": "What is the target group and the content of the Management Program for Alcohol Addiction Problems in Homeless and Vulnerable Individuals?",
+      "question_kor": "노숙인과 취약계층을 위한 알코올 중독문제 관리 프로그램의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_21.html",
+      "title": "노숙인 및 취약계층 알코올 중독문제 관리사업",
+      "index": 150,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "153": {
+    "data": {
+      "description": "The service provides long-term care insurance for elderly people who have difficulty performing daily activities.",
+      "renamed_title": "Long-term Care Insurance for Elderly People",
+      "converted_title": "노인을 위한 장기요양보험",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service for elderly people.",
+      "question_eng": "What are the target and contents of the long-term care insurance for elderly people?",
+      "question_kor": "장기요양보험은 어떤 사람들을 대상으로 하며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "보건의료지원_24.html",
+      "title": "노인장기요양보험제도",
+      "index": 153,
+      "category": "보건의료지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "156": {
+    "data": {
+      "description": "국가유공자 등 사망일시금을 받을 수 있는 대상과 금액에 대한 정보입니다.",
+      "renamed_title": "국가유공자 등 사망일시금",
+      "converted_title": "국가유공자 등 사망일시금 받는 방법",
+      "reason": "변경된 제목은 일상적이고 쉬운 톤으로 표현되어 있습니다. 이는 대상과 내용에 대한 구체적인 정보를 제공하기 때문입니다.",
+      "question_eng": "What is the process for receiving the 국가유공자 등 사망일시금?",
+      "question_kor": "국가유공자 등 사망일시금을 받는 방법은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_02.html",
+      "title": "국가유공자 등 사망일시금",
+      "index": 156,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "159": {
+    "data": {
+      "description": "독립유공자 (손)자녀를 위한 생활지원금 지원",
+      "renamed_title": "독립유공자 (손)자녀 생활지원금",
+      "converted_title": "독립유공자 (손)자녀를 위한 생활지원금",
+      "reason": "The converted title is more daily and easy because it directly states that the service is providing financial support for the children of independence fighters.",
+      "question_eng": "Who is eligible for the 독립유공자 (손)자녀 생활지원금 and what is the amount of support provided?",
+      "question_kor": "독립유공자 (손)자녀 생활지원금은 누구에게 지원되며 어느 정도의 지원금이 제공되나요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_05.html",
+      "title": "독립유공자 (손)자녀 생활지원금",
+      "index": 159,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "162": {
+    "data": {
+      "description": "재해보상금",
+      "renamed_title": "재해보상금",
+      "converted_title": "재해보상금 신청 방법",
+      "reason": "The converted title is more daily and easy because it provides specific information about how to apply for the 재해보상금.",
+      "question_eng": "Who is eligible for the 재해보상금 and what does it cover?",
+      "question_kor": "재해보상금을 받을 수 있는 대상은 누구이며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_08.html",
+      "title": "재해보상금",
+      "index": 162,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "165": {
+    "data": {
+      "description": "6·25자녀수당",
+      "renamed_title": "6·25자녀수당",
+      "converted_title": "6·25 전사자 자녀를 위한 수당",
+      "reason": "The converted title is more daily and easy because it clearly states that the service is a subsidy for the children of fallen soldiers during the Korean War.",
+      "question_eng": "Who are eligible for the 6·25자녀수당 and what are the benefits?",
+      "question_kor": "6·25 전사자 자녀수당의 대상은 누구이며 혜택은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_11.html",
+      "title": "6·25자녀수당",
+      "index": 165,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "168": {
+    "data": {
+      "description": "국가유공자 등 간호수당",
+      "renamed_title": "국가유공자 등 간호수당",
+      "converted_title": "국가유공자를 위한 간호수당 지원",
+      "reason": "The converted title is more daily and easy because it clearly states that the service is providing nursing allowance for national merit recipients.",
+      "question_eng": "What are the target and contents of the nursing allowance for national merit recipients?",
+      "question_kor": "국가유공자를 위한 간호수당 지원의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_14.html",
+      "title": "국가유공자 등 간호수당",
+      "index": 168,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "171": {
+    "data": {
+      "description": "재가복지지원은 노인성 질환 또는 상이처 등으로 거동이 불편한 65세 이상 중 독거 또는 노인부부세대로 거주하고 계시는 분들에게 가정 방문을 통해 가사활동지원과 건강관리 등의 서비스를 제공하는 것입니다.",
+      "renamed_title": "재가복지지원",
+      "converted_title": "노인을 위한 가정 방문 서비스",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. '재가복지지원'은 전문적인 용어이지만, '노인을 위한 가정 방문 서비스'는 일반적인 용어로 누구나 쉽게 이해할 수 있습니다.",
+      "question_eng": "What is the target and contents of the service '노인을 위한 가정 방문 서비스'?",
+      "question_kor": "'노인을 위한 가정 방문 서비스'의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_17.html",
+      "title": "재가복지지원",
+      "index": 171,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "174": {
+    "data": {
+      "description": "Welfare service for elderly individuals without caregivers",
+      "renamed_title": "Elderly Support",
+      "converted_title": "노인 지원",
+      "reason": "The converted title is more daily and easy because it uses common Korean words that are easily understood by the general public.",
+      "question_eng": "Who are the target individuals for the Elderly Support service and what does it provide?",
+      "question_kor": "노인 지원 서비스의 대상은 누구이며 어떤 지원을 제공하나요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_20.html",
+      "title": "양로지원",
+      "index": 174,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "177": {
+    "data": {
+      "description": "위탁병원에서는 국비진료와 감면진료를 제공합니다.",
+      "renamed_title": "위탁병원에서 국비진료와 감면진료를 받을 수 있습니다.",
+      "converted_title": "위탁병원에서 진료를 받을 수 있는 서비스",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 작성되었습니다. 이는 일반 대중에게 더 친숙하고 이해하기 쉽기 때문입니다.",
+      "question_eng": "What are the target and contents of the service provided at the designated hospitals?",
+      "question_kor": "지정된 병원에서 제공되는 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_23.html",
+      "title": "위탁병원 진료",
+      "index": 177,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "180": {
+    "data": {
+      "description": "국가보훈대상자에게 LPG차량 세금인상분을 지원합니다.",
+      "renamed_title": "국가보훈대상자 LPG차량 세금인상분 지원",
+      "converted_title": "국가보훈대상자를 위한 LPG차량 세금인상분 지원",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 작성되었습니다. 국가보훈대상자를 위한 LPG차량 세금인상분 지원이라는 제목은 일반인에게도 쉽게 이해할 수 있습니다.",
+      "question_eng": "What is the target and contents of the service for supporting the tax increase on LPG vehicles for national merit recipients?",
+      "question_kor": "국가보훈대상자를 위한 LPG차량 세금인상분 지원의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_26.html",
+      "title": "국가보훈대상자 LPG차량 세금인상분 지원",
+      "index": 180,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "183": {
+    "data": {
+      "description": "통신요금 감면 서비스에 대한 정보가 제공됩니다.",
+      "renamed_title": "통신요금 감면",
+      "converted_title": "통신비 할인",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 표현되어 있습니다. '통신비 할인'은 일반적인 용어로 통신요금 감면을 더 쉽게 이해할 수 있습니다.",
+      "question_eng": "What are the eligibility criteria and support contents for the '통신비 할인' service?",
+      "question_kor": "'통신비 할인' 서비스의 지원 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_29.html",
+      "title": "통신요금감면",
+      "index": 183,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "186": {
+    "data": {
+      "description": "국가유공자 등에게 취업능력개발을 지원하는 서비스입니다.",
+      "renamed_title": "국가유공자 등 취업능력개발 지원",
+      "converted_title": "국가유공자 등 취업능력개발 지원 서비스",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. 이는 대상과 내용을 명확하게 전달하기 위함입니다.",
+      "question_eng": "What are the target and contents of the 국가유공자 등 취업능력개발 지원 서비스?",
+      "question_kor": "국가유공자 등 취업능력개발 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_32.html",
+      "title": "국가유공자 등 취업능력개발 지원",
+      "index": 186,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "189": {
+    "data": {
+      "description": "Support for former soldiers in finding employment",
+      "renamed_title": "Support for Former Soldiers in Finding Employment",
+      "converted_title": "전직 군인을 위한 취업 지원",
+      "reason": "The converted title is more daily and easy because it uses common words and phrases that are easily understood by the general public.",
+      "question_eng": "Who is eligible for the support and what is included in the support?",
+      "question_kor": "지원 대상은 누구이며, 지원 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_35.html",
+      "title": "제대군인 전직지원금 지원",
+      "index": 189,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "192": {
+    "data": {
+      "description": "국가보훈대상자에게 학습보조비를 지급하는 서비스입니다.",
+      "renamed_title": "국가보훈대상자 학습보조비 지급",
+      "converted_title": "국가보훈대상자 학습비 지원",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 표현되어 있습니다. '지급' 대신 '지원'이라는 단어를 사용하여 더 일상적인 느낌을 주었습니다.",
+      "question_eng": "What is the target and contents of the service for providing education support allowance to national merit recipients?",
+      "question_kor": "국가보훈대상자 학습비 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "보훈대상자지원_38.html",
+      "title": "국가보훈대상자 학습보조비 지급",
+      "index": 192,
+      "category": "보훈대상자지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "195": {
+    "data": {
+      "description": "맞춤형 기초생활보장제도는 저소득층에게 생계, 의료, 주거, 교육 등을 지원하는 제도입니다.",
+      "renamed_title": "저소득층을 위한 맞춤형 지원 서비스",
+      "converted_title": "저소득층을 위한 편리한 지원 서비스",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 접근하기 쉽습니다.",
+      "question_eng": "What are the target and contents of the customized welfare support service?",
+      "question_kor": "맞춤형 복지 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_01.html",
+      "title": "맞춤형 기초생활보장제도",
+      "index": 195,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo-16k"
+    }
+  },
+  "198": {
+    "data": {
+      "description": "Support for families in need of assistance to strengthen family functions and capabilities",
+      "renamed_title": "Support for Families in Need",
+      "converted_title": "가족을 돕는 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words.",
+      "question_eng": "Who is eligible for the support and what services are provided?",
+      "question_kor": "지원 대상은 누구이며 어떤 서비스가 제공되나요?"
+    },
+    "desc": {
+      "filename": "생계지원_04.html",
+      "title": "가족희망드림 지원",
+      "index": 198,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "201": {
+    "data": {
+      "description": "국민임대주택 공급",
+      "renamed_title": "국민임대주택 공급",
+      "converted_title": "국민을 위한 저렴한 주택 제공",
+      "reason": "The converted title is more daily and easy because it emphasizes the provision of affordable housing for the general public.",
+      "question_eng": "Who is eligible for the national rental housing and what are the details of the service?",
+      "question_kor": "국민임대주택을 신청할 수 있는 대상은 누구이며, 서비스의 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_07.html",
+      "title": "국민임대주택 공급",
+      "index": 201,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "204": {
+    "data": {
+      "description": "기존주택 일반 저소득층·신혼부부·청년 등 매입임대주택 지원",
+      "renamed_title": "매입임대주택 지원",
+      "converted_title": "저소득층, 신혼부부, 청년을 위한 매입임대주택 지원",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 작성되어 있으며, 대상인 저소득층, 신혼부부, 청년에게 매입임대주택 지원에 대한 내용을 쉽게 이해할 수 있도록 도와줍니다.",
+      "question_eng": "What are the target and contents of the support for affordable rental housing for low-income households, newlyweds, and young people?",
+      "question_kor": "저소득층, 신혼부부, 청년을 위한 매입임대주택 지원의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_10.html",
+      "title": "기존주택 일반 저소득층·신혼부부·청년 등 매입임대주택 지원",
+      "index": 204,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "207": {
+    "data": {
+      "description": "주거취약계층을 위한 주거지원 서비스입니다.",
+      "renamed_title": "주거취약계층을 위한 주거지원",
+      "converted_title": "주거지원 서비스",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. 이는 일반 대중에게 친숙하고 이해하기 쉽게 하기 위함입니다.",
+      "question_eng": "What is the target and contents of the housing support service for vulnerable groups?",
+      "question_kor": "주거취약계층을 위한 주거지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_13.html",
+      "title": "주거취약계층 주거지원",
+      "index": 207,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "210": {
+    "data": {
+      "description": "Support for the removal and disposal of slate roofing and walls of buildings",
+      "renamed_title": "Support for Slate Removal and Disposal",
+      "converted_title": "슬레이트 처리 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words.",
+      "question_eng": "Who is eligible for the support and what does it cover?",
+      "question_kor": "지원 대상은 누구이며 내용은 무엇을 포함하나요?"
+    },
+    "desc": {
+      "filename": "생계지원_16.html",
+      "title": "슬레이트 처리 지원",
+      "index": 210,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "213": {
+    "data": {
+      "description": "Partial support for the installation cost of renewable energy facilities such as solar power, solar heat, geothermal, fuel cells, and small wind power",
+      "renamed_title": "Renewable Energy Installation Support",
+      "converted_title": "신재생에너지 설치 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who is eligible for the renewable energy installation support and what are the supported facilities?",
+      "question_kor": "신재생에너지 설치 지원의 대상은 누구이며, 어떤 시설이 지원되나요?"
+    },
+    "desc": {
+      "filename": "생계지원_19.html",
+      "title": "신재생에너지 설치 지원",
+      "index": 213,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "216": {
+    "data": {
+      "description": "사회취약계층을 위한 환경성질환 예방사업",
+      "renamed_title": "환경성질환 예방사업",
+      "converted_title": "어려운 가정을 위한 환경성질환 예방사업",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 작성되었습니다. '사회취약계층'을 '어려운 가정'으로 바꾸어 일반적인 언어로 표현하였습니다.",
+      "question_eng": "What are the target and contents of the welfare service for preventing environmental diseases?",
+      "question_kor": "환경성질환 예방을 위한 복지 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_22.html",
+      "title": "사회취약계층 환경성질환 예방사업",
+      "index": 216,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "219": {
+    "data": {
+      "description": "주택구입자금을 장기 고정금리로 대출하는 보금자리론 서비스입니다.",
+      "renamed_title": "보금자리론",
+      "converted_title": "주택구입자금 대출",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. '보금자리론'은 전문 용어이지만 '주택구입자금 대출'은 일반적으로 많이 사용되는 용어입니다.",
+      "question_eng": "What are the target and contents of the '주택구입자금 대출' service?",
+      "question_kor": "'주택구입자금 대출' 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_25.html",
+      "title": "보금자리론",
+      "index": 219,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "222": {
+    "data": {
+      "description": "주거안정 월세대출",
+      "renamed_title": "주거안정 월세대출",
+      "converted_title": "월세 대출 받는 방법",
+      "reason": "The converted title is more daily and easy because it focuses on the process of obtaining the loan, which is a common concern for people.",
+      "question_eng": "Who is eligible for the 주거안정 월세대출 and what are the loan details?",
+      "question_kor": "주거안정 월세대출을 받을 수 있는 대상은 누구이며, 대출 내용은 어떻게 되나요?"
+    },
+    "desc": {
+      "filename": "생계지원_28.html",
+      "title": "주거안정 월세대출",
+      "index": 222,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "225": {
+    "data": {
+      "description": "A service that provides a guarantee for the security deposit for lease contracts",
+      "renamed_title": "Security Deposit Guarantee",
+      "converted_title": "전세 보증",
+      "reason": "The converted title is more daily and easy because it uses the term '전세' which is commonly used in everyday conversations about housing.",
+      "question_eng": "Who is eligible for the security deposit guarantee service and what does it cover?",
+      "question_kor": "전세 보증 서비스를 받을 수 있는 대상은 누구이며 어떤 내용을 보장하나요?"
+    },
+    "desc": {
+      "filename": "생계지원_31.html",
+      "title": "전세자금 보증",
+      "index": 225,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "228": {
+    "data": {
+      "description": "A service that provides home care and nursing services to eligible individuals.",
+      "renamed_title": "Home Care and Nursing Services",
+      "converted_title": "가사·간병 서비스",
+      "reason": "The converted title is more daily and easy because it directly describes the service of home care and nursing.",
+      "question_eng": "Who is eligible for the Home Care and Nursing Services and what are the contents of the service?",
+      "question_kor": "가사·간병 서비스를 받을 수 있는 대상은 누구이며, 서비스 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_34.html",
+      "title": "가사·간병 방문 지원사업",
+      "index": 228,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "231": {
+    "data": {
+      "description": "통합문화이용권(문화누리카드)",
+      "renamed_title": "문화누리카드",
+      "converted_title": "문화누리카드로 문화, 여행, 체육 활동을 즐기세요!",
+      "reason": "The converted title is more daily and easy because it directly tells the reader to use the 문화누리카드 for cultural, travel, and sports activities.",
+      "question_eng": "Who is eligible for the 문화누리카드 and what can it be used for?",
+      "question_kor": "문화누리카드는 누구에게 지원되며 어떤 용도로 사용할 수 있나요?"
+    },
+    "desc": {
+      "filename": "생계지원_37.html",
+      "title": "통합문화이용권(문화누리카드)",
+      "index": 231,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "234": {
+    "data": {
+      "description": "서민금융진흥원 소액보험(한부모가정의료보험)",
+      "renamed_title": "한부모가정의료보험",
+      "converted_title": "한부모가정의료보험은 무엇인가요?",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 작성되었습니다. 한부모가정의료보험은 일상적인 용어로 표현되어 이해하기 쉽습니다.",
+      "question_eng": "What is the 한부모가정의료보험 service about?",
+      "question_kor": "한부모가정의료보험은 어떤 서비스인가요?"
+    },
+    "desc": {
+      "filename": "생계지원_40.html",
+      "title": "서민금융진흥원 소액보험(한부모가정의료보험)",
+      "index": 234,
+      "category": "생계지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "237": {
+    "data": {
+      "description": "고위험 임산부의 입원치료비와 비급여 진료비를 지원하는 서비스입니다.",
+      "renamed_title": "고위험 임산부 의료비 지원",
+      "converted_title": "고위험 임산부 의료비를 지원받을 수 있어요",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 표현되어서 더 쉽게 이해할 수 있습니다.",
+      "question_eng": "Who is eligible for the high-risk pregnant women medical expense support service and what does it cover?",
+      "question_kor": "고위험 임산부 의료비 지원 서비스는 누구에게 지원이 가능하며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_02.html",
+      "title": "고위험 임산부 의료비 지원",
+      "index": 237,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "240": {
+    "data": {
+      "description": "The service provides support for national influenza vaccination for pregnant women.",
+      "renamed_title": "Support for National Influenza Vaccination for Pregnant Women",
+      "converted_title": "임신부를 위한 국가 인플루엔자 예방접종 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service for pregnant women.",
+      "question_eng": "What is the target and content of the service for pregnant women?",
+      "question_kor": "임신부를 위한 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_05.html",
+      "title": "임신부 인플루엔자 국가예방접종 지원",
+      "index": 240,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "243": {
+    "data": {
+      "description": "출산비 지원 서비스",
+      "renamed_title": "출산비 지원",
+      "converted_title": "출산비 지원 받기",
+      "reason": "The converted title is more daily and easy because it uses the verb '받기' (to receive) which is commonly used in daily conversations.",
+      "question_eng": "Who is eligible for the 출산비 지원 service and what is the amount of support provided?",
+      "question_kor": "출산비 지원 서비스를 받을 수 있는 대상은 누구이며, 지원액은 얼마인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_08.html",
+      "title": "요양비",
+      "index": 243,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "246": {
+    "data": {
+      "description": "임신·출산(유산·사산 포함)이 확인된 건강보험 가입자 또는 피부양자, 2세 미만 영유아의 법정대리인을 대상으로 하는 건강보험 임신·출산 진료비 지원 서비스입니다.",
+      "renamed_title": "건강보험 임신·출산 진료비 지원 서비스",
+      "converted_title": "건강보험 임신·출산 진료비 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words.",
+      "question_eng": "What is the target and contents of the 건강보험 임신·출산 진료비 지원 service?",
+      "question_kor": "건강보험 임신·출산 진료비 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_11.html",
+      "title": "건강보험 임신·출산 진료비",
+      "index": 246,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "249": {
+    "data": {
+      "description": "During the adoption waiting period, financial support is provided for single parents who have no adoption agreement within 7 days after giving birth.",
+      "renamed_title": "Financial Support for Adoption Waiting Period",
+      "converted_title": "입양 숙려기간 동안 모자지원",
+      "reason": "The converted title is more daily and easy because it uses common Korean words and phrases.",
+      "question_eng": "Who is eligible for the support and what are the supported services and amounts?",
+      "question_kor": "지원 대상은 누구이며, 지원되는 서비스와 금액은 어떻게 되나요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_14.html",
+      "title": "입양 숙려기간 모자지원",
+      "index": 249,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "252": {
+    "data": {
+      "description": "Support for childbirth allowance for those not covered by employment insurance",
+      "renamed_title": "Support for childbirth allowance for non-employment insurance beneficiaries",
+      "converted_title": "고용보험 가입자가 아닌 사람들을 위한 출산급여 지원",
+      "reason": "The converted title is more daily and easy because it uses simpler language and directly states who the service is for.",
+      "question_eng": "Who is eligible for the support for childbirth allowance for non-employment insurance beneficiaries?",
+      "question_kor": "고용보험 가입자가 아닌 사람들을 위한 출산급여 지원의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_17.html",
+      "title": "고용보험 미적용자 출산급여 지원",
+      "index": 252,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "255": {
+    "data": {
+      "description": "육아기 근로시간을 단축한 근로자에게 임금감소분을 지원하는 서비스",
+      "renamed_title": "육아기 근로시간 단축 임금감소 지원",
+      "converted_title": "육아 중인 근로자를 위한 근로시간 단축 지원",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 작성되어 있으며, 육아 중인 근로자를 대상으로 한 서비스 내용을 간단하게 설명하고 있습니다.",
+      "question_eng": "What are the target and contents of the 육아 중인 근로자를 위한 근로시간 단축 지원 service?",
+      "question_kor": "육아 중인 근로자를 위한 근로시간 단축 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_20.html",
+      "title": "육아기 근로시간 단축 지원",
+      "index": 255,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "258": {
+    "data": {
+      "description": "직장어린이집 설치 지원",
+      "renamed_title": "직장어린이집 설치 지원",
+      "converted_title": "직장어린이집 설치비 지원",
+      "reason": "The converted title is more daily and easy because it directly states the support for the installation cost of workplace childcare centers.",
+      "question_eng": "Who is eligible for the workplace childcare center installation support and what does it cover?",
+      "question_kor": "직장어린이집 설치비 지원의 대상은 누구이며 어떤 내용을 포함하나요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_23.html",
+      "title": "직장어린이집 설치 지원",
+      "index": 258,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "261": {
+    "data": {
+      "description": "가정에서 양육하는 0~6세 영유아를 지원하는 가정양육수당 서비스입니다.",
+      "renamed_title": "가정양육수당 서비스",
+      "converted_title": "가정에서 영유아 양육비 지원",
+      "reason": "The converted title is more daily and easy because it directly states that the service provides financial support for childcare at home.",
+      "question_eng": "What are the target and contents of the '가정에서 영유아 양육비 지원' service?",
+      "question_kor": "'가정에서 영유아 양육비 지원' 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_26.html",
+      "title": "가정양육수당 지원",
+      "index": 261,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "264": {
+    "data": {
+      "description": "청소년부모 아동양육비 지원",
+      "renamed_title": "청소년부모 아동양육비 지원",
+      "converted_title": "청소년부모 아동양육비 지원",
+      "reason": "The converted title is already in a daily and easy tone, so no further conversion is needed.",
+      "question_eng": "Who is eligible for the 청소년부모 아동양육비 지원 service and what is the amount of monthly support per child?",
+      "question_kor": "청소년부모 아동양육비 지원 서비스의 대상은 누구이며, 아동당 월 지원금은 얼마인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_29.html",
+      "title": "청소년부모 아동양육비 지원",
+      "index": 264,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "267": {
+    "data": {
+      "description": "시간제 보육을 이용하지 않아도 지정된 제공기관에서 시간제로 보육서비스를 이용할 수 있는 지원",
+      "renamed_title": "시간제 보육 서비스",
+      "converted_title": "시간제 보육 서비스를 이용해보세요!",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어서 사람들이 더 쉽게 이해할 수 있습니다.",
+      "question_eng": "What is the target and contents of the 시간제 보육 서비스?",
+      "question_kor": "시간제 보육 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_32.html",
+      "title": "시간제 보육 지원",
+      "index": 267,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "270": {
+    "data": {
+      "description": "육아종합지원센터는 취학 전 모든 아동 및 부모를 위한 시설보육 및 가정양육 상담, 시간제보육 서비스, 도서·장난감 대여, 놀이공간 제공, 교재 및 교구대여, 부모 간 육아정보 교류 등의 지원을 제공합니다.",
+      "renamed_title": "육아종합지원센터",
+      "converted_title": "육아를 도와주는 센터",
+      "reason": "육아를 도와주는 센터라는 제목은 일상적이고 쉬운 톤으로 표현되어 육아에 관심이 있는 사람들에게 친근하게 다가갈 수 있습니다.",
+      "question_eng": "What is the target and contents of the 육아를 도와주는 센터?",
+      "question_kor": "육아를 도와주는 센터의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_35.html",
+      "title": "육아종합지원센터",
+      "index": 270,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "273": {
+    "data": {
+      "description": "선천성대사 이상 검사 및 환아관리",
+      "renamed_title": "선천성대사 이상 검사 및 환아관리",
+      "converted_title": "선천성대사 이상 검사와 환아 관리",
+      "reason": "The converted title is more daily and easy because it uses simpler language and includes the word '와' (and) to connect the two services.",
+      "question_eng": "What are the target and contents of the service for '선천성대사 이상 검사와 환아 관리'?",
+      "question_kor": "'선천성대사 이상 검사와 환아 관리' 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_38.html",
+      "title": "선천성대사 이상 검사 및 환아관리",
+      "index": 273,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "276": {
+    "data": {
+      "description": "조산아 및 저체중출생아의 본인부담금을 경감하는 서비스입니다.",
+      "renamed_title": "조산아 및 저체중출생아 본인부담금 경감 서비스",
+      "converted_title": "조산아와 저체중출생아 본인부담금 경감 서비스",
+      "reason": "The converted title is more daily and easy because it uses the conjunction '와' (and) instead of '및' (and) which is more commonly used in everyday language.",
+      "question_eng": "What is the target and contents of the 조산아와 저체중출생아 본인부담금 경감 서비스?",
+      "question_kor": "조산아와 저체중출생아 본인부담금 경감 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_41.html",
+      "title": "조산아 및 저체중출생아 본인부담금 경감",
+      "index": 276,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "279": {
+    "data": {
+      "description": "취학 전 아동을 대상으로 하는 실명 예방 서비스입니다.",
+      "renamed_title": "취학 전 아동을 위한 실명 예방 서비스",
+      "converted_title": "취학 전 아동을 위한 눈 건강 예방",
+      "reason": "The converted title is more daily and easy because it focuses on the specific aspect of the service, which is eye health prevention for pre-school children.",
+      "question_eng": "What is the target and content of the service for preventing vision problems in pre-school children?",
+      "question_kor": "취학 전 아동을 위한 눈 건강 예방 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_44.html",
+      "title": "취학전 아동 실명 예방",
+      "index": 279,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "282": {
+    "data": {
+      "description": "Prevention of dental caries through fluoride application and oral health education for children under 15 years old (considering low-income children as priority)",
+      "renamed_title": "Prevention of Dental Caries in Children",
+      "converted_title": "어린이 치아우식증 예방",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who are the target beneficiaries and what are the contents of the service for preventing dental caries in children?",
+      "question_kor": "어린이 치아우식증 예방 서비스의 대상은 누구이며 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_47.html",
+      "title": "어린이 불소 도포",
+      "index": 282,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "285": {
+    "data": {
+      "description": "지역아동센터에서는 지역사회 내 방과후 돌봄서비스를 필요로 하는 만 18세 미만의 아동들에게 다양한 지원을 제공합니다.",
+      "renamed_title": "지역아동센터의 다양한 지원 서비스",
+      "converted_title": "지역아동센터의 돌봄 서비스",
+      "reason": "The converted title is more daily and easy because it focuses on the main service provided by the local child center, which is childcare.",
+      "question_eng": "What are the target and contents of the childcare service provided by the local child center?",
+      "question_kor": "지역아동센터의 돌봄 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "임신보육지원_50.html",
+      "title": "지역아동센터 지원",
+      "index": 285,
+      "category": "임신보육지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "288": {
+    "data": {
+      "description": "장애정도를 활용하여 서비스지원 종합조사를 통해 대상자를 선정하고 꼭 필요한 서비스를 제공",
+      "renamed_title": "장애인 서비스지원 종합조사 신청",
+      "converted_title": "장애인 서비스지원 종합조사 신청하기",
+      "reason": "The converted title is more daily and easy because it uses the verb '하기' which means 'to do' and makes it sound like a simple action that can be easily done.",
+      "question_eng": "What is the target and contents of the 장애인 서비스지원 종합조사 신청하기 service?",
+      "question_kor": "장애인 서비스지원 종합조사 신청하기 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_02.html",
+      "title": "장애인 서비스지원 종합조사 신청",
+      "index": 288,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "291": {
+    "data": {
+      "description": "장애인연금은 근로능력이 감소하여 소득이 적고, 장애로 인한 추가 지출 비용으로 어려운 중증장애인에게 지원되는 급여입니다.",
+      "renamed_title": "장애인연금",
+      "converted_title": "장애인연금 받기",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 표현되어서 사람들이 쉽게 이해할 수 있습니다.",
+      "question_eng": "Who is eligible for 장애인연금 and what does it provide?",
+      "question_kor": "장애인연금을 받을 수 있는 대상은 누구이며 어떤 혜택을 제공하나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_05.html",
+      "title": "장애인연금",
+      "index": 291,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "294": {
+    "data": {
+      "description": "장애아 보육료 지원",
+      "renamed_title": "장애아 보육료 지원",
+      "converted_title": "장애아 보육비 지원",
+      "reason": "The converted title is more daily and easy because it uses the term '보육비' (childcare expenses) instead of '보육료' (childcare fees), which is a more commonly used term in everyday language.",
+      "question_eng": "What are the target and contents of the 장애아 보육비 지원 service?",
+      "question_kor": "장애아 보육비 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_08.html",
+      "title": "장애아 보육료 지원",
+      "index": 294,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "297": {
+    "data": {
+      "description": "Support for family relaxation for individuals with developmental disabilities",
+      "renamed_title": "Support for Family Relaxation for Individuals with Developmental Disabilities",
+      "converted_title": "발달장애인 가족휴식 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who is eligible for the support for family relaxation for individuals with developmental disabilities?",
+      "question_kor": "발달장애인 가족휴식 지원은 누구에게 제공되나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_11.html",
+      "title": "발달장애인 가족휴식 지원",
+      "index": 297,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "300": {
+    "data": {
+      "description": "장애아동이 방과후 어린이집을 이용하는 경우 보육료의 50%를 지원합니다.",
+      "renamed_title": "장애아 방과후 보육료 지원",
+      "converted_title": "장애아동 방과후 보육료 지원",
+      "reason": "The converted title is more daily and easy because it uses the term '장애아동' which is a commonly used term in daily life.",
+      "question_eng": "Who is eligible for the 장애아동 방과후 보육료 지원 and what is the amount of support provided?",
+      "question_kor": "장애아동 방과후 보육료 지원의 대상은 누구이며, 얼마의 지원이 제공되나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_14.html",
+      "title": "장애아 방과후 보육료 지원",
+      "index": 300,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "303": {
+    "data": {
+      "description": "Special education support service for individuals with special needs",
+      "renamed_title": "Special Education Support Service for Individuals with Special Needs",
+      "converted_title": "특수교육대상자 치료지원 서비스",
+      "reason": "The converted title is more daily and easy because it directly translates the original title into Korean.",
+      "question_eng": "Who is eligible for the special education support service and what are the services provided?",
+      "question_kor": "특수교육대상자 치료지원 서비스는 누구를 대상으로 하며 어떤 서비스를 제공하나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_17.html",
+      "title": "특수교육대상자 치료지원 서비스",
+      "index": 303,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "306": {
+    "data": {
+      "description": "장애인 정보화교육은 등록 장애인을 대상으로 컴퓨터 기초부터 인터넷 활용까지 배울 수 있는 교육과 IT 긴급지원을 제공하는 서비스입니다.",
+      "renamed_title": "장애인 정보화교육",
+      "converted_title": "장애인을 위한 정보화 교육",
+      "reason": "The converted title is more daily and easy because it clearly states that the service is for people with disabilities and focuses on providing education for digital skills.",
+      "question_eng": "What is the target and content of the service '장애인을 위한 정보화 교육'?",
+      "question_kor": "'장애인을 위한 정보화 교육' 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_20.html",
+      "title": "장애인 정보화교육",
+      "index": 306,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "309": {
+    "data": {
+      "description": "중증장애인에게 제공되는 직업재활 지원 서비스",
+      "renamed_title": "중증장애인 직업재활 지원",
+      "converted_title": "중증장애인 직업재활 지원 받기",
+      "reason": "The converted title is more daily and easy because it uses the verb '받기' (to receive) which is commonly used in daily conversations.",
+      "question_eng": "Who is eligible for the vocational rehabilitation support for severe disabilities?",
+      "question_kor": "중증장애인 직업재활 지원을 받을 수 있는 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_23.html",
+      "title": "중증장애인 직업재활 지원",
+      "index": 309,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "312": {
+    "data": {
+      "description": "장애인생산품을 판매하는 시설",
+      "renamed_title": "장애인생산품 판매시설",
+      "converted_title": "장애인생산품을 파는 곳",
+      "reason": "The converted title is more daily and easy because it uses simpler language and is easier to understand for the general public.",
+      "question_eng": "What is the target and content of the 장애인생산품 판매시설 service?",
+      "question_kor": "장애인생산품 판매시설 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_26.html",
+      "title": "장애인생산품 판매시설",
+      "index": 312,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "315": {
+    "data": {
+      "description": "Issuance of Severe Disability Confirmation Certificate",
+      "renamed_title": "Issuance of Severe Disability Confirmation Certificate",
+      "converted_title": "중증장애인확인서 발급",
+      "reason": "The converted title is more daily and easy because it directly describes the service in a simple and straightforward manner.",
+      "question_eng": "Who is eligible for the issuance of Severe Disability Confirmation Certificate and what is the purpose of the certificate?",
+      "question_kor": "중증장애인확인서 발급 대상은 누구이며, 이 인증서의 목적은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_29.html",
+      "title": "중증장애인확인서 발급",
+      "index": 315,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "318": {
+    "data": {
+      "description": "장애인 직업능력개발 운영",
+      "renamed_title": "장애인 직업능력개발 운영",
+      "converted_title": "장애인 직업능력개발 서비스",
+      "reason": "The converted title is more daily and easy because it uses the word '서비스' (service) which is commonly used in everyday language.",
+      "question_eng": "What are the target and contents of the 장애인 직업능력개발 서비스?",
+      "question_kor": "장애인 직업능력개발 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_32.html",
+      "title": "장애인 직업능력개발 운영",
+      "index": 318,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "321": {
+    "data": {
+      "description": "장애인을 위한 시설장비 융자와 무상지원 서비스",
+      "renamed_title": "장애인 시설장비 융자와 무상지원 서비스",
+      "converted_title": "장애인 시설장비 융자와 무상지원 서비스를 받을 수 있어요",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service and emphasizes that it is something that can be received.",
+      "question_eng": "Who is eligible for the facility equipment loan and free support for disabled employment?",
+      "question_kor": "장애인 고용을 위한 시설장비 융자와 무상지원 서비스를 받을 수 있는 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_35.html",
+      "title": "장애인고용 시설장비 융자·무상지원",
+      "index": 321,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "324": {
+    "data": {
+      "description": "장애인을 고용한 사업주나 장애인근로자, 장애인공무원 등에게 작업용 보조공학기기를 지원하는 서비스입니다.",
+      "renamed_title": "장애인 보조공학기기 지원",
+      "converted_title": "장애인 보조공학기기 지원 받기",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 표현되어 있어서 더 쉽게 이해할 수 있습니다.",
+      "question_eng": "Who is eligible for the support and what is the content of the service?",
+      "question_kor": "누가 이 지원을 받을 수 있고, 이 서비스의 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_38.html",
+      "title": "보조공학기기 지원",
+      "index": 324,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "327": {
+    "data": {
+      "description": "장애인 창업점포 지원사업",
+      "renamed_title": "장애인 창업점포 지원사업",
+      "converted_title": "장애인 창업점포를 지원해드립니다",
+      "reason": "The converted title is more daily and easy because it uses a more conversational tone and includes the phrase '지원해드립니다' which means 'we support'.",
+      "question_eng": "Who is eligible for the 장애인 창업점포 지원사업 and what does it provide?",
+      "question_kor": "장애인 창업점포 지원사업은 누구에게 지원되며 어떤 지원을 제공하나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_41.html",
+      "title": "장애인 창업점포 지원사업",
+      "index": 327,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "330": {
+    "data": {
+      "description": "장애인 의료비 지원",
+      "renamed_title": "장애인 의료비 지원",
+      "converted_title": "장애인 의료비를 지원받을 수 있어요",
+      "reason": "The converted title is more daily and easy because it uses a conversational tone and includes the phrase '지원받을 수 있어요' which means 'can receive support'. This makes it more relatable and understandable for the general public.",
+      "question_eng": "Who is eligible for the support and what does it cover?",
+      "question_kor": "지원받을 수 있는 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_44.html",
+      "title": "장애인 의료비 지원",
+      "index": 330,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "333": {
+    "data": {
+      "description": "Support for the cost of disability assessment",
+      "renamed_title": "Support for Disability Assessment Costs",
+      "converted_title": "장애정도 심사비 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words.",
+      "question_eng": "Who is eligible for the support and what does it cover?",
+      "question_kor": "지원 대상은 누구이며 어떤 내용을 포함하나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_47.html",
+      "title": "장애정도 심사 검사비 지원",
+      "index": 333,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "336": {
+    "data": {
+      "description": "Support for medical expenses for adopted children with disabilities",
+      "renamed_title": "Support for Medical Expenses for Adopted Children with Disabilities",
+      "converted_title": "장애 아동 의료비 지원",
+      "reason": "The converted title is more daily and easy because it uses simpler and more commonly used words.",
+      "question_eng": "Who is eligible for the support and what expenses are covered?",
+      "question_kor": "지원 대상은 누구이며 어떤 비용이 지원되나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_50.html",
+      "title": "장애 입양 아동 의료비 지원",
+      "index": 336,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "339": {
+    "data": {
+      "description": "발달재활 서비스",
+      "renamed_title": "발달재활 서비스",
+      "converted_title": "발달재활 서비스 받기",
+      "reason": "The converted title is more daily and easy because it directly states the action of receiving the service.",
+      "question_eng": "What are the target and contents of the 발달재활 서비스?",
+      "question_kor": "발달재활 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_53.html",
+      "title": "발달재활 서비스",
+      "index": 339,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "342": {
+    "data": {
+      "description": "장애인과 노인 등 거동이 불편한 사람들을 위한 건강검진 서비스",
+      "renamed_title": "장애인과 노인을 위한 건강검진",
+      "converted_title": "장애인과 노인을 위한 편리한 건강검진",
+      "reason": "The converted title is more daily and easy because it emphasizes the convenience and accessibility of the health check-up service for disabled individuals and the elderly.",
+      "question_eng": "What is the target and content of the health check-up service for disabled individuals and the elderly?",
+      "question_kor": "장애인과 노인을 위한 편리한 건강검진의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_56.html",
+      "title": "장애친화 건강검진",
+      "index": 342,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "345": {
+    "data": {
+      "description": "장애인 활동지원 서비스는 만 6세~만 65세 미만 등록 장애인 중 신체기능과 자립생활 능력 등을 평가하여 활동지원등급을 판정받은 사람에게 활동보조, 방문간호, 방문목욕 등의 서비스를 제공합니다.",
+      "renamed_title": "장애인 활동지원 서비스",
+      "converted_title": "장애인을 위한 활동지원 서비스",
+      "reason": "The converted title is more daily and easy because it uses simpler language and directly states that the service is for people with disabilities.",
+      "question_eng": "What are the target and contents of the 장애인을 위한 활동지원 서비스?",
+      "question_kor": "장애인을 위한 활동지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_59.html",
+      "title": "장애인 활동지원",
+      "index": 345,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "348": {
+    "data": {
+      "description": "여성장애인의 산전·산후관리, 자녀양육, 가사활동 등을 지원하기 위한 가사도우미 파견",
+      "renamed_title": "여성장애인 가사도우미 파견",
+      "converted_title": "여성장애인을 위한 가사도우미 파견",
+      "reason": "The converted title is more daily and easy because it directly mentions the target group, which is women with disabilities, and the service of providing a household helper.",
+      "question_eng": "Who is the target of the service and what does it provide?",
+      "question_kor": "이 서비스의 대상은 누구이며 어떤 지원을 제공하나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_62.html",
+      "title": "여성장애인 가사도우미 파견",
+      "index": 348,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "351": {
+    "data": {
+      "description": "장애인 중 일정 점수 이상인 자가 장애인 거주시설을 이용할 수 있는 서비스입니다.",
+      "renamed_title": "장애인 거주시설 이용",
+      "converted_title": "장애인 거주시설을 이용하는 방법",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. 이는 일반 대중에게 더 친숙하고 이해하기 쉽게 전달될 수 있기 때문입니다.",
+      "question_eng": "What are the target and contents of the service for using disabled residential facilities?",
+      "question_kor": "장애인 거주시설을 이용하는 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_65.html",
+      "title": "장애인 거주시설 이용",
+      "index": 351,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "354": {
+    "data": {
+      "description": "Free legal aid system",
+      "renamed_title": "Free Legal Aid System",
+      "converted_title": "무료 법률구조 지원",
+      "reason": "The converted title is more daily and easy because it uses simpler and more commonly used words.",
+      "question_eng": "Who is eligible for the free legal aid system and what does it cover?",
+      "question_kor": "무료 법률구조 지원은 누구를 대상으로 하며 어떤 내용을 포함하고 있나요?"
+    },
+    "desc": {
+      "filename": "장애인지원_68.html",
+      "title": "무료 법률구조 제도",
+      "index": 354,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "357": {
+    "data": {
+      "description": "Issuance of disability car sign",
+      "renamed_title": "Disability Car Sign Issuance",
+      "converted_title": "장애인 자동차 표지 발급받기",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who is eligible to apply for the issuance of a disability car sign and what is the purpose of the sign?",
+      "question_kor": "장애인 자동차 표지 발급을 신청할 수 있는 대상은 누구이며, 표지의 목적은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_71.html",
+      "title": "장애인 자동차 표지 발급",
+      "index": 357,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "360": {
+    "data": {
+      "description": "장애인이 재산을 상속받아 상속세를 납부할 때 상속세 과세가액에서 상속개시일 현재 통계청장이 승인하여 고시하는 통계표에 따른 성별·연령별 기대여명의 연수에 1천만 원을 곱하여 계산한 금액을 공제합니다.",
+      "renamed_title": "장애인 상속세 상속공제",
+      "converted_title": "장애인 상속세 공제 받기",
+      "reason": "The converted title is more daily and easy because it uses simpler and more commonly used words.",
+      "question_eng": "Who is eligible for the inheritance tax deduction for disabled individuals?",
+      "question_kor": "장애인 상속세 공제를 받을 수 있는 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_74.html",
+      "title": "장애인 상속세 상속공제",
+      "index": 360,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "363": {
+    "data": {
+      "description": "장애인보조기기에 대한 부가가치세 영세율 적용",
+      "renamed_title": "장애인보조기기 부가가치세 영세율 적용",
+      "converted_title": "장애인보조기기 부가가치세 영세율 적용",
+      "reason": "The converted title is already in a daily and easy tone, as it directly reflects the content of the service.",
+      "question_eng": "Who is eligible for the application of the reduced value-added tax rate for assistive devices for people with disabilities?",
+      "question_kor": "장애인보조기기 부가가치세 영세율 적용의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_77.html",
+      "title": "장애인보조기기 부가가치세 영세율 적용",
+      "index": 363,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "366": {
+    "data": {
+      "description": "Support for sports activities to improve the physical fitness and restore the physical functions of disabled individuals",
+      "renamed_title": "Support for Disabled Sports Facilities",
+      "converted_title": "장애인 체육시설 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who is eligible for the support and what are the contents of the service?",
+      "question_kor": "지원 대상은 누구이며, 서비스 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "장애인지원_80.html",
+      "title": "장애인 체육시설",
+      "index": 366,
+      "category": "장애인지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "372": {
+    "data": {
+      "description": "Support for foster children",
+      "renamed_title": "Foster Child Support",
+      "converted_title": "가정위탁아동 지원 서비스",
+      "reason": "The converted title is more daily and easy because it directly states the purpose of the service and uses common Korean words.",
+      "question_eng": "What is the target and content of the Foster Child Support service?",
+      "question_kor": "가정위탁아동 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_03.html",
+      "title": "가정위탁아동 지원",
+      "index": 372,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "375": {
+    "data": {
+      "description": "아동이 통장에 후원 등을 통해 일정 금액 적립 시 국가(지자체)가 적립한 금액의 2배에 해당하는 금액 지원",
+      "renamed_title": "아동통장 후원 지원",
+      "converted_title": "아동통장 후원 지원",
+      "reason": "The converted title is more daily and easy because it directly describes the service of supporting children's savings through donations.",
+      "question_eng": "Who are the targets and what are the contents of the 아동통장 후원 지원 service?",
+      "question_kor": "아동통장 후원 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_06.html",
+      "title": "아동발달지원계좌",
+      "index": 375,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "378": {
+    "data": {
+      "description": "청소년치료재활센터는 정서·행동에 어려움이 있는 청소년들을 대상으로 상담, 치료, 보호, 교육, 자립지도 등을 제공하는 서비스입니다.",
+      "renamed_title": "청소년치료재활센터",
+      "converted_title": "청소년치료센터",
+      "reason": "The converted title is more daily and easy because it removes the word 'rehabilitation' which may sound more formal and medical, and focuses on the main purpose of the center, which is therapy for teenagers.",
+      "question_eng": "What are the target and contents of the 청소년치료센터?",
+      "question_kor": "청소년치료센터의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_09.html",
+      "title": "청소년치료재활센터",
+      "index": 378,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "381": {
+    "data": {
+      "description": "학교 밖 청소년 건강검진",
+      "renamed_title": "학교 밖 청소년 건강검진",
+      "converted_title": "학교 밖 청소년 건강검진 받는 방법",
+      "reason": "The converted title is more daily and easy because it provides information on how to receive the health examination for out-of-school youth.",
+      "question_eng": "What are the target and contents of the '학교 밖 청소년 건강검진' service?",
+      "question_kor": "'학교 밖 청소년 건강검진 받는 방법' 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_12.html",
+      "title": "학교 밖 청소년 건강검진",
+      "index": 381,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "384": {
+    "data": {
+      "description": "청소년들을 대상으로 인터넷과 스마트폰 과의존을 예방하고 해소하기 위한 지원 서비스입니다.",
+      "renamed_title": "청소년 인터넷·스마트폰 과의존 예방 및 해소 지원",
+      "converted_title": "청소년을 위한 인터넷과 스마트폰 과의존 예방 및 해소 서비스",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. 이는 대상인 청소년들이 쉽게 이해하고 접근할 수 있도록 하기 위함입니다.",
+      "question_eng": "What is the target and content of the service for preventing and resolving internet and smartphone overdependence among teenagers?",
+      "question_kor": "청소년을 위한 인터넷과 스마트폰 과의존을 예방하고 해소하기 위한 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_15.html",
+      "title": "청소년 인터넷·스마트폰 과의존 예방 및 해소 지원",
+      "index": 384,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "387": {
+    "data": {
+      "description": "A counseling service for adolescents facing various issues such as family conflicts, peer relationship problems, academic difficulties, and internet addiction.",
+      "renamed_title": "Adolescent Counseling 1388",
+      "converted_title": "청소년 상담 1388",
+      "reason": "The converted title is more daily and easy because it uses the term '청소년' (adolescent) which is a commonly used term in Korean society.",
+      "question_eng": "What is the target age group and the types of issues addressed in the Adolescent Counseling 1388 service?",
+      "question_kor": "청소년 상담 1388 서비스의 대상 연령 그룹과 다루는 문제 유형은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_18.html",
+      "title": "청소년상담 1388",
+      "index": 387,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "390": {
+    "data": {
+      "description": "청소년 국제교류 서비스에 대한 설명입니다.",
+      "renamed_title": "청소년 국제교류",
+      "converted_title": "청소년 국제교류 서비스",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되었습니다. 이는 대상과 내용을 명확하게 전달하기 위함입니다.",
+      "question_eng": "What is the target and contents of the 청소년 국제교류 서비스?",
+      "question_kor": "청소년 국제교류 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_21.html",
+      "title": "청소년 국제교류",
+      "index": 390,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "393": {
+    "data": {
+      "description": "Support for immigrant background youth",
+      "renamed_title": "Support for Immigrant Background Youth",
+      "converted_title": "이주배경 청소년을 위한 지원",
+      "reason": "The converted title is more daily and easy because it uses common Korean words and phrases that are easily understood by the general public.",
+      "question_eng": "What is the target and content of the support for immigrant background youth?",
+      "question_kor": "이주배경 청소년을 위한 지원의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_24.html",
+      "title": "이주배경청소년 지원",
+      "index": 393,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "396": {
+    "data": {
+      "description": "급식비 지원",
+      "renamed_title": "급식비 지원",
+      "converted_title": "급식비 지원받기",
+      "reason": "The converted title is more daily and easy because it directly states the action of receiving support for school meals.",
+      "question_eng": "Who is eligible for the school meal support and what does it cover?",
+      "question_kor": "누가 급식비 지원을 받을 수 있고, 어떤 내용을 포함하나요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_27.html",
+      "title": "급식비 지원",
+      "index": 396,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "399": {
+    "data": {
+      "description": "Students are provided with milk during the school semester and vacation period.",
+      "renamed_title": "School Milk Provision",
+      "converted_title": "학교에서 우유 제공",
+      "reason": "The converted title is more daily and easy because it directly states that milk is provided at school.",
+      "question_eng": "Who are the target students and what is the content of the school milk provision service?",
+      "question_kor": "학교에서 우유 제공 서비스의 대상 학생들과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_30.html",
+      "title": "학교 우유급식",
+      "index": 399,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "402": {
+    "data": {
+      "description": "HPV 국가예방접종 지원사업",
+      "renamed_title": "HPV 국가예방접종 지원사업",
+      "converted_title": "HPV 예방접종 지원사업",
+      "reason": "The converted title is more daily and easy because it uses a simpler and more commonly used term '예방접종' instead of '국가예방접종'.",
+      "question_eng": "What are the target and contents of the HPV 예방접종 지원사업?",
+      "question_kor": "HPV 예방접종 지원사업의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_33.html",
+      "title": "HPV 국가예방접종 지원사업",
+      "index": 402,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "405": {
+    "data": {
+      "description": "The service provides scholarships for outstanding high school students who wish to study abroad.",
+      "renamed_title": "Scholarships for Outstanding High School Students Studying Abroad",
+      "converted_title": "우수 고등학생들을 위한 해외유학 장학금",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "What are the eligibility criteria and support provided by the 'Scholarships for Outstanding High School Students Studying Abroad'?",
+      "question_kor": "우수 고등학생들을 위한 해외유학 장학금의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_36.html",
+      "title": "우수고등학생 해외유학 장학금",
+      "index": 405,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "408": {
+    "data": {
+      "description": "이공계 우수학생 국가장학사업",
+      "renamed_title": "이공계 우수학생 국가장학사업",
+      "converted_title": "이공계 우수학생 국가장학사업",
+      "reason": "The converted title is already in a daily and easy tone.",
+      "question_eng": "What are the target and contents of the 이공계 우수학생 국가장학사업?",
+      "question_kor": "이공계 우수학생 국가장학사업의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_39.html",
+      "title": "이공계 우수학생 국가장학사업",
+      "index": 408,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "411": {
+    "data": {
+      "description": "인문100년 장학금은 국내 4년제 대학의 인문사회계열 학과(부) 1, 3학년 재학생을 대상으로 지원하는 장학금입니다.",
+      "renamed_title": "인문100년 장학금",
+      "converted_title": "대학생을 위한 인문100년 장학금",
+      "reason": "The converted title is more daily and easy because it clearly states that the scholarship is for college students and emphasizes the long-standing nature of the scholarship.",
+      "question_eng": "What are the target and contents of the 대학생을 위한 인문100년 장학금?",
+      "question_kor": "대학생을 위한 인문100년 장학금의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_42.html",
+      "title": "인문100년 장학금",
+      "index": 411,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "414": {
+    "data": {
+      "description": "푸른등대 기부장학사업은 국내 대학 재학생들에게 생활비 지원을 제공하는 프로그램입니다.",
+      "renamed_title": "푸른등대 기부장학사업",
+      "converted_title": "대학 재학생들을 위한 생활비 지원 프로그램",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. 이는 대학 재학생들을 대상으로 하는 프로그램이므로 일반인들에게 친숙하고 이해하기 쉽게 하기 위함입니다.",
+      "question_eng": "What are the target and contents of the '대학 재학생들을 위한 생활비 지원 프로그램'?",
+      "question_kor": "'대학 재학생들을 위한 생활비 지원 프로그램'의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_45.html",
+      "title": "푸른등대 기부장학사업",
+      "index": 414,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "417": {
+    "data": {
+      "description": "A service for university students to live in a dormitory in Goyang, South Korea",
+      "renamed_title": "University Student Dormitory (Bank, Goyang)",
+      "converted_title": "은행권 대학생 연합생활관(고양)",
+      "reason": "The converted title is more daily and easy because it uses the term '은행권' which refers to a specific bank, making it more relatable and understandable for the target audience.",
+      "question_eng": "What are the target and contents of the University Student Dormitory (Bank, Goyang)?",
+      "question_kor": "은행권 대학생 연합생활관(고양)의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_48.html",
+      "title": "대학생 연합생활관(은행권, 고양)",
+      "index": 417,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "420": {
+    "data": {
+      "description": "This service provides general repayment student loans.",
+      "renamed_title": "General Repayment Student Loans",
+      "converted_title": "일반 학자금 대출",
+      "reason": "The converted title is more daily and easy because it uses common Korean words and phrases.",
+      "question_eng": "Who is eligible for the general repayment student loans and what are the contents of the service?",
+      "question_kor": "일반 학자금 대출은 누구에게 지원되며, 서비스의 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_51.html",
+      "title": "일반 상환 학자금 대출",
+      "index": 420,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "423": {
+    "data": {
+      "description": "경제적 배려대상자 지원",
+      "renamed_title": "Welfare Support for Economically Disadvantaged Individuals",
+      "converted_title": "경제적으로 어려운 사람들을 위한 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who are the target and what is the content of the welfare support for economically disadvantaged individuals?",
+      "question_kor": "경제적으로 어려운 사람들을 위한 지원의 대상은 누구이며 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "청소년청년지원_54.html",
+      "title": "경제적 배려대상자 지원",
+      "index": 423,
+      "category": "청소년청년지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "426": {
+    "data": {
+      "description": "Unemployment benefits",
+      "renamed_title": "Unemployment Benefits",
+      "converted_title": "실업급여 받는 방법",
+      "reason": "The converted title is more daily and easy because it directly explains the process of receiving unemployment benefits.",
+      "question_eng": "Who is eligible for unemployment benefits and what are the contents of the service?",
+      "question_kor": "실업급여를 받을 수 있는 대상은 누구이며, 서비스의 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_01.html",
+      "title": "실업급여",
+      "index": 426,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "429": {
+    "data": {
+      "description": "국민취업지원제도는 취업지원서비스와 소득지원을 결합하여 지원하는 제도입니다.",
+      "renamed_title": "국민취업지원제도",
+      "converted_title": "취업을 돕는 국민 지원 서비스",
+      "reason": "변환된 제목은 일상적이고 쉬운 톤으로 표현되어서 더 쉽게 이해할 수 있습니다.",
+      "question_eng": "What are the target and contents of the service provided by the 국민취업지원제도?",
+      "question_kor": "국민취업지원제도에서 제공하는 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_04.html",
+      "title": "국민취업지원제도",
+      "index": 429,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "432": {
+    "data": {
+      "description": "자활근로사업단은 근로 능력이 있는 기초생활수급자와 차상위계층 중 희망자에게 일자리를 제공하고 인건비를 지급하는 서비스입니다.",
+      "renamed_title": "자활근로사업단",
+      "converted_title": "자활근로 참여하기",
+      "reason": "변환된 제목은 더 일상적이고 쉬운 톤으로 표현되어 있습니다. '자활근로 참여하기'라는 제목은 일반적인 사람들이 쉽게 이해하고 접근할 수 있도록 도와줍니다.",
+      "question_eng": "Who is eligible for the 자활근로사업단 service and what does it provide?",
+      "question_kor": "자활근로 참여하기 서비스의 대상은 누구이며 어떤 내용을 제공하나요?"
+    },
+    "desc": {
+      "filename": "취업지원_07.html",
+      "title": "자활근로",
+      "index": 432,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "435": {
+    "data": {
+      "description": "청년내일저축계좌",
+      "renamed_title": "청년내일저축계좌",
+      "converted_title": "청년을 위한 저축 계좌",
+      "reason": "The converted title is more daily and easy because it clearly states that it is a savings account for young people.",
+      "question_eng": "Who is eligible for the '청년내일저축계좌' service and what are its contents?",
+      "question_kor": "'청년을 위한 저축 계좌' 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_10.html",
+      "title": "청년내일저축계좌",
+      "index": 435,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "438": {
+    "data": {
+      "description": "여성 경제활동 촉진을 위한 종합적인 취업지원서비스 제공",
+      "renamed_title": "여성 경제활동 촉진을 위한 종합적인 취업지원서비스",
+      "converted_title": "여성을 위한 취업지원서비스",
+      "reason": "The converted title is more daily and easy because it focuses on the main purpose of the service, which is to support women in finding employment.",
+      "question_eng": "What are the target and contents of the service for women's economic activity promotion?",
+      "question_kor": "여성 경제활동 촉진을 위한 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_13.html",
+      "title": "여성 경제활동 촉진 지원사업",
+      "index": 438,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "441": {
+    "data": {
+      "description": "여성기업의 공공구매 확대 및 정부지원사업의 우대지원을 위해 여성기업 확인서 발급",
+      "renamed_title": "여성기업 확인서 발급",
+      "converted_title": "여성기업 확인서 발급받기",
+      "reason": "The converted title is more daily and easy because it uses the verb '받기' (to receive) which is commonly used in daily conversations.",
+      "question_eng": "What is the target and contents of the 여성기업 확인서 발급 service?",
+      "question_kor": "여성기업 확인서 발급받기 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_16.html",
+      "title": "여성기업 확인서 발급",
+      "index": 441,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "444": {
+    "data": {
+      "description": "Support for middle-aged technology startups",
+      "renamed_title": "Support for Middle-aged Technology Startups",
+      "converted_title": "중장년 기술창업센터 지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words.",
+      "question_eng": "Who is eligible for the support and what are the contents of the service?",
+      "question_kor": "지원 대상은 누구이며, 서비스의 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_19.html",
+      "title": "중장년 기술창업센터 지원",
+      "index": 444,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "447": {
+    "data": {
+      "description": "Continued Employment Incentive for Elderly Workers",
+      "renamed_title": "Continued Employment Incentive for Elderly Workers",
+      "converted_title": "고령근로자 지원금",
+      "reason": "The converted title is more daily and easy because it uses common terms like '고령근로자' (elderly workers) and '지원금' (support fund).",
+      "question_eng": "Who is eligible for the Continued Employment Incentive for Elderly Workers and what is the amount of support provided per worker?",
+      "question_kor": "고령근로자 지원금은 누구에게 지원되며 근로자 1인당 얼마의 지원금이 제공되나요?"
+    },
+    "desc": {
+      "filename": "취업지원_22.html",
+      "title": "고령자 계속고용장려금",
+      "index": 447,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "450": {
+    "data": {
+      "description": "Support for on-site training at company sites",
+      "renamed_title": "Support for On-Site Training at Company Sites",
+      "converted_title": "기업에서 제공하는 현장실습 교육지원",
+      "reason": "The converted title is more daily and easy because it uses simple and commonly used words to describe the service.",
+      "question_eng": "Who is the target of the support for on-site training at company sites?",
+      "question_kor": "기업에서 제공하는 현장실습 교육지원의 대상은 누구인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_25.html",
+      "title": "현장실습 기업현장 교육지원",
+      "index": 450,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "453": {
+    "data": {
+      "description": "고졸 취업 지원·정보 제공 및 협력체계 구축",
+      "renamed_title": "고졸 취업 지원 및 정보 제공",
+      "converted_title": "고졸 취업을 돕는 서비스",
+      "reason": "The converted title is more daily and easy because it directly states that the service is aimed at helping high school graduates find employment.",
+      "question_eng": "Who is the target of the service and what does it provide?",
+      "question_kor": "이 서비스의 대상은 누구이며 어떤 지원을 제공하나요?"
+    },
+    "desc": {
+      "filename": "취업지원_28.html",
+      "title": "중앙취업지원센터 운영",
+      "index": 453,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "456": {
+    "data": {
+      "description": "산업계 주도 청년 맞춤형 훈련",
+      "renamed_title": "산업계 주도 청년 맞춤형 훈련",
+      "converted_title": "산업계에서 청년들을 위한 맞춤형 훈련",
+      "reason": "The converted title is more daily and easy because it uses simpler language and focuses on the target audience, which is young people.",
+      "question_eng": "What is the target and content of the '산업계에서 청년들을 위한 맞춤형 훈련'?",
+      "question_kor": "'산업계에서 청년들을 위한 맞춤형 훈련'의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_31.html",
+      "title": "산업계 주도 청년 맞춤형 훈련",
+      "index": 456,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo"
+    }
+  },
+  "459": {
+    "data": {
+      "description": "해외취업을 지원하는 서비스",
+      "renamed_title": "해외취업 지원",
+      "converted_title": "해외취업 지원 받는 방법",
+      "reason": "The converted title is more daily and easy because it directly explains how to receive support for overseas employment.",
+      "question_eng": "What are the target and contents of the overseas employment support service?",
+      "question_kor": "해외취업 지원 서비스의 대상과 내용은 무엇인가요?"
+    },
+    "desc": {
+      "filename": "취업지원_34.html",
+      "title": "해외취업 지원",
+      "index": 459,
+      "category": "취업지원",
+      "version": "gpt-3.5-turbo-16k"
+    }
+  }
+}
