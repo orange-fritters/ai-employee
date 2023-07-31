@@ -52,16 +52,18 @@ def pp_qa():
         index = value["desc"]["index"]
         category = value["desc"]["category"]
         quesiton = value["data"]["question_kor"]
+        question_eng = value["data"]["question_eng"]
         convert[index] = {
             "filename": filename,
             "title": title,
             "index": index,
             "category": category,
             "question": quesiton,
+            "question_eng": question_eng,
         }
 
     df = pd.DataFrame.from_dict(convert, orient='index')
-    df.to_csv("preprocess/augment_qa/qa_data.csv", index=False)
+    df.to_csv("preprocess/augment_qa/qa_data_eng.csv", index=False)
 
 
 if __name__ == "__main__":
