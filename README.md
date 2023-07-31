@@ -7,6 +7,7 @@
 - IR의 경우, first stage + reranking으로 구현
 - gpt api 중에 **text embedding**이 있음
   - 복지 제도 400개를 미리 embedding해두고 user query와 가장 유사한 복지 제도를 찾는 방식 -z
+- convert embeddings from CSV str type back to list type `df['embedding'] = df['embedding'].apply(ast.literal_eval)`
 
 ## Links
 

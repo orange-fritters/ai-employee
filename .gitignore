@@ -19,3 +19,5 @@ preprocess/embedding/embeddings.json
 preprocess/embedding/query_embed.json
 preprocess/embedding/ir/
 preprocess/embedding/query_doc_similarity.json
+run.sh
+config.txt
