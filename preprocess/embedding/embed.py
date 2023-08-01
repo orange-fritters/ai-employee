@@ -12,6 +12,7 @@ import json
 import os
 import pandas as pd
 import tiktoken
+from tenacity import retry, wait_random_exponential, stop_after_attempt
 
 with open('server/model/utils/config.json') as config_file:
     config_data = json.load(config_file)
@@ -23,10 +24,19 @@ def count_money(texts: List[str], encoder: tiktoken.Encoding):
     token_counts = 0
     for text in texts:
         token_counts += len(encoder.encode(text))
-    price = token_counts * 0.0001 / 1000
+    price = token_counts * 0.0001 / 1000 * 1300
     return token_counts, price
 
 
+@retry(wait=wait_random_exponential(multiplier=1, max=10), stop=stop_after_attempt(3))
+def get_embed(text: str):
+    result = openai.Embedding.create(
+        engine="text-embedding-ada-002",
+        input=text)
+    return result["data"][0]["embedding"]
+
+
+@retry(wait=wait_random_exponential(multiplier=1, max=10), stop=stop_after_attempt(3))
 def get_embedding(texts: List[str], encoder: tiktoken.Encoding):
     token_counts, price = count_money(texts, encoder)
     result = openai.Embedding.create(
