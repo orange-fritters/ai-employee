@@ -15,7 +15,7 @@ def get_response(text):
     tokens = count_tokens(text)
 
     response = openai.ChatCompletion.create(
-        model=(ver := "gpt-3.5-turbo" if tokens < 4000 else "gpt-3.5-turbo-16k"),
+        model=(ver := "gpt-3.5-turbo-16k"),
         messages=text,
         temperature=0
     )

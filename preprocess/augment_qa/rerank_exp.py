@@ -11,7 +11,7 @@ def get_embed(texts):
 
 
 if __name__ == "__main__":
-    texts = ["I like to eat pizza", "I like to eat pasta"]
+    texts = ["I like to eat pizza", "pizza"]
     result = get_embed(texts)
     with open("embedding.json", "w") as f:
         json.dump(result, f, indent=4)

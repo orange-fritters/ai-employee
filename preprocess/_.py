@@ -1,3 +1,4 @@
+import time
 import pandas as pd
 import tiktoken
 import json
@@ -59,15 +60,18 @@ def count_tokens():
 
 
 if __name__ == '__main__':
-    info = pd.read_csv("/content/drive/MyDrive/ai-employee/info_sheet.csv")
-    title_index = dict(zip(info['title'], info['index']))
+    # info = pd.read_csv("/content/drive/MyDrive/ai-employee/info_sheet.csv")
+    # title_index = dict(zip(info['title'], info['index']))
 
-    articles = pd.read_parquet("/content/drive/MyDrive/ai-employee/articles_embed.parquet")
-    queries = pd.read_parquet("/content/drive/MyDrive/ai-employee/query_embed.parquet")
+    # articles = pd.read_parquet("/content/drive/MyDrive/ai-employee/articles_embed.parquet")
+    # queries = pd.read_parquet("/content/drive/MyDrive/ai-employee/query_embed.parquet")
 
-    articles['label'] = articles['title'].apply(lambda x: title_index[x])
+    # articles['label'] = articles['title'].apply(lambda x: title_index[x])
 
-    labels = articles['label'].unique().tolist()
+    # labels = articles['label'].unique().tolist()
 
-    # for queries with index not in labels, drop row
-    queries = queries[queries['index'].isin(labels)]
+    # # for queries with index not in labels, drop row
+    # queries = queries[queries['index'].isin(labels)]
+    while True:
+        time.sleep(1)
+        print("start")
