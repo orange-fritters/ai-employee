@@ -22,7 +22,7 @@ class BM25():
                  tokenize_including_pos=None,
                  tokenize_excluding_pos="",
                  tokenize_min_len=1,
-                 update_data=True,):
+                 update_data=False,):
         # articles_path: article data(.html format) 위치 _ ex. "/data/articles/"
         # tokenize_including_pos: 포함할 품사 list _ ex. ["NNG", "NNP"]
         # tokenize_excluding_pos: 제외할 품사 list _ ex. ["JKS", "JKC"]
@@ -53,7 +53,6 @@ class BM25():
             for id in articles_id:
                 with open(pth + id, 'r') as f:
                     html = f.read()
-
                 article = bs(html, 'html.parser')
                 article = " ".join(article.text.replace("\n", "").split())
                 articles.append(article)
@@ -111,32 +110,34 @@ class BM25():
 
         # upate_data: False -> 전처리해둔 data 불러와서 사용
         # data/tokenized_data/articles.pkl 불러옴
-
         if self.update_data:
             articles = self.html_to_text(self.articles_path)
             articles_processed = [self.text_preprocess(article) for article in articles]
 
-            data_path = self.articles_path.rstrip("/").rsplit("/", 1)[0]
-            file_ver = self.data_type
+            # Retrieve path to the directory of the articles
+            data_path = os.path.dirname(self.articles_path)
 
-            save_path = data_path + "/tokenized_articles/"
-            file_name = file_ver + ".pkl"
+            # Define save path for tokenized articles
+            save_path = os.path.join(data_path, "tokenized_articles")
 
-            os.makedirs(os.path.dirname(save_path + file_name), exist_ok=True)
-            with open(save_path + file_name, 'wb') as f:
+            # Construct the file name
+            file_name = f"{self.data_type}.pkl"
+
+            # Full path to the pickle file
+            full_path = os.path.join(save_path, file_name)
+            os.makedirs(save_path, exist_ok=True)
+            with open(full_path, 'wb') as f:
                 pickle.dump(articles_processed, f, pickle.HIGHEST_PROTOCOL)
 
-            self.tokenized_articles = articles_processed
-
         else:
-
             data_path = self.articles_path.rstrip("/").rsplit("/", 1)[0]
             file_ver = self.data_type
 
             save_path = data_path + "/tokenized_articles/"
-            file_name = file_ver + ".pkl"
+            file_name = "articles/tokenized_articles/html.pkl"
+            # file_name = file_ver + ".pkl"
 
-            with open(save_path + file_name, 'rb') as f:
+            with open(file_name, 'rb') as f:
                 articles_processed = pickle.load(f)
 
             self.tokenized_articles = articles_processed
