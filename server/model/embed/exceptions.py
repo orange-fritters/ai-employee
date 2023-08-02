@@ -12,3 +12,8 @@ class EmbeddingFailedError(Exception):
 class DecisionFailedError(Exception):
     """Exception raised when decision fails"""
     pass
+
+
+class QuestionGenerationFailedError(Exception):
+    """Exception raised when question generation fails"""
+    pass
