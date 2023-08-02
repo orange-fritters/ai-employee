@@ -1,12 +1,7 @@
 from fastapi import HTTPException
 import openai
-import json
-
 import tiktoken
-
-with open("model/utils/config.json") as config_file:
-    config_data = json.load(config_file)
-    openai.api_key = config_data["chatgpt"]["secret"]
+openai.api_key_path = "model/files/config.txt"
 
 
 async def get_response_openai(prompt):

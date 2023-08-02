@@ -72,6 +72,4 @@ if __name__ == '__main__':
 
     # # for queries with index not in labels, drop row
     # queries = queries[queries['index'].isin(labels)]
-    while True:
-        time.sleep(1)
-        print("start")
+    pass
