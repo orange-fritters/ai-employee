@@ -34,6 +34,8 @@ export const findQuery = (state: RootState) => {
   return recentMessage ? recentMessage.text : undefined;
 };
 
+export const selectID = (state: RootState) => state.multiturn.id;
+
 export const selectRecTitles = (state: RootState) => {
   const titles = state.recommendation.recommendations.map((elem) => elem.title);
   return titles ? titles : undefined;

@@ -1,11 +1,11 @@
-import { selectRecTitles, selectUserMessages } from "../../redux/selectors";
+import { selectRecTitles, selectUserMessages } from "../../../redux/selectors";
 import { useSelector } from "react-redux";
 
 export const requestMultiturn = async (input: string) => {
   const titles = useSelector(selectRecTitles);
   const userMessages = useSelector(selectUserMessages);
 
-  const response = await fetch("/api/multi-turn", {
+  const response = await fetch("/api/multi-turn/initial", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

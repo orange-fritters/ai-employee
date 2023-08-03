@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IRecState {
-  now: "home" | "asking" | "recommendation" | "multiturn";
+  now: "home" | "asking" | "recommendation" | "multiturn" | "search";
 }
 export interface IRecElement {
   rank: number;
@@ -10,7 +10,7 @@ export interface IRecElement {
 
 const RecList: IRecElement[] = [];
 const RecState: IRecState = {
-  now: "home",
+  now: "search",
 };
 
 export const recommendationSlice = createSlice({
@@ -27,7 +27,6 @@ export const recommendationSlice = createSlice({
       }>
     ) => {
       state.recommendations = action.payload.recommendationResponse;
-      console.log(state.recommendations);
     },
     handleState: (
       state,

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { handleRecommendation } from "../../redux/recommendation.slicer";
+import { handleRecommendation } from "../../redux/recommendation.slice";
 import { deleteLoading, handleResponse } from "../../redux/message.slice";
 import { requestSummary } from "./requestSummary";
 
@@ -38,4 +38,28 @@ export const getRecommendation = async (
       loading: false,
     })
   );
+};
+
+export const getRetrieval = async (
+  input: string,
+  dispatch: ReturnType<typeof useDispatch>
+) => {
+  const converted = await requestRecommendation(input);
+  dispatch(handleRecommendation({ recommendationResponse: converted }));
+  const output = `${converted[0].title}
+  ${converted[1].title}
+  ${converted[2].title}
+  ${converted[3].title}
+  ${converted[4].title}
+  를 찾았습니다!`;
+  dispatch(
+    handleResponse({
+      sender: "bot",
+      text: output,
+      type: "default",
+      loading: false,
+    })
+  );
+  dispatch(deleteLoading());
+  return converted;
 };

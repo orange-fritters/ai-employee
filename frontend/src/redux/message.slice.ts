@@ -1,8 +1,40 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMessage } from "../components/Message";
-import { IRecElement } from "./recommendation.slicer";
+import { IRecElement } from "./recommendation.slice";
 
 export const dMessages: IMessage[] = [
+  {
+    sender: "bot",
+    text: "",
+    type: "time",
+    loading: false,
+  },
+  {
+    sender: "bot",
+    text:
+      "안녕하세요!\n저는 여러분의 복지 서비스를 도와드릴 AI 봇입니다. 원하시는 서비스를 선택해주세요.",
+    type: "initial",
+    loading: false,
+  },
+];
+
+export const dSearch: IMessage[] = [
+  {
+    sender: "bot",
+    text: "",
+    type: "time",
+    loading: false,
+  },
+  {
+    sender: "bot",
+    text:
+      "복지 서비스에 대한 정보를 찾아드려요!\n원하시는 서비스에 대해 무엇이든 물어보세요.",
+    type: "default",
+    loading: false,
+  },
+];
+
+const dMultiturn: IMessage[] = [
   {
     sender: "bot",
     text:
@@ -27,7 +59,7 @@ export const messageSlice = createSlice({
         text: string;
         sender: "bot" | "user";
         loading: boolean;
-        type?: "default" | "response" | "recommendation";
+        type?: IMessage["type"];
         recArr?: IRecElement[];
       }>
     ) => {
@@ -41,7 +73,6 @@ export const messageSlice = createSlice({
           recArr: action.payload.recArr || [],
         },
       ];
-      console.log(state.messages);
     },
     deleteLoading: (state) => {
       state.messages = state.messages.filter((elem) => !elem.loading);

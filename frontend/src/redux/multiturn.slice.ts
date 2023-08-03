@@ -1,16 +1,42 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface IMultiturn {
+  text: string;
+  sender: "bot" | "user";
+  id: number;
+}
+
+const dMultiTurn: IMultiturn[] = [];
+
 export const multiturnSlicer = createSlice({
   name: "multiturn",
   initialState: {
-    multiturns: [],
+    multiturns: dMultiTurn,
+    id: 0,
   },
   reducers: {
-    handlemultiturn: (state, action: PayloadAction) => {
-      console.log(state.multiturns);
+    pushMultiturn: (
+      state,
+      action: PayloadAction<{
+        text: string;
+        sender: "bot" | "user";
+        id: number;
+      }>
+    ) => {
+      state.multiturns = [
+        ...state.multiturns,
+        {
+          sender: action.payload.sender,
+          text: action.payload.text,
+          id: action.payload.id,
+        },
+      ];
     },
     clearMultiturn: (state) => {
       state.multiturns = [];
+    },
+    incrementId: (state) => {
+      state.id += 1;
     },
   },
 });
