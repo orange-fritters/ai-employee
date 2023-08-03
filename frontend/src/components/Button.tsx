@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handleRecommendation,
   handleState,
-} from "../redux/recommendation.slicer";
-import { dMessages, handleResponse } from "../redux/message.slice";
+} from "../redux/recommendation.slice";
+import { dMessages, dSearch, handleResponse } from "../redux/message.slice";
 import { RootState } from "../redux/store";
-import { requestMultiturn } from "./utils/requestMultiTurn";
-import { streamResponse } from "./utils/streamResponse";
 
 interface IButton {
-  type: "home" | "recommendation" | "more";
+  type: "home" | "recommendation" | "multiturn" | "search";
   loading: boolean;
   text?: string;
 }
@@ -25,10 +23,15 @@ const Button = ({ type, loading }: IButton) => {
   const handleClick = async () => {
     switch (type) {
       case "home":
-        dispatch(handleState({ recommendationState: { now: "home" } }));
+        dispatch(handleState({ recommendationState: { now: "search" } }));
         dispatch(handleResponse({ ...dMessages[0] }));
         dispatch(handleResponse({ ...dMessages[1] }));
         dispatch(handleRecommendation({ recommendationResponse: [] }));
+        break;
+      case "search":
+        dispatch(handleState({ recommendationState: { now: "search" } }));
+        dispatch(handleResponse({ ...dSearch[0] }));
+        dispatch(handleResponse({ ...dSearch[1] }));
         break;
       case "recommendation":
         if (recommendations.length > 0) {
@@ -66,22 +69,38 @@ const Button = ({ type, loading }: IButton) => {
           );
         }
         break;
-      case "more":
-        dispatch(handleState({ recommendationState: { now: "home" } }));
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        const response = await requestMultiturn("");
-        if (response.body) {
-          const reader = response.body.getReader();
-          const decoder = new TextDecoder("utf-8");
-          await streamResponse(dispatch, reader, decoder);
-        }
+      case "multiturn":
+        dispatch(handleState({ recommendationState: { now: "multiturn" } }));
+        // await new Promise((resolve) => setTimeout(resolve, 1000));
+        // const response = await requestMultiturn("");
+        // if (response.body) {
+        //   const reader = response.body.getReader();
+        //   const decoder = new TextDecoder("utf-8");
+        //   await streamResponse(dispatch, reader, decoder);
+        // }
+        console.log("multiturn");
         break;
+    }
+  };
+
+  const getText = () => {
+    switch (type) {
+      case "home":
+        return "처음";
+      case "recommendation":
+        return "추천";
+      case "multiturn":
+        return "추천받기";
+      case "search":
+        return "문의하기";
+      default:
+        return "";
     }
   };
 
   return (
     <StyledButton onClick={handleClick} type={type} loading={loading}>
-      {type === "home" ? "처음" : type === "recommendation" ? "추천" : "문답"}
+      {getText()}
     </StyledButton>
   );
 };
@@ -89,7 +108,7 @@ const Button = ({ type, loading }: IButton) => {
 export default Button;
 
 const StyledButton = styled.button<{
-  type: "home" | "recommendation" | "more";
+  type: IButton["type"];
   loading: boolean;
 }>`
   position: relative;

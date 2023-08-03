@@ -6,12 +6,17 @@ import { requestQuery } from "./utils/requestQuery";
 import { streamResponse } from "./utils/streamResponse";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { getRecommendation } from "./utils/requestRecommendation";
+import { getRecommendation, getRetrieval } from "./utils/requestRecommendation";
 import {
   handleRecommendation,
   handleState,
-} from "../redux/recommendation.slicer";
-import { selectFirstRecommendation } from "../redux/selectors";
+} from "../redux/recommendation.slice";
+import {
+  selectFirstRecommendation,
+  selectRecTitles,
+  selectRecommendations,
+} from "../redux/selectors";
+import { requestSearch } from "./utils/requestSearch";
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,34 +27,51 @@ const SearchBar: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (state.now === "home") {
-      getRecommendation(input, dispatch);
-      dispatch(handleResponse({ text: input, sender: "user", loading: false }));
-      setInput("");
-      dispatch(
-        handleResponse({
-          text: "",
-          sender: "bot",
-          loading: true,
-          type: "default",
-        })
-      );
-      dispatch(handleState({ recommendationState: { now: "asking" } }));
-    } else if (state.now == "asking") {
-      try {
+    switch (state.now) {
+      case "home":
+        getRecommendation(input, dispatch);
         dispatch(
           handleResponse({ text: input, sender: "user", loading: false })
         );
         setInput("");
-        if (rec !== undefined && rec !== null) {
+        dispatch(
+          handleResponse({
+            text: "",
+            sender: "bot",
+            loading: true,
+            type: "default",
+          })
+        );
+        dispatch(handleState({ recommendationState: { now: "asking" } }));
+        break;
+
+      case "search":
+        const query = input;
+        setInput("");
+        dispatch(
+          handleResponse({ text: query, sender: "user", loading: false })
+        );
+        dispatch(
+          handleResponse({
+            text: "",
+            sender: "bot",
+            loading: true,
+            type: "default",
+          })
+        );
+        const titles = await getRetrieval(query, dispatch);
+        try {
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          const response = await requestQuery(input, rec.title);
+          const response = await requestSearch(input, titles);
           if (response.body) {
+            dispatch(
+              handleResponse({ text: "", sender: "bot", loading: false })
+            );
             const reader = response.body.getReader();
             const decoder = new TextDecoder("utf-8");
             await streamResponse(dispatch, reader, decoder);
           }
-        } else {
+        } catch (error) {
           dispatch(
             handleResponse({
               text: "오류가 발생하였습니다. 처음으로 돌아갑니다.",
@@ -57,23 +79,51 @@ const SearchBar: React.FC = () => {
               loading: false,
             })
           );
-          dispatch(handleState({ recommendationState: { now: "home" } }));
-          dispatch(initMessage);
-          dispatch(handleResponse({ ...dMessages[0] }));
-          dispatch(handleResponse({ ...dMessages[1] }));
-          dispatch(handleRecommendation({ recommendationResponse: [] }));
         }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    } else {
-      dispatch(
-        handleResponse({
-          text: "원하시는 제도를 선택해주세요.",
-          sender: "bot",
-          loading: false,
-        })
-      );
+
+        dispatch(handleState({ recommendationState: { now: "asking" } }));
+        break;
+
+      case "asking":
+        try {
+          dispatch(
+            handleResponse({ text: input, sender: "user", loading: false })
+          );
+          setInput("");
+          if (rec !== undefined && rec !== null) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            const response = await requestQuery(input, rec.title);
+            if (response.body) {
+              const reader = response.body.getReader();
+              const decoder = new TextDecoder("utf-8");
+              await streamResponse(dispatch, reader, decoder);
+            }
+          } else {
+            dispatch(
+              handleResponse({
+                text: "오류가 발생하였습니다. 처음으로 돌아갑니다.",
+                sender: "bot",
+                loading: false,
+              })
+            );
+            dispatch(handleState({ recommendationState: { now: "home" } }));
+            dispatch(initMessage);
+            dispatch(handleResponse({ ...dMessages[0] }));
+            dispatch(handleResponse({ ...dMessages[1] }));
+            dispatch(handleRecommendation({ recommendationResponse: [] }));
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+        break;
+      default:
+        dispatch(
+          handleResponse({
+            text: "새로고침해주세요.",
+            sender: "bot",
+            loading: false,
+          })
+        );
     }
   };
 

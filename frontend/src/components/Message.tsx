@@ -1,11 +1,11 @@
 import styled, { keyframes } from "styled-components";
 import Button from "./Button";
-import React from "react";
+import React, { useState } from "react";
 import {
   IRecElement,
   handleState,
   swapRank,
-} from "../redux/recommendation.slicer";
+} from "../redux/recommendation.slice";
 import { useDispatch } from "react-redux";
 import { handleResponse } from "../redux/message.slice";
 import { requestSummary } from "./utils/requestSummary";
@@ -36,14 +36,30 @@ import { SyncLoader } from "react-spinners";
 export interface IMessage {
   sender: "user" | "bot";
   text: string;
-  type: "default" | "response" | "recommendation";
+  type:
+    | "default"
+    | "response"
+    | "recommendation"
+    | "initial"
+    | "search"
+    | "time";
   loading: boolean;
+  multiturn?: boolean;
   recArr?: IRecElement[];
 }
 
 const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
   const dispatch = useDispatch();
   const first = useSelector(selectFirstTitle);
+  const getCurrTime = () => {
+    const date = new Date();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    const formattedTime = `${hour < 10 ? "0" + hour : hour}:${
+      minutes < 10 ? "0" + minutes : minutes
+    }`;
+    return formattedTime;
+  };
   const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const titleClicked = event.currentTarget.textContent;
     if (recArr && titleClicked) {
@@ -112,76 +128,136 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
     }
   };
 
-  if (type === "recommendation") {
-    return (
-      <RecResponse>
-        {recArr ? (
-          recArr
-            .slice(1)
-            .map((rec) => (
-              <Recommendation onClick={handleRecClick}>
-                {rec.title}
-              </Recommendation>
-            ))
-        ) : (
-          <SingleResponse sender={sender} type={type}>
-            <MessageBox sender={sender} type={type}>
-              추천할 서비스가 없습니다.
-            </MessageBox>
-          </SingleResponse>
-        )}
-      </RecResponse>
-    );
-  } else if (type === "response") {
-    return (
-      <SingleResponse sender={sender} type={type}>
-        <MessageBox sender={sender} type={type}>
-          {text.split("\n").map((line, index) => (
-            <span key={index}>
-              {line}
-              <br />
-            </span>
-          ))}
-          {<FloatingButton onClick={handleRefClick}>문서</FloatingButton>}
-        </MessageBox>
-        {!loading && (
-          <ButtonBox loading={loading} type={type}>
-            <Button type="home" loading={loading} />
-            <Button type="recommendation" loading={loading} />
-            <Button type="more" loading={loading} />
-          </ButtonBox>
-        )}
-      </SingleResponse>
-    );
-  } else {
-    return loading ? (
-      <SingleResponse sender={sender} type={type}>
-        <LoadingBox>
-          <SyncLoader color="#A9A9A9" />
-        </LoadingBox>
-      </SingleResponse>
-    ) : text ? (
-      <SingleResponse sender={sender} type={type}>
-        <MessageBox sender={sender} type={type}>
-          {text.split("\n").map((line, index) => (
-            <span key={index}>
-              {line}
-              <br />
-            </span>
-          ))}
-        </MessageBox>
-      </SingleResponse>
-    ) : (
-      <></>
-    );
+  switch (type) {
+    case "time":
+      return <TimeBox>{getCurrTime()}</TimeBox>;
+    case "recommendation":
+      return (
+        <RecResponse>
+          {recArr ? (
+            recArr
+              .slice(1)
+              .map((rec) => (
+                <Recommendation onClick={handleRecClick}>
+                  {rec.title}
+                </Recommendation>
+              ))
+          ) : (
+            <SingleResponse sender={sender} type={type}>
+              <MessageBox sender={sender} type={type}>
+                추천할 서비스가 없습니다.
+              </MessageBox>
+            </SingleResponse>
+          )}
+        </RecResponse>
+      );
+    case "response":
+      return (
+        <SingleResponse sender={sender} type={type}>
+          <MessageBox sender={sender} type={type}>
+            {text.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+            {<FloatingButton onClick={handleRefClick}>문서</FloatingButton>}
+          </MessageBox>
+          {!loading && (
+            <ButtonBox loading={loading} type={type}>
+              <Button type="home" loading={loading} />
+              <Button type="recommendation" loading={loading} />
+            </ButtonBox>
+          )}
+        </SingleResponse>
+      );
+    case "initial":
+      return (
+        <SingleResponse sender={sender} type={type}>
+          <MessageBox sender={sender} type={type}>
+            {text.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </MessageBox>
+          {!loading && (
+            <InitButtonBox loading={loading} type={type}>
+              <Button type="search" loading={loading} />
+              <Button type="multiturn" loading={loading} />
+            </InitButtonBox>
+          )}
+        </SingleResponse>
+      );
+
+    case "search":
+      return (
+        <SingleResponse sender={sender} type={type}>
+          <MessageBox sender={sender} type={type}>
+            {text.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </MessageBox>
+          {!loading && (
+            <SearchButtonBox loading={loading} type={type}>
+              <Button type="home" loading={loading} />
+            </SearchButtonBox>
+          )}
+        </SingleResponse>
+      );
+
+    default:
+      return loading ? (
+        <SingleResponse sender={sender} type={type}>
+          <LoadingBox>
+            <SyncLoader color="#A9A9A9" />
+          </LoadingBox>
+        </SingleResponse>
+      ) : text ? (
+        <SingleResponse sender={sender} type={type}>
+          <MessageBox sender={sender} type={type}>
+            {text.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </MessageBox>
+        </SingleResponse>
+      ) : (
+        <></>
+      );
   }
 };
 
 export default Message;
 
+const TimeBox = styled.div`
+  display: grid;
+
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+  height: 25px;
+  width: 30%;
+  margin-bottom: 10px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 600;
+
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0 5px 2.5px rgba(0, 0, 0, 0.1);
+`;
+
 const MessageBox = styled.div<{
   sender: "user" | "bot";
-  type: "default" | "response" | "recommendation";
+  type: IMessage["type"];
 }>`
   display: grid;
   grid-column: 1 / 3;
@@ -219,12 +295,12 @@ const slideInFromLeft = keyframes`
 `;
 
 const ButtonBox = styled.div<{
-  type: "default" | "response" | "recommendation";
+  type: IMessage["type"];
   loading: boolean;
 }>`
   grid-column: 1 / 3;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
   position: relative;
   align-self: "flex-start";
@@ -246,8 +322,16 @@ const ButtonBox = styled.div<{
   padding: 10px;
 `;
 
+const InitButtonBox = styled(ButtonBox)`
+  grid-template-columns: 1fr 1fr;
+`;
+
+const SearchButtonBox = styled(ButtonBox)`
+  grid-template-columns: 1fr;
+`;
+
 const SingleResponse = styled.div<{
-  type: "default" | "response" | "recommendation";
+  type: IMessage["type"];
   sender: "user" | "bot";
 }>`
   display: grid;
