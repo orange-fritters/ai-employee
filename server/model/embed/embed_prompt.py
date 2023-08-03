@@ -1,4 +1,5 @@
 from typing import List, TypedDict
+import tiktoken
 
 
 class Option(TypedDict):
@@ -17,6 +18,19 @@ class History(TypedDict):
 class Recommendation(TypedDict):
     rank: int
     title: str
+
+
+def process_options_qa(options: List[Option]):
+    tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    tokens = 0
+    options_str = ""
+    for i, option in enumerate(options):
+        string_to_add = f"Option {i + 1} <{option['title']}>: {option['content']}"
+        tokens += len(tokenizer.encode(string_to_add))
+        if tokens > 16000:
+            break
+        options_str += string_to_add
+    return options_str
 
 
 def process_options_history(options: List[Option],
@@ -91,6 +105,29 @@ Output as json format:
 {
     "question": "..."
 }
+"""
+    prompt = [{"role": "system", "content": system},
+              {"role": "assistant", "content": assistant1},
+              {"role": "assistant", "content": assistant2},
+              {"role": "user", "content": user}]
+    return prompt
+
+
+def get_answer_from_question(query: str,
+                             options: List[Option]):
+    options_str = process_options_qa(options)
+    system = f"""
+You are an AI assistant who can analyze and answer the query from context.
+In this task, you have been given a query and a set of options.
+Your task is to generate an answer to the query based on the options.
+"""
+    assistant1 = f"Options:\n``` {options_str} ```"
+    assistant2 = f"Query:\n``` {query} ```"
+    user = """
+Based on these details, what would be your answer to the query?
+Answer in Korean politely.
+Answer must be based on the options given.
+Do not use any external resources.
 """
     prompt = [{"role": "system", "content": system},
               {"role": "assistant", "content": assistant1},

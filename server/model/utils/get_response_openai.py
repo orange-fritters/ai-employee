@@ -42,7 +42,7 @@ async def get_response_prompted(prompt):
         else:
             response = await openai.ChatCompletion.acreate(
                 model="gpt-3.5-turbo-16k",
-                prompt=prompt,
+                messages=prompt,
                 stream=True,
             )
 

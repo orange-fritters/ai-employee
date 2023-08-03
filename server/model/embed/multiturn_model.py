@@ -1,6 +1,7 @@
 import ast
 import json
 import logging
+import os
 import numpy as np
 import pandas as pd
 from typing import List
@@ -91,17 +92,16 @@ class MultiTurn(EmbedBase):
             raise exceptions.DecisionFailedError("Failed to decide the sufficiency.") from e
 
     def get_contents_from_title(self,
-                                titles: List[str],
+                                titles,
                                 ):
         title_of_ranked_list = [title["title"] for title in titles]
         rank_df = self.data[self.data["title_kor"].isin(title_of_ranked_list)]
 
         options = []
         for i, row in rank_df.iterrows():
-            title = row['title']
-            content = re.search(r'Contents :(.*?)Target :', row['document']).group(1)
-            target = re.search(r'Target :(.*?)Keywords :', row['document']).group(1)
-            doc = {"title": title, "content": content, "target": target}
-            options.append(doc)
-
+            title = row["title_kor"]
+            filename = row["filename"]
+            with open(os.path.join('articles', filename), 'r') as f:
+                contents = f.read()
+            options.append({"title": title, "content": contents})
         return options

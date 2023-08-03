@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, TypedDict
 from pydantic import BaseModel
 
 
@@ -15,3 +15,18 @@ class MultiTurnProp(BaseModel):
     input: str
     titles: List[str]
     context: List[str]
+
+
+class Context(BaseModel):
+    title: str
+    content: str
+
+
+class RankTitle(BaseModel):
+    title: str
+    rank: int
+
+
+class Search(BaseModel):
+    query: str
+    titles: List[RankTitle]

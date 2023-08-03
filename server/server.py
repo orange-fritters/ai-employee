@@ -10,7 +10,8 @@ from fastapi.staticfiles import StaticFiles
 from model.bm25.ensemble import Ensemble
 from model.io_model import IOModel
 from model.embed.multiturn_model import MultiTurn
-from model.utils.schemas import Query, SingleString, Context
+from model.embed.embed_prompt import get_answer_from_question
+from model.utils.schemas import Query, RankTitle, Search, SingleString, Context
 from model.utils.get_response_openai import get_response_openai, get_response_prompted
 import model.utils.convert_prompt as get_prompt
 
@@ -57,9 +58,17 @@ async def get_chat_response(query: Query):
 
 @app.post("/api/recommendation")
 async def get_recommendation(query: SingleString):
-    # recommendations = multiturn_model.get_recommendations(query.query)
     recommendations = ensemble.get_topN_title(query.query)
     return json.dumps(recommendations)
+
+
+@app.post("/api/search")
+async def get_search(search: Search):
+    titles = ensemble.get_topN_title(search.query)
+    options = multiturn_model.get_contents_from_title(titles)
+    prompt = get_answer_from_question(search.query, options)
+    print(prompt)
+    return StreamingResponse(get_response_prompted(prompt), media_type="text/event-stream")
 
 # Multi-turn
 

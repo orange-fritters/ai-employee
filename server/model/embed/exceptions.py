@@ -17,3 +17,8 @@ class DecisionFailedError(Exception):
 class QuestionGenerationFailedError(Exception):
     """Exception raised when question generation fails"""
     pass
+
+
+class AnsweringFailedError(Exception):
+    """Exception raised when answering fails"""
+    pass
