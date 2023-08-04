@@ -1,34 +1,56 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface IMultiturnMessage {
+  role: "bot" | "user";
+  content: string;
+}
+
 interface IMultiturn {
-  text: string;
-  sender: "bot" | "user";
   id: number;
+  message: IMultiturnMessage;
+}
+
+interface IMultiState {
+  phase: "init" | "insufficient" | "done";
 }
 
 const dMultiTurn: IMultiturn[] = [];
+const dMultiState: IMultiState = {
+  phase: "init",
+};
 
 export const multiturnSlicer = createSlice({
   name: "multiturn",
   initialState: {
     multiturns: dMultiTurn,
     id: 0,
+    phase: dMultiState,
   },
   reducers: {
+    updateMultiturnState: (
+      state,
+      action: PayloadAction<{
+        multiturnState: IMultiState;
+      }>
+    ) => {
+      state.phase = action.payload.multiturnState;
+    },
     pushMultiturn: (
       state,
       action: PayloadAction<{
-        text: string;
-        sender: "bot" | "user";
+        content: string;
+        role: "bot" | "user";
         id: number;
       }>
     ) => {
       state.multiturns = [
         ...state.multiturns,
         {
-          sender: action.payload.sender,
-          text: action.payload.text,
           id: action.payload.id,
+          message: {
+            role: action.payload.role,
+            content: action.payload.content,
+          },
         },
       ];
     },
@@ -36,10 +58,16 @@ export const multiturnSlicer = createSlice({
       state.multiturns = [];
     },
     incrementId: (state) => {
-      state.id += 1;
+      state.id = state.id + 1;
+      console.log("incremented id");
     },
   },
 });
 
-export const {} = multiturnSlicer.actions;
+export const {
+  updateMultiturnState,
+  pushMultiturn,
+  clearMultiturn,
+  incrementId,
+} = multiturnSlicer.actions;
 export default multiturnSlicer.reducer;

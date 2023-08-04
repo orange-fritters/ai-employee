@@ -20,7 +20,7 @@ export const recommendationSlice = createSlice({
     now: RecState,
   },
   reducers: {
-    handleRecommendation: (
+    updateRecommendation: (
       state,
       action: PayloadAction<{
         recommendationResponse: IRecElement[];
@@ -28,14 +28,13 @@ export const recommendationSlice = createSlice({
     ) => {
       state.recommendations = action.payload.recommendationResponse;
     },
-    handleState: (
+    updateRecommendationState: (
       state,
       action: PayloadAction<{
         recommendationState: IRecState;
       }>
     ) => {
       state.now = action.payload.recommendationState;
-      console.log(state.now);
     },
     swapRank: (
       state,
@@ -46,7 +45,6 @@ export const recommendationSlice = createSlice({
       const { titleClicked } = action.payload;
 
       if (!titleClicked) {
-        console.log("swapRank: invalid title");
         return;
       }
 
@@ -74,8 +72,8 @@ export const recommendationSlice = createSlice({
 });
 
 export const {
-  handleRecommendation,
-  handleState,
+  updateRecommendation,
+  updateRecommendationState,
   swapRank,
 } = recommendationSlice.actions;
 export default recommendationSlice.reducer;

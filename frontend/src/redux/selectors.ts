@@ -1,4 +1,5 @@
 import { RootState } from "./store";
+import { multiturnSlicer } from "./multiturn.slice";
 
 export const selectRecommendations = (state: RootState) =>
   state.recommendation.recommendations;
@@ -30,7 +31,6 @@ export const findQuery = (state: RootState) => {
   const recentMessage = reversedMessages.find(
     (elem) => elem.type === "default" && elem.sender === "user"
   );
-
   return recentMessage ? recentMessage.text : undefined;
 };
 
@@ -47,4 +47,17 @@ export const selectUserMessages = (state: RootState) => {
   );
   const context = userMessages.map((elem) => elem.text);
   return context ? context : undefined;
+};
+
+export const selectMultiturnPhase = (state: RootState) =>
+  state.multiturn.phase.phase;
+
+export const selectMultiturnID = (state: RootState) => state.multiturn.id;
+
+export const selectMultiturnHistory = (state: RootState) => {
+  const history = state.multiturn.multiturns
+    .filter((elem) => elem.id === state.multiturn.id)
+    .map((elem) => elem.message);
+
+  return history;
 };

@@ -11,7 +11,7 @@ from model.bm25.ensemble import Ensemble
 from model.io_model import IOModel
 from model.embed.multiturn_model import MultiTurn
 from model.embed.embed_prompt import get_answer_from_question
-from model.utils.schemas import Query, RankTitle, Search, SingleString, Context
+from model.utils.schemas import Query, Search, SingleString, History, RankTitle
 from model.utils.get_response_openai import get_response_openai, get_response_prompted
 import model.utils.convert_prompt as get_prompt
 
@@ -67,33 +67,40 @@ async def get_search(search: Search):
     titles = ensemble.get_topN_title(search.query)
     options = multiturn_model.get_contents_from_title(titles)
     prompt = get_answer_from_question(search.query, options)
-    print(prompt)
     return StreamingResponse(get_response_prompted(prompt), media_type="text/event-stream")
 
 # Multi-turn
 
 
-@app.post("/api/multi-turn/initial")
-async def get_multi_turn(query: SingleString):
-    recommendations = multiturn_model.get_recommendations(query.query)
-    return json.dumps(recommendations)
-
-
 @app.post("/api/multi-turn/decide-sufficiency")
-async def decide_sufficiency(titles: List[str], history: List[Context]):
+async def decide_sufficiency(titles: List[RankTitle],
+                             history: List[History]):
+    # titles : [RankTitle(title='title_of_service', rank=0), RankTitle...]
+    # history : [History(role='uesr', content='query_from_user'), History...]
     result = multiturn_model.decide_information_sufficiency(titles, history)
+    print("server 80 line, check decision result as json: ", json.dumps(result))
     return json.dumps(result)
 
 
-@app.post("/api/multi-turn/new-question")
-async def get_new_question(titles: List[str], history: List[Context]):
-    result = multiturn_model.generate_question_based_on_history(titles, history)
+@app.post("/api/multi-turn/question")
+async def get_new_question(titles: List[RankTitle],
+                           history: List[History]):
+    result = multiturn_model.get_question_from_history(titles, history)
     return json.dumps(result)
 
 
-@app.post("/api/multi-turn/new-recommendation")
-async def get_new_recommendation(history: List[Context]):
+@app.post("/api/multi-turn/recommendation")
+async def get_new_recommendation(titles: List[RankTitle],
+                                 history: List[History]):
     result = multiturn_model.get_recommendation_new_history(history)
+    print(result)
+    return json.dumps(result)
+
+
+@app.post("/api/multi-turn/answer")
+async def get_answer(titles: List[RankTitle],
+                     history: List[History]):
+    result = multiturn_model.get_answer_from_history(titles, history)
     return json.dumps(result)
 
 
