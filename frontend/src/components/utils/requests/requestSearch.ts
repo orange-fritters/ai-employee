@@ -1,4 +1,4 @@
-import { IRecElement } from "../../redux/recommendation.slice";
+import { IRecElement } from "../../../redux/recommendation.slice";
 
 export const requestSearch = async (input: string, titles: IRecElement[]) => {
   const response = await fetch("/api/search", {

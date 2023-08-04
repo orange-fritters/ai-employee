@@ -11,3 +11,9 @@ export const unicodeToChar = (text: string) => {
 export const responseDecoder = (text: string) => {
   const pattern = /{(.*?)}/g;
 };
+
+export const convertToJSON = async (response: Response) => {
+  const data = await response.json();
+  const converted = JSON.parse(data);
+  return converted;
+};

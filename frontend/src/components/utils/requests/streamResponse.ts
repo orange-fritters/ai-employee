@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { handleStream } from "../../redux/message.slice";
+import { handleStream } from "../../../redux/message.slice";
 
 export const streamResponse = async (
   dispatch: ReturnType<typeof useDispatch>,

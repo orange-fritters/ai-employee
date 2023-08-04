@@ -2,11 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  handleRecommendation,
-  handleState,
+  updateRecommendation,
+  updateRecommendationState,
 } from "../redux/recommendation.slice";
-import { dMessages, dSearch, handleResponse } from "../redux/message.slice";
+import {
+  dMessages,
+  dMultiturn,
+  dSearch,
+  deleteLoading,
+  pushResponse,
+} from "../redux/message.slice";
 import { RootState } from "../redux/store";
+import { updateMultiturnState } from "../redux/multiturn.slice";
 
 interface IButton {
   type: "home" | "recommendation" | "multiturn" | "search";
@@ -23,24 +30,30 @@ const Button = ({ type, loading }: IButton) => {
   const handleClick = async () => {
     switch (type) {
       case "home":
-        dispatch(handleState({ recommendationState: { now: "search" } }));
-        dispatch(handleResponse({ ...dMessages[0] }));
-        dispatch(handleResponse({ ...dMessages[1] }));
-        dispatch(handleRecommendation({ recommendationResponse: [] }));
+        dispatch(
+          updateRecommendationState({ recommendationState: { now: "search" } })
+        );
+        dispatch(pushResponse({ ...dMessages[0] }));
+        dispatch(pushResponse({ ...dMessages[1] }));
+        dispatch(updateRecommendation({ recommendationResponse: [] }));
         break;
       case "search":
-        dispatch(handleState({ recommendationState: { now: "search" } }));
-        dispatch(handleResponse({ ...dSearch[0] }));
-        dispatch(handleResponse({ ...dSearch[1] }));
+        dispatch(
+          updateRecommendationState({ recommendationState: { now: "search" } })
+        );
+        dispatch(pushResponse({ ...dSearch[0] }));
+        dispatch(pushResponse({ ...dSearch[1] }));
         break;
       case "recommendation":
         if (recommendations.length > 0) {
           dispatch(
-            handleState({ recommendationState: { now: "recommendation" } })
+            updateRecommendationState({
+              recommendationState: { now: "recommendation" },
+            })
           );
 
           dispatch(
-            handleResponse({
+            pushResponse({
               sender: "bot",
               text:
                 // "2가지 제도를 추가로 추천해드릴게요!\n더 알아보고 싶은 제도를 선택해주세요.",
@@ -50,7 +63,7 @@ const Button = ({ type, loading }: IButton) => {
             })
           );
           dispatch(
-            handleResponse({
+            pushResponse({
               sender: "bot",
               text: "",
               type: "recommendation",
@@ -60,7 +73,7 @@ const Button = ({ type, loading }: IButton) => {
           );
         } else {
           dispatch(
-            handleResponse({
+            pushResponse({
               sender: "bot",
               text: "추천할 서비스가 없습니다. 처음으로 돌아가주세요",
               type: "response",
@@ -70,7 +83,25 @@ const Button = ({ type, loading }: IButton) => {
         }
         break;
       case "multiturn":
-        dispatch(handleState({ recommendationState: { now: "multiturn" } }));
+        dispatch(
+          updateRecommendationState({
+            recommendationState: { now: "multiturn" },
+          })
+        );
+        dispatch(updateMultiturnState({ multiturnState: { phase: "init" } }));
+        dispatch(
+          pushResponse({
+            text: "",
+            sender: "bot",
+            loading: true,
+            type: "default",
+          })
+        );
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        dispatch(deleteLoading());
+        dispatch(pushResponse({ ...dMultiturn[0] }));
+
         // await new Promise((resolve) => setTimeout(resolve, 1000));
         // const response = await requestMultiturn("");
         // if (response.body) {
@@ -78,7 +109,6 @@ const Button = ({ type, loading }: IButton) => {
         //   const decoder = new TextDecoder("utf-8");
         //   await streamResponse(dispatch, reader, decoder);
         // }
-        console.log("multiturn");
         break;
     }
   };

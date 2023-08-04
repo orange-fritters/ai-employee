@@ -34,11 +34,11 @@ export const dSearch: IMessage[] = [
   },
 ];
 
-const dMultiturn: IMessage[] = [
+export const dMultiturn: IMessage[] = [
   {
     sender: "bot",
     text:
-      "당신의 상황에 알맞은 복지 서비스를 찾아줄게요!\n\nEX. 저는 직장을 다니고 있어요,\n 그런데 아이 돌보기와 일상 생활을 균형잡기 힘들어요",
+      "당신의 상황에 알맞은 복지 서비스를 찾아줄게요!\n\nEX. 취직 준비에 도움을 받고 싶어요.",
     type: "default",
     loading: false,
   },
@@ -53,7 +53,7 @@ export const messageSlice = createSlice({
     initMessage: (state, action: PayloadAction) => {
       state.messages = dMessages;
     },
-    handleResponse: (
+    pushResponse: (
       state,
       action: PayloadAction<{
         text: string;
@@ -104,7 +104,7 @@ export const messageSlice = createSlice({
 
 export const {
   initMessage,
-  handleResponse,
+  pushResponse,
   handleStream,
   deleteLoading,
 } = messageSlice.actions;

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { initMessage, dMessages, handleResponse } from "../redux/message.slice";
-import { requestQuery } from "./utils/requestQuery";
-import { streamResponse } from "./utils/streamResponse";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { getRecommendation, getRetrieval } from "./utils/requestRecommendation";
+import styled from "styled-components";
+
+import { requestQuery } from "./utils/requests/requestQuery";
+import { streamResponse } from "./utils/requests/streamResponse";
+import { requestSearch } from "./utils/requests/requestSearch";
+import { getRecommendation, getRetrieval } from "./utils/handleRecommendation";
+
 import {
-  handleRecommendation,
-  handleState,
+  updateRecommendation,
+  updateRecommendationState,
 } from "../redux/recommendation.slice";
+import { initMessage, dMessages, pushResponse } from "../redux/message.slice";
 import {
   selectFirstRecommendation,
-  selectRecTitles,
-  selectRecommendations,
+  selectMultiturnPhase,
 } from "../redux/selectors";
-import { requestSearch } from "./utils/requestSearch";
+import { handleMultiturn } from "./utils/handleMultiturn";
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,29 +31,27 @@ const SearchBar: React.FC = () => {
     switch (state.now) {
       case "home":
         getRecommendation(input, dispatch);
-        dispatch(
-          handleResponse({ text: input, sender: "user", loading: false })
-        );
+        dispatch(pushResponse({ text: input, sender: "user", loading: false }));
         setInput("");
         dispatch(
-          handleResponse({
+          pushResponse({
             text: "",
             sender: "bot",
             loading: true,
             type: "default",
           })
         );
-        dispatch(handleState({ recommendationState: { now: "asking" } }));
+        dispatch(
+          updateRecommendationState({ recommendationState: { now: "asking" } })
+        );
         break;
 
       case "search":
         const query = input;
         setInput("");
+        dispatch(pushResponse({ text: query, sender: "user", loading: false }));
         dispatch(
-          handleResponse({ text: query, sender: "user", loading: false })
-        );
-        dispatch(
-          handleResponse({
+          pushResponse({
             text: "",
             sender: "bot",
             loading: true,
@@ -64,16 +63,14 @@ const SearchBar: React.FC = () => {
           await new Promise((resolve) => setTimeout(resolve, 1000));
           const response = await requestSearch(input, titles);
           if (response.body) {
-            dispatch(
-              handleResponse({ text: "", sender: "bot", loading: false })
-            );
+            dispatch(pushResponse({ text: "", sender: "bot", loading: false }));
             const reader = response.body.getReader();
             const decoder = new TextDecoder("utf-8");
             await streamResponse(dispatch, reader, decoder);
           }
         } catch (error) {
           dispatch(
-            handleResponse({
+            pushResponse({
               text: "오류가 발생하였습니다. 처음으로 돌아갑니다.",
               sender: "bot",
               loading: false,
@@ -81,13 +78,15 @@ const SearchBar: React.FC = () => {
           );
         }
 
-        dispatch(handleState({ recommendationState: { now: "asking" } }));
+        dispatch(
+          updateRecommendationState({ recommendationState: { now: "asking" } })
+        );
         break;
 
       case "asking":
         try {
           dispatch(
-            handleResponse({ text: input, sender: "user", loading: false })
+            pushResponse({ text: input, sender: "user", loading: false })
           );
           setInput("");
           if (rec !== undefined && rec !== null) {
@@ -100,25 +99,46 @@ const SearchBar: React.FC = () => {
             }
           } else {
             dispatch(
-              handleResponse({
+              pushResponse({
                 text: "오류가 발생하였습니다. 처음으로 돌아갑니다.",
                 sender: "bot",
                 loading: false,
               })
             );
-            dispatch(handleState({ recommendationState: { now: "home" } }));
-            dispatch(initMessage);
-            dispatch(handleResponse({ ...dMessages[0] }));
-            dispatch(handleResponse({ ...dMessages[1] }));
-            dispatch(handleRecommendation({ recommendationResponse: [] }));
+            dispatch(
+              updateRecommendationState({
+                recommendationState: { now: "home" },
+              })
+            );
+            dispatch(pushResponse({ ...dMessages[0] }));
+            dispatch(pushResponse({ ...dMessages[1] }));
+            dispatch(updateRecommendation({ recommendationResponse: [] }));
           }
         } catch (error) {
           console.error("Error:", error);
         }
         break;
+
+      case "multiturn":
+        const question = input;
+        setInput("");
+        handleMultiturn(question, dispatch);
+        dispatch(
+          pushResponse({ text: question, sender: "user", loading: false })
+        );
+        dispatch(
+          pushResponse({
+            text: "",
+            sender: "bot",
+            loading: true,
+            type: "default",
+          })
+        );
+        break;
+
       default:
         dispatch(
-          handleResponse({
+          pushResponse({
             text: "새로고침해주세요.",
             sender: "bot",
             loading: false,

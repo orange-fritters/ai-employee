@@ -3,12 +3,12 @@ import Button from "./Button";
 import React, { useState } from "react";
 import {
   IRecElement,
-  handleState,
+  updateRecommendationState,
   swapRank,
 } from "../redux/recommendation.slice";
 import { useDispatch } from "react-redux";
-import { handleResponse } from "../redux/message.slice";
-import { requestSummary } from "./utils/requestSummary";
+import { pushResponse } from "../redux/message.slice";
+import { requestSummary } from "./utils/requests/requestSummary";
 import { useSelector } from "react-redux";
 import { selectFirstTitle } from "../redux/selectors";
 import { SyncLoader } from "react-spinners";
@@ -64,7 +64,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
     const titleClicked = event.currentTarget.textContent;
     if (recArr && titleClicked) {
       dispatch(
-        handleResponse({
+        pushResponse({
           sender: "user",
           loading: false,
           text: `${titleClicked}에 대해 더 자세하게 알려줘!`,
@@ -74,7 +74,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
 
       const summary = await requestSummary(titleClicked);
       dispatch(
-        handleResponse({
+        pushResponse({
           sender: "bot",
           text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
           // text: `${titleClicked}은 어때요?`
@@ -99,7 +99,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       // }
     } else {
       dispatch(
-        handleResponse({
+        pushResponse({
           sender: "bot",
           loading: false,
           text: "가장 최근의 더보기를 눌러주세요!",
@@ -107,7 +107,9 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       );
     }
 
-    dispatch(handleState({ recommendationState: { now: "asking" } }));
+    dispatch(
+      updateRecommendationState({ recommendationState: { now: "asking" } })
+    );
   };
 
   const handleRefClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -119,7 +121,7 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
       window.open(`/api/articles/view/${id}`, "_blank");
     } else {
       dispatch(
-        handleResponse({
+        pushResponse({
           sender: "bot",
           loading: false,
           text: "오류가 발생하였습니다!",

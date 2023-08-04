@@ -17,9 +17,15 @@ class MultiTurnProp(BaseModel):
     context: List[str]
 
 
-class Context(BaseModel):
-    title: str
+class History(BaseModel):
+    # history = [{"role" : "user", "content" : ...},
+    #            {"role" : "bot", "content" : ...}, ...]
+    role: str
     content: str
+
+
+class Histories(BaseModel):
+    histories: List[History]
 
 
 class RankTitle(BaseModel):
@@ -30,3 +36,13 @@ class RankTitle(BaseModel):
 class Search(BaseModel):
     query: str
     titles: List[RankTitle]
+
+
+class Option(BaseModel):
+    title: str
+    content: str
+
+
+class Recommendation(BaseModel):
+    rank: int
+    title: str
