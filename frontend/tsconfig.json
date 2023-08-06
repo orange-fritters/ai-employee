@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "es6",
-    "jsx": "preserve",
+    "jsx": "react",
     "module": "esnext",
     "allowJs": true,
     "esModuleInterop": true,
