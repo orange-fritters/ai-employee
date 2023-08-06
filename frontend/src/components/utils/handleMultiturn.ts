@@ -12,7 +12,6 @@ import {
   requestMultiturnRecommend,
 } from "./requests/requestMultiTurn";
 import {
-  dMessages,
   deleteLoading,
   initMessage,
   pushResponse,
@@ -30,6 +29,7 @@ import {
 import { requestQuery } from "./requests/requestQuery";
 import { streamResponse } from "./requests/streamResponse";
 import { requestRecommendation } from "./requests/requestRecommendation";
+import { dMessages } from "../../redux/defaultMessages";
 
 export const handleMultiturn = async (
   input: string,

@@ -5,7 +5,7 @@ import { requestSummary } from "./requests/requestSummary";
 import { requestRecommendation } from "./requests/requestRecommendation";
 import { convertToJSON } from "./decoder";
 
-export const getRecommendation = async (
+const getRecommendation = async (
   input: string,
   dispatch: ReturnType<typeof useDispatch>
 ) => {
@@ -26,7 +26,7 @@ export const getRecommendation = async (
   );
 };
 
-export const getRetrieval = async (
+const getRetrieval = async (
   input: string,
   dispatch: ReturnType<typeof useDispatch>
 ) => {
@@ -50,3 +50,5 @@ export const getRetrieval = async (
   dispatch(deleteLoading());
   return converted;
 };
+
+export { getRecommendation, getRetrieval }
