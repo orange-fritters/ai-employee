@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import styled from "styled-components";
+
+import * as S from "./components/styles/styles";
 
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
@@ -19,62 +20,18 @@ const ChatApp: React.FC = () => {
   }, [messages]);
 
   return (
-    <Background>
-      <Container>
+    <S.Background>
+      <S.Container>
         <Header />
-        <Window ref={containerRef}>
+        <S.Window ref={containerRef}>
           {messages.map((message) => (
-            <Message
-              sender={message.sender}
-              text={message.text}
-              type={message.type}
-              loading={message.loading}
-              recArr={message.recArr}
-            />
+            <Message {...message} />
           ))}
-        </Window>
+        </S.Window>
         <SearchBar />
-      </Container>
-    </Background>
+      </S.Container>
+    </S.Background>
   );
 };
-
-const Container = styled.div`
-  width: 500px;
-  height: 100vh;
-`;
-
-const Background = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #d8d8d8;
-
-  width: 100%;
-  height: 100vh;
-
-  ::-webkit-scrollbar {
-    width: 10px;
-    display: none;
-  }
-`;
-
-const Window = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-
-  width: 100%;
-  height: 70vh;
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh;
-
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-
-  gap: 20px;
-`;
 
 export default ChatApp;

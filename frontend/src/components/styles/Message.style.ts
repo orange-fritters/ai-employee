@@ -27,12 +27,14 @@ const MessageBox = styled.div<{
   display: grid;
   grid-column: 1 / 3;
   position: relative;
-  text-align: ${(props: { sender: string; }) => (props.sender === "bot" ? "left" : "right")};
-  background-color: ${(props : { sender : string}) =>
+  text-align: ${(props: { sender: string }) =>
+    props.sender === "bot" ? "left" : "right"};
+  background-color: ${(props: { sender: string }) =>
     props.sender === "bot" ? "#eeeeee" : "#0084ff"};
-  color: ${(props : { sender : string}) => (props.sender === "bot" ? "#000" : "#fff")};
+  color: ${(props: { sender: string }) =>
+    props.sender === "bot" ? "#000" : "#fff"};
   padding: 20px;
-  border-radius: ${(props : { sender : string}) =>
+  border-radius: ${(props: { sender: string }) =>
     props.sender === "bot" ? "0px 30px 30px 30px" : "30px 0px 30px 30px"};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `;
@@ -72,14 +74,16 @@ const ButtonBox = styled.div<{
   text-align: "left";
   background-color: #648fd9;
   color: "#000";
-  max-width: ${(props : { type : string}) => (props.type === "default" ? "60%" : "100%")};
-  margin-left: ${(props : { type : string}) => (props.type === "default" ? "25px" : "0px")};
+  max-width: ${(props: { type: string }) =>
+    props.type === "default" ? "60%" : "100%"};
+  margin-left: ${(props: { type: string }) =>
+    props.type === "default" ? "25px" : "0px"};
   margin-right: 0px;
   padding: 5px;
   border-radius: 5px 17px 17px 17px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
-  height: ${(props : { loading : boolean }) => (props.loading ? "0px" : "50px")};
+  height: ${(props: { loading: boolean }) => (props.loading ? "0px" : "50px")};
   transition: height 1s ease-in-out;
   animation: ${slideInFromLeft} 1s ease-out;
 
@@ -101,11 +105,13 @@ const SingleResponse = styled.div<{
 }>`
   display: grid;
   max-width: 60%;
-  grid-template-columns: ${(props : { type : string}) =>
+  grid-template-columns: ${(props: { type: string }) =>
     props.type === "default" ? "1fr" : "1fr 1fr"};
-  margin-left: ${(props : { sender : string}) => (props.sender === "bot" ? "25px" : "0px")};
-  margin-right: ${(props : { sender : string}) => (props.sender === "bot" ? "0px" : "25px")};
-  align-self: ${(props : { sender : string}) =>
+  margin-left: ${(props: { sender: string }) =>
+    props.sender === "bot" ? "25px" : "0px"};
+  margin-right: ${(props: { sender: string }) =>
+    props.sender === "bot" ? "0px" : "25px"};
+  align-self: ${(props: { sender: string }) =>
     props.sender === "bot" ? "flex-start" : "flex-end"};
   grid-template-rows: auto;
   grid-column-gap: 12px;
@@ -198,4 +204,15 @@ const FloatingButton = styled.button`
   animation-fill-mode: backwards;
 `;
 
-export { TimeBox, MessageBox, LoadingBox, ButtonBox, SingleResponse, RecResponse, Recommendation, FloatingButton, InitButtonBox, SearchButtonBox };
+export {
+  TimeBox,
+  MessageBox,
+  LoadingBox,
+  ButtonBox,
+  SingleResponse,
+  RecResponse,
+  Recommendation,
+  FloatingButton,
+  InitButtonBox,
+  SearchButtonBox,
+};

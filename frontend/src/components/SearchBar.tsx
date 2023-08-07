@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 import * as S from "./styles/styles";
+import { selectFirstRecommendation } from "../redux/selectors";
 import {
-  selectFirstRecommendation,
-} from "../redux/selectors";
-import { handleSubmitWhenAsking, handleSubmitWhenDefault, handleSubmitWhenHome, handleSubmitWhenMultiturn, handleSubmitWhenSearch } from "./utils/handleSubmit";
+  handleSubmitWhenAsking,
+  handleSubmitWhenDefault,
+  handleSubmitWhenHome,
+  handleSubmitWhenMultiturn,
+  handleSubmitWhenSearch,
+} from "./utils/handleSubmit";
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();

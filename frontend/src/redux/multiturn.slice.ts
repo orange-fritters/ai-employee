@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IMultiturnMessage {
-  role: "bot" | "user";
-  content: string;
-}
-
 interface IMultiturn {
   id: number;
-  message: IMultiturnMessage;
+  message: {
+    role: "bot" | "user";
+    content: string;
+  };
 }
 
 interface IMultiState {

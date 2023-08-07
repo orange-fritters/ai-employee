@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { deleteLoading, pushResponse } from "../../redux/message.slice";
-import { updateRecommendation, updateRecommendationState, IRecElement } from "../../redux/recommendation.slice";
+import {
+  updateRecommendation,
+  updateRecommendationState,
+  IRecElement,
+} from "../../redux/recommendation.slice";
 import { dMessages, dMultiturn, dSearch } from "../../redux/defaultMessages";
 import { updateMultiturnState } from "../../redux/multiturn.slice";
 
-const handleHomeButton = async (
-  dispatch: ReturnType<typeof useDispatch>
-) => {
+const handleHomeButton = async (dispatch: ReturnType<typeof useDispatch>) => {
   dispatch(
     updateRecommendationState({ recommendationState: { now: "search" } })
   );
@@ -16,9 +18,7 @@ const handleHomeButton = async (
   dispatch(updateRecommendation({ recommendationResponse: [] }));
 };
 
-const handleSearchButton = async (
-  dispatch: ReturnType<typeof useDispatch>
-) => {
+const handleSearchButton = async (dispatch: ReturnType<typeof useDispatch>) => {
   dispatch(
     updateRecommendationState({ recommendationState: { now: "search" } })
   );
@@ -40,7 +40,6 @@ const handleRecommendationButton = async (
       pushResponse({
         sender: "bot",
         text:
-          // "2가지 제도를 추가로 추천해드릴게요!\n더 알아보고 싶은 제도를 선택해주세요.",
           "4가지 제도를 추가로 추천해드릴게요!\n더 알아보고 싶은 제도를 선택해주세요.",
         type: "default",
         loading: false,
@@ -65,7 +64,7 @@ const handleRecommendationButton = async (
       })
     );
   }
-}
+};
 
 const handleMultiturnButton = async (
   dispatch: ReturnType<typeof useDispatch>
@@ -96,6 +95,11 @@ const handleMultiturnButton = async (
   //   const decoder = new TextDecoder("utf-8");
   //   await streamResponse(dispatch, reader, decoder);
   // }
-}
+};
 
-export { handleHomeButton, handleSearchButton, handleRecommendationButton, handleMultiturnButton };
+export {
+  handleHomeButton,
+  handleSearchButton,
+  handleRecommendationButton,
+  handleMultiturnButton,
+};

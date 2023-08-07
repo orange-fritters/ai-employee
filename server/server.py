@@ -7,13 +7,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from model.bm25.ensemble import Ensemble
 from model.io_model import IOModel
+from model.bm25.ensemble import Ensemble
 from model.embed.multiturn_model import MultiTurn
+
 from model.embed.embed_prompt import get_answer_from_question
+import model.utils.convert_prompt as get_prompt
 from model.utils.schemas import Query, Search, SingleString, History, RankTitle
 from model.utils.get_response_openai import get_response_openai, get_response_prompted
-import model.utils.convert_prompt as get_prompt
 
 
 app = FastAPI()
@@ -65,6 +66,8 @@ async def get_recommendation(query: SingleString):
 @app.post("/api/search")
 async def get_search(search: Search):
     titles = ensemble.get_topN_title(search.query)
+    # titles [{"rank": i + 1, "title": title} for i, title in enumerate(top_titles)]
+    titles = [RankTitle(**title) for title in titles]
     options = multiturn_model.get_contents_from_title(titles)
     prompt = get_answer_from_question(search.query, options)
     return StreamingResponse(get_response_prompted(prompt), media_type="text/event-stream")

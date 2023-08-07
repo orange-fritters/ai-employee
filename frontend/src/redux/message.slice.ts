@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IRecElement } from "./recommendation.slice";
+import { dMessages } from "./defaultMessages";
+import { IMessage } from "../components/Message";
 
 export const messageSlice = createSlice({
   name: "chat",
@@ -7,7 +9,7 @@ export const messageSlice = createSlice({
     messages: dMessages,
   },
   reducers: {
-    initMessage: (state, action: PayloadAction) => {
+    initMessage: (state) => {
       state.messages = dMessages;
     },
     pushResponse: (
@@ -59,6 +61,10 @@ export const messageSlice = createSlice({
   },
 });
 
-export const { initMessage, pushResponse, handleStream, deleteLoading } =
-  messageSlice.actions;
+export const {
+  initMessage,
+  pushResponse,
+  handleStream,
+  deleteLoading,
+} = messageSlice.actions;
 export default messageSlice.reducer;

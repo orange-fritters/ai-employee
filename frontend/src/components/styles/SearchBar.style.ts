@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 const BackGround = styled.form`
   background-color: white;
   width: 100%;
@@ -55,6 +54,5 @@ const SmallSendButton = styled.button`
     margin-right: 10px;
   }
 `;
-
 
 export { BackGround, SearchBarBox, SearchInput, SmallSendButton };

@@ -34,11 +34,12 @@ const getRetrieval = async (
   const converted = await convertToJSON(response);
   dispatch(updateRecommendation({ recommendationResponse: converted }));
   const output = `${converted[0].title}
-  ${converted[1].title}
-  ${converted[2].title}
-  ${converted[3].title}
-  ${converted[4].title}
-  를 찾았습니다!`;
+    ${converted[1].title}
+    ${converted[2].title}
+    ${converted[3].title}
+    ${converted[4].title}
+    를 찾았습니다!`;
+
   dispatch(
     pushResponse({
       sender: "bot",
@@ -51,4 +52,4 @@ const getRetrieval = async (
   return converted;
 };
 
-export { getRecommendation, getRetrieval }
+export { getRecommendation, getRetrieval };

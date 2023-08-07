@@ -4,7 +4,7 @@ import {
 } from "../../../redux/selectors";
 import store from "../../../redux/store";
 
-export const requestMultiturnRecommend = async () => {
+const requestMultiturnRecommend = async () => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -27,7 +27,7 @@ export const requestMultiturnRecommend = async () => {
   return response;
 };
 
-export const requestMultiturnDecision = async () => {
+const requestMultiturnDecision = async () => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -50,7 +50,7 @@ export const requestMultiturnDecision = async () => {
   return response;
 };
 
-export const requestMultiturnQuestion = async () => {
+const requestMultiturnQuestion = async () => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -73,7 +73,7 @@ export const requestMultiturnQuestion = async () => {
   return response;
 };
 
-export const requestMultiturnAnswer = async () => {
+const requestMultiturnAnswer = async () => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -94,4 +94,11 @@ export const requestMultiturnAnswer = async () => {
   }
 
   return response;
+};
+
+export {
+  requestMultiturnRecommend,
+  requestMultiturnDecision,
+  requestMultiturnQuestion,
+  requestMultiturnAnswer,
 };

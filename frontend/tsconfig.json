@@ -2,13 +2,17 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "es6",
-    "jsx": "react",
+    "jsx": "preserve",
     "module": "esnext",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "moduleResolution": "node",
@@ -16,5 +20,7 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
