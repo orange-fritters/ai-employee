@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SyncLoader } from "react-spinners";
 
@@ -49,21 +49,35 @@ export interface IMessage {
   recArr?: IRecElement[];
 }
 
-const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
-  const dispatch = useDispatch();
-  const first = useSelector(selectFirstTitle);
+const splitText = (text: string) => {
+  return text.split("\n").map((line, index) => (
+    <span key={index}>
+      {line}
+      <br />
+    </span>
+  ));
+};
+
+const TimeMessage = (props: IMessage) => {
   const getCurrTime = () => {
+    // Get time in hh:mm format
     const date = new Date();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
-    const formattedTime = `${hour < 10 ? "0" + hour : hour}:${
-      minutes < 10 ? "0" + minutes : minutes
-    }`;
-    return formattedTime;
+    return `${date
+      .getHours()
+      .toString()
+      .padStart(2, "0")}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
   };
+  return <S.TimeBox>{getCurrTime()}</S.TimeBox>;
+};
+
+const RecommendationMessage = (props: IMessage) => {
+  const dispatch = useDispatch();
   const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const titleClicked = event.currentTarget.textContent;
-    if (recArr && titleClicked) {
+    if (props.recArr && titleClicked) {
       dispatch(
         pushResponse({
           sender: "user",
@@ -72,7 +86,6 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
         })
       );
       dispatch(swapRank({ titleClicked }));
-
       const summary = await requestSummary(titleClicked);
       dispatch(
         pushResponse({
@@ -83,21 +96,6 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
           loading: false,
         })
       );
-
-      // const response = await requestQuery(
-      //   `${titleClicked}의 대상과 내용에 대해 쉬운 말로 세 문장 이내로 요약하시오.
-      //   - 마침표 이후에는 \n을 사용하시오.
-      //   - 오로지 요약문만 출력하시오.
-      //   - 문의 방법은 절대 포함하지 마시오.
-      //   - 존댓말을 사용하시오 (습니다. 입니다. ~입니다.)
-      //   `,
-      //   titleClicked
-      // );
-      // if (response.body) {
-      //   const reader = response.body.getReader();
-      //   const decoder = new TextDecoder("utf-8");
-      //   await streamResponse(dispatch, reader, decoder);
-      // }
     } else {
       dispatch(
         pushResponse({
@@ -107,14 +105,37 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
         })
       );
     }
-
     dispatch(
       updateRecommendationState({ recommendationState: { now: "asking" } })
     );
   };
 
+  return (
+    <S.RecResponse>
+      {props.recArr ? (
+        props.recArr
+          .slice(1)
+          .map((rec) => (
+            <S.Recommendation onClick={handleRecClick}>
+              {rec.title}
+            </S.Recommendation>
+          ))
+      ) : (
+        <S.SingleResponse sender={props.sender} type={"recommendation"}>
+          <S.MessageBox sender={props.sender} type={"recommendation"}>
+            추천할 서비스가 없습니다.
+          </S.MessageBox>
+        </S.SingleResponse>
+      )}
+    </S.RecResponse>
+  );
+};
+
+const ResponseMessage = (props: IMessage) => {
+  const dispatch = useDispatch();
+  const first = useSelector(selectFirstTitle);
+
   const handleRefClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    // frontend/public/title_id.json
     if (first) {
       const response = await fetch(`${process.env.PUBLIC_URL}/title_id.json`);
       const titleId = await response.json();
@@ -131,110 +152,83 @@ const Message = ({ sender, text, type, loading, recArr }: IMessage) => {
     }
   };
 
-  switch (type) {
-    case "time":
-      return <S.TimeBox>{getCurrTime()}</S.TimeBox>;
-    case "recommendation":
-      return (
-        <S.RecResponse>
-          {recArr ? (
-            recArr
-              .slice(1)
-              .map((rec) => (
-                <S.Recommendation onClick={handleRecClick}>
-                  {rec.title}
-                </S.Recommendation>
-              ))
-          ) : (
-            <S.SingleResponse sender={sender} type={type}>
-              <S.MessageBox sender={sender} type={type}>
-                추천할 서비스가 없습니다.
-              </S.MessageBox>
-            </S.SingleResponse>
-          )}
-        </S.RecResponse>
-      );
-    case "response":
-      return (
-        <S.SingleResponse sender={sender} type={type}>
-          <S.MessageBox sender={sender} type={type}>
-            {text.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                <br />
-              </span>
-            ))}
-            {<S.FloatingButton onClick={handleRefClick}>문서</S.FloatingButton>}
-          </S.MessageBox>
-          {!loading && (
-            <S.ButtonBox loading={loading} type={type}>
-              <Button type="home" loading={loading} />
-              <Button type="recommendation" loading={loading} />
-            </S.ButtonBox>
-          )}
-        </S.SingleResponse>
-      );
-    case "initial":
-      return (
-        <S.SingleResponse sender={sender} type={type}>
-          <S.MessageBox sender={sender} type={type}>
-            {text.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </S.MessageBox>
-          {!loading && (
-            <S.InitButtonBox loading={loading} type={type}>
-              <Button type="search" loading={loading} />
-              <Button type="multiturn" loading={loading} />
-            </S.InitButtonBox>
-          )}
-        </S.SingleResponse>
-      );
+  return (
+    <S.SingleResponse sender={props.sender} type={props.type}>
+      <S.MessageBox sender={props.sender} type={props.type}>
+        {splitText(props.text)}
+        {<S.FloatingButton onClick={handleRefClick}>문서</S.FloatingButton>}
+      </S.MessageBox>
+      {!props.loading && (
+        <S.ButtonBox loading={props.loading} type={props.type}>
+          <Button type="home" loading={props.loading} />
+          <Button type="recommendation" loading={props.loading} />
+        </S.ButtonBox>
+      )}
+    </S.SingleResponse>
+  );
+};
 
-    case "search":
-      return (
-        <S.SingleResponse sender={sender} type={type}>
-          <S.MessageBox sender={sender} type={type}>
-            {text.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </S.MessageBox>
-          {!loading && (
-            <S.SearchButtonBox loading={loading} type={type}>
-              <Button type="home" loading={loading} />
-            </S.SearchButtonBox>
-          )}
-        </S.SingleResponse>
-      );
+const SearchMessage = (props: IMessage) => {
+  return (
+    <S.SingleResponse sender={props.sender} type={props.type}>
+      <S.MessageBox sender={props.sender} type={props.type}>
+        {splitText(props.text)}
+      </S.MessageBox>
+      {!props.loading && (
+        <S.SearchButtonBox loading={props.loading} type={props.type}>
+          <Button type="home" loading={props.loading} />
+        </S.SearchButtonBox>
+      )}
+    </S.SingleResponse>
+  );
+};
 
-    default:
-      return loading ? (
-        <S.SingleResponse sender={sender} type={type}>
-          <S.LoadingBox>
-            <SyncLoader color="#A9A9A9" />
-          </S.LoadingBox>
-        </S.SingleResponse>
-      ) : text ? (
-        <S.SingleResponse sender={sender} type={type}>
-          <S.MessageBox sender={sender} type={type}>
-            {text.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </S.MessageBox>
-        </S.SingleResponse>
-      ) : (
-        <></>
-      );
-  }
+const InitialMessage = (props: IMessage) => {
+  return (
+    <S.SingleResponse sender={props.sender} type={props.type}>
+      <S.MessageBox sender={props.sender} type={props.type}>
+        {splitText(props.text)}
+      </S.MessageBox>
+      {!props.loading && (
+        <S.InitButtonBox loading={props.loading} type={props.type}>
+          <Button type="search" loading={props.loading} />
+          <Button type="multiturn" loading={props.loading} />
+        </S.InitButtonBox>
+      )}
+    </S.SingleResponse>
+  );
+};
+
+const DefaultMessage = (props: IMessage) => {
+  return props.loading ? (
+    <S.SingleResponse sender={props.sender} type={props.type}>
+      <S.LoadingBox>
+        <SyncLoader color="#A9A9A9" />
+      </S.LoadingBox>
+    </S.SingleResponse>
+  ) : props.text ? (
+    <S.SingleResponse sender={props.sender} type={props.type}>
+      <S.MessageBox sender={props.sender} type={props.type}>
+        {splitText(props.text)}
+      </S.MessageBox>
+    </S.SingleResponse>
+  ) : (
+    <></>
+  );
+};
+
+const Message = (props: IMessage) => {
+  const componentMapping = {
+    time: TimeMessage,
+    recommendation: RecommendationMessage,
+    response: ResponseMessage,
+    initial: InitialMessage,
+    search: SearchMessage,
+    default: DefaultMessage,
+  };
+
+  const Component = componentMapping[props.type] || componentMapping.default;
+  return <Component {...props} />;
 };
 
 export default Message;

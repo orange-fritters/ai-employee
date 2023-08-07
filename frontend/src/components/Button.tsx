@@ -2,8 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../redux/store";
-import { handleHomeButton, handleMultiturnButton, handleRecommendationButton, handleSearchButton } from "./utils/handleButton";
-import * as S from "./styles/Button.style"
+import {
+  handleHomeButton,
+  handleMultiturnButton,
+  handleRecommendationButton,
+  handleSearchButton,
+} from "./utils/handleButton";
+import * as S from "./styles/Button.style";
 
 export interface IButton {
   type: "home" | "recommendation" | "multiturn" | "search";
@@ -35,18 +40,13 @@ const Button = ({ type, loading }: IButton) => {
   };
 
   const getText = () => {
-    switch (type) {
-      case "home":
-        return "처음";
-      case "recommendation":
-        return "추천";
-      case "multiturn":
-        return "추천받기";
-      case "search":
-        return "문의하기";
-      default:
-        return "";
-    }
+    const textByType = {
+      home: "처음",
+      recommendation: "추천",
+      multiturn: "추천받기",
+      search: "문의하기",
+    };
+    return textByType[type] || "";
   };
 
   return (
@@ -57,4 +57,3 @@ const Button = ({ type, loading }: IButton) => {
 };
 
 export default Button;
-
