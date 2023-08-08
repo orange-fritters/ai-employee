@@ -1,6 +1,10 @@
 import React from "react";
 import * as S from "./styles/Header.style";
 
+/**
+ * Renders the header component with the title "AI 사원".
+ * @returns TSX element
+ */
 const Header = () => {
   return (
     <S.HeaderBox>

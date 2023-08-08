@@ -12,11 +12,16 @@ import * as S from "./styles/Button.style";
 
 export interface IButton {
   type: "home" | "recommendation" | "multiturn" | "search";
-  loading: boolean;
+  loading?: boolean;
   text?: string;
 }
 
-const Button = ({ type, loading }: IButton) => {
+/**
+ * A button component that can be used to trigger different actions based on its type.
+ * @param type - The type of the button. Can be "home", "recommendation", "multiturn", or "search".
+ * @returns A button element that triggers the appropriate action when clicked.
+ */
+const Button = ({ type }: IButton) => {
   const dispatch = useDispatch();
   const recommendations = useSelector(
     (state: RootState) => state.recommendation.recommendations
@@ -39,6 +44,9 @@ const Button = ({ type, loading }: IButton) => {
     }
   };
 
+  /**
+   * @returns The text to display on the button.
+   */
   const getText = () => {
     const textByType = {
       home: "처음",
@@ -49,11 +57,7 @@ const Button = ({ type, loading }: IButton) => {
     return textByType[type] || "";
   };
 
-  return (
-    <S.StyledButton onClick={handleClick} type={type} loading={loading}>
-      {getText()}
-    </S.StyledButton>
-  );
+  return <S.StyledButton onClick={handleClick}>{getText()}</S.StyledButton>;
 };
 
 export default Button;

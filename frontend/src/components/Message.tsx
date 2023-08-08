@@ -1,4 +1,17 @@
-import React from "react";
+/**
+ * This file contains the implementation of different message types used in the chatbot.
+ * Each message type has its own component that renders the message in a specific way.
+ * The message types are:
+ * - Default: normal message
+ * - Response: response with buttons
+ * - Recommendation: message containing recommendation list
+ * - Initial: initial message @file frontend/src/redux/defaultMessages.ts
+ * - Search: response of the search query
+ * - Time: bar showing time
+ *
+ * @packageDocumentation
+ */
+import React, { ReactElement } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SyncLoader } from "react-spinners";
 
@@ -16,22 +29,12 @@ import { selectFirstTitle } from "../redux/selectors";
 
 /** Message type
  *
- * 1. default
- *  - any text "무엇을 도와드릴까요? 당신에게 가장 적절한 복지 서비스를 찾아드려요!"
- *  - No button
- *
- * 2. response
- *  - "서비스에 대한 요약 블라블라 "
- *  - html 포함
- *  - 버튼
- *   - 다른 제도 추천 받기 --> 클릭하면, 3.
- *   - 처음으로 돌아가기
- *
- * 3. recommendation
- *  - "3가지 제도를 추천해드려요! 더 알아보고 싶은 제도를 선택해주세요."
- *  - 버튼
- *   - 각 제도 바로가기 --> 클릭하면, 2
- *   - 처음으로 돌아가기
+ * default: normal message
+ * response: response with buttons
+ * recommendation: message containing recommendation list
+ * initial: initial message @file frontend/src/redux/defaultMessages.ts
+ * search: response of the search query
+ * time: bar showing time
  */
 
 export interface IMessage {
@@ -58,8 +61,13 @@ const splitText = (text: string) => {
   ));
 };
 
-const TimeMessage = (props: IMessage) => {
-  const getCurrTime = () => {
+/**
+ * Displays the current time in the format "hh:mm".
+ * @param props An object of type `IMessage` that contains the message data.
+ * @returns A `ReactElement` that displays the current time.
+ */
+const TimeMessage = (props: IMessage): ReactElement => {
+  const getCurrTime = (): string => {
     // Get time in hh:mm format
     const date = new Date();
     return `${date
@@ -73,8 +81,14 @@ const TimeMessage = (props: IMessage) => {
   return <S.TimeBox>{getCurrTime()}</S.TimeBox>;
 };
 
-const RecommendationMessage = (props: IMessage) => {
+/**
+ * Response message for the recommendation button click
+ * @param props An object of type `IMessage` that contains the message data.
+ * @returns A `ReactElement` that displays the recommended services.
+ */
+const RecommendationMessage = (props: IMessage): ReactElement => {
   const dispatch = useDispatch();
+
   const handleRecClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const titleClicked = event.currentTarget.textContent;
     if (props.recArr && titleClicked) {
@@ -91,7 +105,6 @@ const RecommendationMessage = (props: IMessage) => {
         pushResponse({
           sender: "bot",
           text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
-          // text: `${titleClicked}은 어때요?`
           type: "default",
           loading: false,
         })

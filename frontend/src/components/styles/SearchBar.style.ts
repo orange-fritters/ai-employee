@@ -1,3 +1,12 @@
+/**
+ * This file contains the styled components for the search bar component.
+ * It exports the following styled components:
+ * - BackGround: a styled form element that serves as the background wrapper for the search bar
+ * - SearchBarBox: a styled div element that wraps the search input and send button
+ * - SearchInput: a styled input element that serves as the search bar input
+ * - SmallSendButton: a styled button element that serves as the send button for the search bar
+ *                    an image of a send icon is used as the button's background
+ */
 import styled from "styled-components";
 
 const BackGround = styled.form`

@@ -1,5 +1,105 @@
 # AI Employee for QA on Welfare Service Guidebook
 
+## Structure
+
+```
+.
+├── README.md
+├── config.txt
+├── frontend
+│   ├── README.md
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── icon.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   │   └── title_id.json
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── Main.tsx
+│   │   ├── components
+│   │   │   ├── Button.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── Message.tsx
+│   │   │   ├── SearchBar.tsx
+│   │   │   ├── styles
+│   │   │   │   ├── Button.style.ts
+│   │   │   │   ├── Header.style.ts
+│   │   │   │   ├── Main.style.ts
+│   │   │   │   ├── Message.style.ts
+│   │   │   │   ├── SearchBar.style.ts
+│   │   │   │   └── styles.ts
+│   │   │   └── utils
+│   │   │       ├── decoder.ts
+│   │   │       ├── handleButton.ts
+│   │   │       ├── handleMultiturn.ts
+│   │   │       ├── handleRecommendation.ts
+│   │   │       ├── handleSubmit.ts
+│   │   │       └── requests
+│   │   │           ├── requestMultiTurn.ts
+│   │   │           ├── requestQuery.ts
+│   │   │           ├── requestRecommendation.ts
+│   │   │           ├── requestSearch.ts
+│   │   │           ├── requestSummary.ts
+│   │   │           └── streamResponse.ts
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── react-app-env.d.ts
+│   │   └── redux
+│   │       ├── defaultMessages.ts
+│   │       ├── message.slice.ts
+│   │       ├── multiturn.slice.ts
+│   │       ├── recommendation.slice.ts
+│   │       ├── selectors.ts
+│   │       └── store.ts
+│   └── tsconfig.json
+├── prompt_guide.md
+└── server
+    ├── articles
+    │   ├── tokenized_articles
+    │   │   └── html.pkl
+    │   ├── 기타지원_01.html
+    │   ├── 기타지원_02.html
+    │   ├── ...
+    │   ├── 취업지원_35.html
+    │   └── 취업지원_36.html
+    ├── model
+    │   ├── bm25
+    │   │   ├── articles_preprocessed.pkl
+    │   │   ├── bm25.py
+    │   │   ├── ensemble.py
+    │   │   ├── html_preprocess.py
+    │   │   ├── query_expansion.py
+    │   │   ├── text_preprocess.py
+    │   │   └── word_similarity.pkl
+    │   ├── embed
+    │   │   ├── embed_base.py
+    │   │   ├── embed_prompt.py
+    │   │   ├── exceptions.py
+    │   │   └── multiturn_model.py
+    │   ├── files
+    │   │   ├── articles_eng.parquet
+    │   │   ├── config.txt
+    │   │   ├── info_sheet.csv
+    │   │   └── processed_doc.csv
+    │   ├── io_model.py
+    │   └── utils
+    │       ├── convert_prompt.py
+    │       ├── get_chat.py
+    │       ├── get_response_openai.py
+    │       └── schemas.py
+    ├── requirements.txt
+    └── server.py
+
+17 directories, 538 files
+```
+
 ## Ideas
 
 - Langchain으로 Hallucination 탐지
