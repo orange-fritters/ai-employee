@@ -1,11 +1,9 @@
 import ast
 import json
 import logging
-import os
 import numpy as np
 import pandas as pd
 from typing import List
-import re
 
 import openai
 from openai import ChatCompletion, OpenAIError

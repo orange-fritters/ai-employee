@@ -6,9 +6,11 @@ openai.api_key_path = "model/files/config.txt"
 
 async def get_response_openai(prompt):
     try:
+        tokens = len(tiktoken.encoding_for_model("gpt-3.5-turbo").encode(prompt))
+        model = "gpt-3.5-turbo" if tokens < 4000 else "gpt-3.5-turbo-16k"
         prompt = prompt
         response = await openai.ChatCompletion.acreate(
-            model="gpt-3.5-turbo",
+            model=model,
             messages=[
                 {"role": "user", "content": prompt},
             ],
@@ -33,18 +35,12 @@ async def get_response_prompted(prompt):
             tokens += len(encoding.encode(content))
 
     try:
-        if tokens < 4000:
-            response = await openai.ChatCompletion.acreate(
-                model="gpt-3.5-turbo",
-                messages=prompt,
-                stream=True,
-            )
-        else:
-            response = await openai.ChatCompletion.acreate(
-                model="gpt-3.5-turbo-16k",
-                messages=prompt,
-                stream=True,
-            )
+        model = "gpt-3.5-turbo" if tokens < 4000 else "gpt-3.5-turbo-16k"
+        response = await openai.ChatCompletion.acreate(
+            model=model,
+            messages=prompt,
+            stream=True
+        )
 
         async for chunk in response:
             current_content = chunk["choices"][0]["delta"].get("content", "")

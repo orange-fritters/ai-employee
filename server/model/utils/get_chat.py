@@ -1,9 +1,6 @@
 import openai
-import json
 
-with open("model/utils/config.json") as config_file:
-    config_data = json.load(config_file)
-    openai.api_key = config_data["chatgpt"]["secret"]
+openai.api_key_path = "model/files/config.txt"
 
 
 def get_direct_response(prompt):
