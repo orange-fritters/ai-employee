@@ -21,3 +21,5 @@ preprocess/embedding/ir/
 preprocess/embedding/query_doc_similarity.json
 run.sh
 config.txt
+server/build/
+server/venv/

@@ -122,4 +122,4 @@ async def get_article(id: str):
     return FileResponse(filepath, media_type='text/html')
 
 
-app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="build")
+app.mount("/", StaticFiles(directory="build", html=True), name="build")
