@@ -1,3 +1,4 @@
+import os
 import logging
 import numpy as np
 
@@ -9,12 +10,12 @@ from model.embed.exceptions import TranslationFailedError, EmbeddingFailedError
 
 
 class EmbedBase:
-    MODEL_KEY_FILE = "model/files/config.txt"
     OPENAI_MODEL = "gpt-3.5-turbo"
     EMBEDDING_ENGINE = "text-embedding-ada-002"
 
     def __init__(self):
-        openai.api_key_path = self.MODEL_KEY_FILE
+        OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+        openai.api_key = OPENAI_API_KEY
 
     def get_recommendations(self,
                             query: str,

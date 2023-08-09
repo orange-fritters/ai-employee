@@ -6,7 +6,10 @@ import json
 import pandas as pd
 from preprocess.augment.augment import count_token, count_tokens
 from tenacity import retry, wait_random_exponential, stop_after_attempt
-openai.api_key_path = "config.txt"
+
+import os
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+openai.api_key = OPENAI_API_KEY
 
 
 @retry(wait=wait_random_exponential(multiplier=1, max=10), stop=stop_after_attempt(3))

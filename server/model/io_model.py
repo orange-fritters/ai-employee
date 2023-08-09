@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import numpy as np
 import model.utils.convert_prompt as get_prompt
+import os
 
 
 class IOModel:
@@ -11,9 +12,10 @@ class IOModel:
                  config_dir: str = "model/files/config.txt",
                  article_eng_dir: str = "model/files/articles_eng.parquet",
                  info_sheet_dir: str = "model/files/info_sheet.csv"):
-        self.name = 'Model'
-        openai.api_key_path = config_dir
+        OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+        openai.api_key = OPENAI_API_KEY
 
+        self.name = 'Model'
         self.data = pd.read_csv(info_dir)
         self.article_eng = pd.read_parquet(article_eng_dir)
         self.info_sheet = pd.read_csv(info_sheet_dir)
@@ -63,7 +65,6 @@ class IOModel:
         prompt_message = get_prompt.get_recommendation_prompt(query, title_string)
 
         for _ in range(2):
-            print("Recommendation Loop")
             try:
                 response = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",

@@ -7,7 +7,10 @@ import pandas as pd
 import tiktoken
 from preprocess.augment_qa.aug_qa import get_response
 from preprocess.embedding.embed import get_embedding
-openai.api_key_path = "config.txt"
+
+import os
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+openai.api_key = OPENAI_API_KEY
 
 
 def convert_prompt_summarize(document: str,

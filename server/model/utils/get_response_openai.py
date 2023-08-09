@@ -1,7 +1,9 @@
 from fastapi import HTTPException
 import openai
 import tiktoken
-openai.api_key_path = "model/files/config.txt"
+import os
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+openai.api_key = OPENAI_API_KEY
 
 
 async def get_response_openai(prompt):

@@ -16,7 +16,6 @@ import model.utils.convert_prompt as get_prompt
 from model.utils.schemas import Query, Search, SingleString, History, RankTitle
 from model.utils.get_response_openai import get_response_openai, get_response_prompted
 
-
 # App Setting Section
 
 app = FastAPI()
@@ -104,7 +103,6 @@ async def decide_sufficiency(titles: List[RankTitle],
     # titles : [RankTitle(title='title_of_service', rank=0), RankTitle...]
     # history : [History(role='uesr', content='query_from_user'), History...]
     result = multiturn_model.decide_information_sufficiency(titles, history)
-    print("server 80 line, check decision result as json: ", json.dumps(result))
     return json.dumps(result)
 
 

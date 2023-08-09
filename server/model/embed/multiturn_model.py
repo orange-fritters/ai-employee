@@ -1,3 +1,4 @@
+import os
 import ast
 import json
 import logging
@@ -17,7 +18,6 @@ from model.embed.embed_base import EmbedBase
 class MultiTurn(EmbedBase):
     """Model for embedding translation and scoring"""
 
-    MODEL_KEY_FILE = "model/files/config.txt"
     OPENAI_MODEL = "gpt-3.5-turbo"
     EMBEDDING_ENGINE = "text-embedding-ada-002"
     DOCUMENT_FILE_PATH = "model/files/processed_doc.csv"
@@ -30,7 +30,8 @@ class MultiTurn(EmbedBase):
         self.embed: A numpy array containing the document embeddings.
 
         """
-        openai.api_key_path = self.MODEL_KEY_FILE
+        OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+        openai.api_key = OPENAI_API_KEY
         self.data = pd.read_csv(self.DOCUMENT_FILE_PATH)
         self.embed = np.array(self.data['title_embed'].apply(ast.literal_eval).to_list())
 
@@ -98,7 +99,6 @@ class MultiTurn(EmbedBase):
         sim = np.dot(self.embed, embed).reshape(-1)  # 462, 1
         top_n_index = sim.argsort()[::-1][:5]
         top_titles = self.data.loc[top_n_index]['title_kor'].tolist()
-        print("new recommendation: ", top_titles)
         return [{"rank": i, "title": title} for i, title in enumerate(top_titles)]
 
     def decide_information_sufficiency(self,
@@ -117,7 +117,6 @@ class MultiTurn(EmbedBase):
             )
             response = response['choices'][0]['message']['content']
             response = json.loads(response)
-            print(response)
             yes_or_no = response['sufficient']
             return yes_or_no == "yes" or yes_or_no == "Yes"
 
