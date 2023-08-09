@@ -61,7 +61,6 @@ export const recommendationSlice = createSlice({
       );
 
       if (!currFirstItem || !clickedItem) {
-        console.log("swapRank: invalid item");
         return;
       }
 
@@ -71,7 +70,6 @@ export const recommendationSlice = createSlice({
       clickedItem.rank = 1;
 
       state.recommendations.sort((a, b) => a.rank - b.rank);
-      console.log("swapped successful", state.recommendations);
     },
   },
 });
