@@ -23,13 +23,20 @@ class MultiTurn(EmbedBase):
     DOCUMENT_FILE_PATH = "model/files/processed_doc.csv"
 
     def __init__(self):
+        """
+        Initialize the model.
+
+        self.data: A pandas dataframe containing the processed documents.
+        self.embed: A numpy array containing the document embeddings.
+
+        """
         openai.api_key_path = self.MODEL_KEY_FILE
         self.data = pd.read_csv(self.DOCUMENT_FILE_PATH)
-        self.docs_arr = np.array(self.data['title_embed'].apply(ast.literal_eval).to_list())
         self.embed = np.array(self.data['title_embed'].apply(ast.literal_eval).to_list())
 
     def get_score(self,
                   query: str) -> np.array:
+        """ Get the similarity scores between the query and the documents using translation and embedding."""
         query_eng = self._translate_query_to_english(query)
         query_embed = self._generate_embeddings(query_eng)
         query_embed = np.array(query_embed)  # 1536, 1
@@ -39,6 +46,7 @@ class MultiTurn(EmbedBase):
     def get_question_from_history(self,
                                   titles: List[RankTitle],
                                   history: List[History]):
+        """ Generate a question from the chat history. """
         current_options = self.get_contents_from_title(titles)
         prompt = get_prompt.get_question_from_history(current_options, history)
         try:
@@ -58,6 +66,7 @@ class MultiTurn(EmbedBase):
     def get_answer_from_history(self,
                                 titles: List[RankTitle],
                                 history: List[History]) -> str:
+        """ Generate an answer from the chat history. """
         current_options = self.get_contents_from_title(titles)
         prompt = get_prompt.get_recommend_from_history(current_options, history)
         try:
@@ -77,7 +86,7 @@ class MultiTurn(EmbedBase):
 
     def get_recommendation_new_history(self,
                                        history: List[History]) -> List[Recommendation]:
-        print("get_recommendation_new_history", history)
+        """ Get new top 5 recommendations from the chat history. """
         translated_history = ""
         for conversation in history:
             role = conversation.role
@@ -96,6 +105,7 @@ class MultiTurn(EmbedBase):
                                        titles: List[RankTitle],
                                        history: List[History],
                                        ) -> bool:
+        """ Decide whether the information of conversation is sufficient for recommendation or not. """
         # titles : [RankTitle(title='title_of_service', rank=0), RankTitle...]
         # history : [History(role='uesr', content='query_from_user'), History...]
         options = self.get_contents_from_title(titles)
@@ -118,6 +128,7 @@ class MultiTurn(EmbedBase):
     def get_contents_from_title(self,
                                 titles: List[RankTitle],
                                 ):
+        """ From the ranked titles, get the contents of the documents. """
         # titles : [RankTitle(title='title_of_service', rank=0), RankTitle...]
         title_of_ranked_list = [title.title for title in titles]
         rank_df = self.data[self.data["title_kor"].isin(title_of_ranked_list)]

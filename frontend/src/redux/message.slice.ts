@@ -9,9 +9,27 @@ export const messageSlice = createSlice({
     messages: dMessages,
   },
   reducers: {
+    /**
+     * initialize the message
+     * @param state
+     */
     initMessage: (state) => {
       state.messages = dMessages;
     },
+    /**
+     * Push the response message to the message list (state.messages)
+     *
+     * @param state
+     * @param {PayloadAction<{text, sender, loading, type?, recArr?}>} action
+     *
+     * @description
+     * A json object with the following keys should be passed as the payload:
+     * - text: the text to be shown
+     * - sender: "bot" or "user"
+     * - loading: true or false (for the sync loading animation)
+     * - type: "default" or "response"
+     * - recArr: an array of IRecElement
+     */
     pushResponse: (
       state,
       action: PayloadAction<{
@@ -33,9 +51,22 @@ export const messageSlice = createSlice({
         },
       ];
     },
+
+    /**
+     * clear the loading animation
+     */
     deleteLoading: (state) => {
       state.messages = state.messages.filter((elem) => !elem.loading);
     },
+
+    /**
+     * Handle word sent by FastAPI StreamResponse (word by word)
+     * @param state
+     * @param {PayloadAction<{text, loading}>} action
+     *
+     * @description
+     * continuously add received word to the last message
+     */
     handleStream: (
       state,
       action: PayloadAction<{ text: string; loading: boolean }>

@@ -19,6 +19,16 @@ class EmbedBase:
     def get_recommendations(self,
                             query: str,
                             top_k: int = 5) -> list:
+        """ 
+        Given a query, return a list of recommended titles. 
+
+        Args:
+            query (str): A query string.
+            top_k (int, optional): The number of recommendations to return. Defaults to 5.
+
+        Returns:
+            list: A list of recommended titles.
+        """
         try:
             translated_query = self._translate_query_to_english(query)
             query_embeddings = self._generate_embeddings(translated_query)
@@ -36,6 +46,7 @@ class EmbedBase:
 
     def _translate_query_to_english(self,
                                     query: str) -> str:
+        """ Translate a query to English. """
         prompt = get_translation_prompt(query)
         try:
             response = ChatCompletion.create(
@@ -51,6 +62,7 @@ class EmbedBase:
 
     def _generate_embeddings(self,
                              text: str) -> list:
+        """ Generate embeddings for a given text. """
         try:
             result = Embedding.create(
                 engine=self.EMBEDDING_ENGINE,
@@ -68,5 +80,17 @@ class EmbedBase:
     def _calculate_similarity(self,
                               docs_embeddings: np.array,
                               query_embeddings: np.array) -> np.array:
+        """ 
+        Calculate cosine similarity between docs and query embeddings. 
+
+        Args:
+            docs_embeddings (np.array): A 2D array of embeddings for docs. 
+                - Shape: (num_docs, embedding_size) # (462, 1532)
+            query_embeddings (np.array): A 1D array of embeddings for a query.
+                - Shape: (embedding_size,) # (1532,)
+
+        Returns:
+            np.array: A 1D array of similarity scores.    
+        """
         query_embeddings_array = np.array(query_embeddings)
         return np.dot(docs_embeddings, query_embeddings_array).reshape(-1)

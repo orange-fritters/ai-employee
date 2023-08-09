@@ -20,6 +20,7 @@ export const recommendationSlice = createSlice({
     now: RecState,
   },
   reducers: {
+    /** Store received recommendation arrays */
     updateRecommendation: (
       state,
       action: PayloadAction<{
@@ -28,6 +29,8 @@ export const recommendationSlice = createSlice({
     ) => {
       state.recommendations = action.payload.recommendationResponse;
     },
+
+    /** Update state */
     updateRecommendationState: (
       state,
       action: PayloadAction<{
@@ -36,6 +39,8 @@ export const recommendationSlice = createSlice({
     ) => {
       state.now = action.payload.recommendationState;
     },
+
+    /** Swap rank of two items, especially, clicked one */
     swapRank: (
       state,
       action: PayloadAction<{

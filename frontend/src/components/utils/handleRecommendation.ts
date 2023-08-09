@@ -5,6 +5,14 @@ import { requestSummary } from "./requests/requestSummary";
 import { requestRecommendation } from "./requests/requestRecommendation";
 import { convertToJSON } from "./decoder";
 
+/**
+ * @param input input at the beginning of the conversation, submitted to the SearchBar
+ * @param dispatch useDispatch from react-redux
+ *
+ * @description
+ * get recommendation from the backend
+ * refer to the requestRecommendation function
+ */
 const getRecommendation = async (
   input: string,
   dispatch: ReturnType<typeof useDispatch>
@@ -26,6 +34,13 @@ const getRecommendation = async (
   );
 };
 
+/**
+ * @param input input at the beginning of the conversation, submitted to the SearchBar
+ * @param dispatch useDispatch from react-redux
+ * @description
+ * get retrieval from the backend
+ * same as getRecommendation, but the returned value is different
+ */
 const getRetrieval = async (
   input: string,
   dispatch: ReturnType<typeof useDispatch>

@@ -82,9 +82,19 @@ const TimeMessage = (props: IMessage): ReactElement => {
 };
 
 /**
- * Response message for the recommendation button click
+ * Message with recommendation list of 4 buttons.
+ *
  * @param props An object of type `IMessage` that contains the message data.
  * @returns A `ReactElement` that displays the recommended services.
+ *
+ * @member handleRecClick When the user clicks a recommendation service,
+ *         the bot displays a message with the service's title and summary.
+ *         and asks the user to ask a question about the service.
+ * @description
+ * 1. When the user clicks a recommendation service,
+ *    the bot displays a message with the service's title and summary.
+ * 2. The bot then asks the user to ask a question about the service.
+ * 3. Change recommendationState to "asking"
  */
 const RecommendationMessage = (props: IMessage): ReactElement => {
   const dispatch = useDispatch();
@@ -144,6 +154,9 @@ const RecommendationMessage = (props: IMessage): ReactElement => {
   );
 };
 
+/**
+ * Normal response message with home and more buttons.
+ */
 const ResponseMessage = (props: IMessage) => {
   const dispatch = useDispatch();
   const first = useSelector(selectFirstTitle);
@@ -181,6 +194,9 @@ const ResponseMessage = (props: IMessage) => {
   );
 };
 
+/**
+ * Message with home button.
+ */
 const SearchMessage = (props: IMessage) => {
   return (
     <S.SingleResponse sender={props.sender} type={props.type}>
@@ -196,6 +212,10 @@ const SearchMessage = (props: IMessage) => {
   );
 };
 
+/**
+ * First message when the user starts the conversation.
+ * Guides the user to search or multiturn.
+ */
 const InitialMessage = (props: IMessage) => {
   return (
     <S.SingleResponse sender={props.sender} type={props.type}>
@@ -212,6 +232,9 @@ const InitialMessage = (props: IMessage) => {
   );
 };
 
+/**
+ * Normal response message.
+ */
 const DefaultMessage = (props: IMessage) => {
   return props.loading ? (
     <S.SingleResponse sender={props.sender} type={props.type}>
@@ -230,6 +253,16 @@ const DefaultMessage = (props: IMessage) => {
   );
 };
 
+/**
+ * Message wrapper component.
+ * @description
+ * 1. time: A time showing small rectangle
+ * 2. recommendation: A list of 4 recommended services
+ * 3. response: A normal response message with home and more buttons
+ * 4. initial: First message when the user starts the conversation
+ * 5. search: Message with home button
+ * 6. default: Nothing special message
+ */
 const Message = (props: IMessage) => {
   const componentMapping = {
     time: TimeMessage,

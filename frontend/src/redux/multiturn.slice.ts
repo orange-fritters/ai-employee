@@ -20,11 +20,12 @@ const dMultiState: IMultiState = {
 export const multiturnSlicer = createSlice({
   name: "multiturn",
   initialState: {
-    multiturns: dMultiTurn,
+    multiturns: dMultiTurn, // arrays containing the history of chats to send to the backend
     id: 0,
     phase: dMultiState,
   },
   reducers: {
+    /** update state to either "init" | "insufficient" | "done" */
     updateMultiturnState: (
       state,
       action: PayloadAction<{
@@ -33,6 +34,8 @@ export const multiturnSlicer = createSlice({
     ) => {
       state.phase = action.payload.multiturnState;
     },
+
+    /** push a multiturn to the multiturns array */
     pushMultiturn: (
       state,
       action: PayloadAction<{
@@ -52,9 +55,13 @@ export const multiturnSlicer = createSlice({
         },
       ];
     },
+
+    /** clear the multiturns array */
     clearMultiturn: (state) => {
       state.multiturns = [];
     },
+
+    /** increment the id */
     incrementId: (state) => {
       state.id = state.id + 1;
       console.log("incremented id");

@@ -18,14 +18,11 @@ export interface IButton {
 
 /**
  * A button component that can be used to trigger different actions based on its type.
- * @param type - The type of the button. Can be "home", "recommendation", "multiturn", or "search".
+ * @param type The type of the button. Can be "home", "recommendation", "multiturn", or "search".
  * @returns A button element that triggers the appropriate action when clicked.
  */
 const Button = ({ type }: IButton) => {
   const dispatch = useDispatch();
-  const recommendations = useSelector(
-    (state: RootState) => state.recommendation.recommendations
-  );
 
   const handleClick = async () => {
     switch (type) {
@@ -36,7 +33,7 @@ const Button = ({ type }: IButton) => {
         handleSearchButton(dispatch);
         break;
       case "recommendation":
-        handleRecommendationButton(recommendations, dispatch);
+        handleRecommendationButton(dispatch);
         break;
       case "multiturn":
         handleMultiturnButton(dispatch);

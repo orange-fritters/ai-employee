@@ -1,15 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
+/**
+ * Handles the click event for the Buttons.
+ * @param {Function} dispatch - The dispatch function from the useDispatch hook to use Redux.
+ * @returns {Promise<void>} - A Promise that resolves when the function is finished executing.
+ */
+import { useDispatch } from "react-redux";
 
+import store from "../../redux/store";
+import { selectRecommendations } from "../../redux/selectors";
 import { deleteLoading, pushResponse } from "../../redux/message.slice";
+import { updateMultiturnState } from "../../redux/multiturn.slice";
 import {
   updateRecommendation,
   updateRecommendationState,
   IRecElement,
 } from "../../redux/recommendation.slice";
 import { dMessages, dMultiturn, dSearch } from "../../redux/defaultMessages";
-import { updateMultiturnState } from "../../redux/multiturn.slice";
 
-const handleHomeButton = async (dispatch: ReturnType<typeof useDispatch>) => {
+/**
+ * 1. Change the global recommendationState to "search".
+ * 2. Push the default messages announcing overall service to the chat history.
+ * 3. Clear the recommendationResponse.
+ */
+const handleHomeButton = async (
+  dispatch: ReturnType<typeof useDispatch>
+): Promise<void> => {
   dispatch(
     updateRecommendationState({ recommendationState: { now: "search" } })
   );
@@ -18,6 +32,10 @@ const handleHomeButton = async (dispatch: ReturnType<typeof useDispatch>) => {
   dispatch(updateRecommendation({ recommendationResponse: [] }));
 };
 
+/**
+ * 1. Change the global recommendationState to "search".
+ * 2. Push the default messages for searching to the chat history.
+ */
 const handleSearchButton = async (dispatch: ReturnType<typeof useDispatch>) => {
   dispatch(
     updateRecommendationState({ recommendationState: { now: "search" } })
@@ -26,10 +44,17 @@ const handleSearchButton = async (dispatch: ReturnType<typeof useDispatch>) => {
   dispatch(pushResponse({ ...dSearch[1] }));
 };
 
+/**
+ * 1. Change the global recommendationState to "recommendation".
+ * 2. Push the default messages for announcing the recommendation to the chat history.
+ * 3. If there are recommendations, **push recommendations as message** to the chat history too.
+ */
 const handleRecommendationButton = async (
-  recommendations: IRecElement[],
   dispatch: ReturnType<typeof useDispatch>
 ) => {
+  const state = store.getState();
+  const recommendations: IRecElement[] = selectRecommendations(state);
+
   if (recommendations.length > 0) {
     dispatch(
       updateRecommendationState({
@@ -66,6 +91,10 @@ const handleRecommendationButton = async (
   }
 };
 
+/**
+ * 1. Change the global recommendationState to "multiturn", multiturnState to "init".
+ * 2. Push the default messages announcing the start of the multiturn to the chat history.
+ */
 const handleMultiturnButton = async (
   dispatch: ReturnType<typeof useDispatch>
 ) => {

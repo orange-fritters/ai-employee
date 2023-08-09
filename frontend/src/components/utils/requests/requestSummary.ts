@@ -1,5 +1,13 @@
 import { unicodeToChar } from "../decoder";
 
+/**
+ *
+ * @param title
+ * @returns
+ * @related
+ * - get summary from preprocessed document
+ *   - return io_model.get_summary(query.query)
+ */
 export const requestSummary = async (title: string) => {
   try {
     const response = await fetch("/api/summary", {

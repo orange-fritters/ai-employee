@@ -5,6 +5,7 @@ openai.api_key_path = "model/files/config.txt"
 
 
 async def get_response_openai(prompt):
+    """ Get a response from OpenAI given a prompt. Token count is checked to determine which model to use."""
     try:
         tokens = len(tiktoken.encoding_for_model("gpt-3.5-turbo").encode(prompt))
         model = "gpt-3.5-turbo" if tokens < 4000 else "gpt-3.5-turbo-16k"
@@ -28,6 +29,7 @@ async def get_response_openai(prompt):
 
 
 async def get_response_prompted(prompt):
+    """ Get a response from OpenAI given a contextual prompt. Token count is checked to determine which model to use."""
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
     tokens = 0
     for context in prompt:

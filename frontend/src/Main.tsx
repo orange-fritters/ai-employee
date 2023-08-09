@@ -8,6 +8,11 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Message from "./components/Message";
 
+/**
+ * ChatApp component that renders the chat window
+ * Selects messages from the store and renders them
+ * @returns ChatApp component
+ */
 const ChatApp: React.FC = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
 

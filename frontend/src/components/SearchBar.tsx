@@ -12,6 +12,13 @@ import {
   handleSubmitWhenSearch,
 } from "./utils/handleSubmit";
 
+/**
+ * Renders the search bar component.
+ * @returns TSX element
+ *
+ * @description
+ * refer to frontend/src/utils/handleSubmit.ts
+ */
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState<string>("");

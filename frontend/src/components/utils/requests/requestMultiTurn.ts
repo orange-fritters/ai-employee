@@ -4,7 +4,12 @@ import {
 } from "../../../redux/selectors";
 import store from "../../../redux/store";
 
-const requestMultiturnRecommend = async () => {
+/**
+ * @returns {Promise<Response>} - The response object from the backend.
+ * @description
+ * This function requests the backend for a initial recommendation based on the user's abstract input.
+ */
+const requestMultiturnRecommend = async (): Promise<Response> => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -27,7 +32,12 @@ const requestMultiturnRecommend = async () => {
   return response;
 };
 
-const requestMultiturnDecision = async () => {
+/**
+ * @returns {Promise<Response>} - The response object from the backend.
+ * @description
+ * This function requests the backend to decide whether the recommendation is sufficient.
+ */
+const requestMultiturnDecision = async (): Promise<Response> => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -50,7 +60,13 @@ const requestMultiturnDecision = async () => {
   return response;
 };
 
-const requestMultiturnQuestion = async () => {
+/**
+ *
+ * @returns {Promise<Response>} - The response object from the backend.
+ * @description
+ * This function requests the backend to ask a question to the user to improve the recommendation.
+ */
+const requestMultiturnQuestion = async (): Promise<Response> => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);
@@ -73,7 +89,12 @@ const requestMultiturnQuestion = async () => {
   return response;
 };
 
-const requestMultiturnAnswer = async () => {
+/**
+ * @returns {Promise<Response>} - The response object from the backend.
+ * @description
+ * This function requests the backend the final answer for the consulting.
+ */
+const requestMultiturnAnswer = async (): Promise<Response> => {
   const state = store.getState();
   const titles = selectRecommendations(state);
   const history = selectMultiturnHistory(state);

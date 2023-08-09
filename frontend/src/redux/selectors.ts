@@ -1,5 +1,13 @@
+/**
+ * Redux selectors
+ *
+ * @packageDocumentation
+ * @module Redux
+ *
+ * Contains selectors for accessing state from the Redux store.
+ */
+
 import { RootState } from "./store";
-import { multiturnSlicer } from "./multiturn.slice";
 
 export const selectRecommendations = (state: RootState) =>
   state.recommendation.recommendations;

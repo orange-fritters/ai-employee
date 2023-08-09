@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 import { getRecommendation, getRetrieval } from "./handleRecommendation";
@@ -14,6 +14,12 @@ import { requestQuery } from "./requests/requestQuery";
 import { dMessages } from "../../redux/defaultMessages";
 import { handleMultiturn } from "./handleMultiturn";
 
+/**
+ * Home: Deals with first time submission, gets recommendation with the user query
+ * @param input
+ * @param setInput
+ * @param dispatch
+ */
 const handleSubmitWhenHome = async (
   input: string,
   setInput: React.Dispatch<React.SetStateAction<string>>,
@@ -35,6 +41,16 @@ const handleSubmitWhenHome = async (
   );
 };
 
+/**
+ * When the user knows specific title or asks for detailed information
+ * @param input
+ * @param setInput
+ * @param dispatch
+ *
+ * @description
+ * 1. Gets the titles of the recommended documents
+ * 2. Gets the detailed information of the document
+ */
 const handleSubmitWhenSearch = async (
   input: string,
   setInput: React.Dispatch<React.SetStateAction<string>>,
@@ -75,6 +91,19 @@ const handleSubmitWhenSearch = async (
   );
 };
 
+/**
+ * Given a speicific service (when recommended or searched),
+ * Answers the user's question
+ *
+ * @param input
+ * @param rec recommendation array stored in redux
+ * @param setInput
+ * @param dispatch
+ *
+ * @description
+ * 1. Gets the titles of the recommended documents
+ * 2. Gets the detailed information of the document
+ */
 const handleSubmitWhenAsking = async (
   input: string,
   rec: IRecElement | null | undefined,
@@ -114,6 +143,14 @@ const handleSubmitWhenAsking = async (
   }
 };
 
+/**
+ * Starts multiturn conversation
+ * Please refer to handleMultiturn.ts
+ *
+ * @param input
+ * @param setInput
+ * @param dispatch
+ */
 const handleSubmitWhenMultiturn = async (
   input: string,
   setInput: React.Dispatch<React.SetStateAction<string>>,
@@ -133,6 +170,7 @@ const handleSubmitWhenMultiturn = async (
   );
 };
 
+// handle switch default case
 const handleSubmitWhenDefault = async (
   setInput: React.Dispatch<React.SetStateAction<string>>,
   dispatch: ReturnType<typeof useDispatch>
