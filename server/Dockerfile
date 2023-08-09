@@ -14,4 +14,6 @@ COPY ./model /app/model
 
 COPY ./build /app/build
 
-CMD ["sh", "-c", "uvicorn server:app --host 0.0.0.0 --port $PORT"]
+ENV PORT 1234
+
+CMD exec uvicorn server:app --host 0.0.0.0 --port ${PORT} --workers 1
