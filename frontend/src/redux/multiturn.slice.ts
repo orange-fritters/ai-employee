@@ -64,7 +64,6 @@ export const multiturnSlicer = createSlice({
     /** increment the id */
     incrementId: (state) => {
       state.id = state.id + 1;
-      console.log("incremented id");
     },
   },
 });

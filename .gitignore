@@ -23,3 +23,5 @@ run.sh
 config.txt
 server/build/
 server/venv/
+notes/
+/preprocess/

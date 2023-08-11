@@ -21,12 +21,7 @@ import {
   updateRecommendationState,
 } from "../../redux/recommendation.slice";
 import { convertToJSON } from "./decoder";
-import {
-  selectFirstRecommendation,
-  selectMultiturnID,
-  selectMultiturnPhase,
-} from "../../redux/selectors";
-import { requestQuery } from "./requests/requestQuery";
+import { selectMultiturnID, selectMultiturnPhase } from "../../redux/selectors";
 import { streamResponse } from "./requests/streamResponse";
 import { requestRecommendation } from "./requests/requestRecommendation";
 import { dMessages } from "../../redux/defaultMessages";
@@ -186,18 +181,16 @@ const processDonePhase = async (
   );
 
   try {
-    const rec = selectFirstRecommendation(state);
-
-    if (rec !== undefined && rec !== null) {
+    try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      const response = await requestQuery(input, rec.title);
+      const response = await requestMultiturnAnswer();
 
       if (response.body) {
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         await streamResponse(dispatch, reader, decoder);
       }
-    } else {
+    } catch (error) {
       dispatch(
         pushResponse({
           text: "오류가 발생하였습니다. 처음으로 돌아갑니다.",

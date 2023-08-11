@@ -50,34 +50,37 @@ class MultiTurn(EmbedBase):
         """ Generate a question from the chat history. """
         current_options = self.get_contents_from_title(titles)
         prompt = get_prompt.get_question_from_history(current_options, history)
-        try:
-            response = ChatCompletion.create(
-                model=self.OPENAI_MODEL,
-                messages=prompt,
-            )
-            question = response['choices'][0]['message']['content']
-            question = json.loads(question)['question']
+        MAX_RETRIES = 3
+        for _ in range(MAX_RETRIES):
+            try:
+                response = ChatCompletion.create(
+                    model=self.OPENAI_MODEL,
+                    messages=prompt,
+                    temperature=0.75
+                )
+                question = response['choices'][0]['message']['content']
+                question = json.loads(question)['response']
 
-            return question
+                return question
 
-        except OpenAIError as e:
-            logging.error(f"Decision failed with error: {str(e)}")
-            raise exceptions.QuestionGenerationFailedError("Failed to decide the sufficiency.") from e
+            except OpenAIError as e:
+                logging.error(f"Decision failed with error: {str(e)}")
+                raise exceptions.QuestionGenerationFailedError("Failed to decide the sufficiency.") from e
 
     def get_answer_from_history(self,
                                 titles: List[RankTitle],
                                 history: List[History]) -> str:
         """ Generate an answer from the chat history. """
         current_options = self.get_contents_from_title(titles)
-        prompt = get_prompt.get_recommend_from_history(current_options, history)
+        prompt = get_prompt.get_answer_from_history(current_options, history)
         try:
             response = ChatCompletion.create(
                 model=self.OPENAI_MODEL,
                 messages=prompt,
                 temperature=0
             )
-            answer = response['choices'][0]['message']['content']
-            answer = json.loads(answer)['answer']
+            response = response['choices'][0]['message']['content']
+            answer = json.loads(response)['response']
 
             return answer
 
@@ -108,21 +111,49 @@ class MultiTurn(EmbedBase):
         """ Decide whether the information of conversation is sufficient for recommendation or not. """
         # titles : [RankTitle(title='title_of_service', rank=0), RankTitle...]
         # history : [History(role='uesr', content='query_from_user'), History...]
+        translated_history = ""
+        for conversation in history:
+            role = conversation.role
+            query = conversation.content
+            query_eng = self._translate_query_to_english(query)
+            translated_history += f"{role}: {query_eng}\n"
         options = self.get_contents_from_title(titles)
-        prompt = get_prompt.get_sufficiency_decision_prompt(options, history)
-        try:
-            response = ChatCompletion.create(
-                model=self.OPENAI_MODEL,
-                messages=prompt
-            )
-            response = response['choices'][0]['message']['content']
-            response = json.loads(response)
-            yes_or_no = response['sufficient']
-            return yes_or_no == "yes" or yes_or_no == "Yes"
+        prompt = get_prompt.get_sufficiency_decision_prompt(options, translated_history)
+        MAX_RETRIES = 3
+        for _ in range(MAX_RETRIES):
+            try:
+                response = ChatCompletion.create(
+                    model=self.OPENAI_MODEL,
+                    messages=prompt,
+                    temperature=0.3
+                )
+                response_content = response['choices'][0]['message']['content']
 
-        except OpenAIError as e:
-            logging.error(f"Decision failed with error: {str(e)}")
-            raise exceptions.DecisionFailedError("Failed to decide the sufficiency.") from e
+                response_json = json.loads(response_content)
+                yes_or_no_score = response_json['sufficiency']
+                yes_or_no_score = float(yes_or_no_score)
+                yes_or_no = "yes" if yes_or_no_score > 0.5 else "no"
+                print("PROMPT:\n", prompt)
+                print("RESPONSE:\n", response_json)
+                print("DECISION:\n", yes_or_no)
+
+                return yes_or_no == "yes" or yes_or_no == "Yes"
+
+            except json.JSONDecodeError:
+                logging.error(f"Failed to decode response as JSON: {response_content}")
+                if _ < MAX_RETRIES - 1:  # If this isn't the last attempt
+                    logging.info(f"Retrying {_ + 2}/{MAX_RETRIES}")  # _ + 2 because indexing starts at 0
+                    continue
+                else:
+                    raise exceptions.ResponseParseError("Failed to parse the response from ChatGPT as JSON.") from None
+
+            except OpenAIError as e:
+                logging.error(f"Decision failed with error: {str(e)}")
+                if _ < MAX_RETRIES - 1:
+                    logging.info(f"Retrying {_ + 2}/{MAX_RETRIES}")
+                    continue
+                else:
+                    raise exceptions.DecisionFailedError("Failed to decide the sufficiency.") from e
 
     def get_contents_from_title(self,
                                 titles: List[RankTitle],
