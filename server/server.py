@@ -86,51 +86,6 @@ async def get_search(search: Search):
     return StreamingResponse(get_response_prompted(prompt), media_type="text/event-stream")
 
 
-# Multi-turn Section
-
-@app.post("/api/multi-turn/decide-sufficiency")
-async def decide_sufficiency(titles: List[RankTitle],
-                             history: List[History]):
-    """
-    Endpoint for decide whether the information is sufficient.
-    multiturn model asks llm for the sufficiency of information.
-    Args:
-        titles (List[RankTitle]): A list of RankTitle.
-        history (List[History]): A list of History.
-    Returns:
-        json: A json object containing the decision result.
-    """
-    # titles : [RankTitle(title='title_of_service', rank=0), RankTitle...]
-    # history : [History(role='uesr', content='query_from_user'), History...]
-    result = multiturn_model.decide_information_sufficiency(titles, history)
-    return json.dumps(result)
-
-
-@app.post("/api/multi-turn/question")
-async def get_new_question(titles: List[RankTitle],
-                           history: List[History]):
-    """ Endpoint for generating a new question to ask user. """
-    result = multiturn_model.get_question_from_history(titles, history)
-    return json.dumps(result)
-
-
-@app.post("/api/multi-turn/recommendation")
-async def get_new_recommendation(titles: List[RankTitle],
-                                 history: List[History]):
-    """ Endpoint for generating a new recommendation given a conversation history. """
-    result = multiturn_model.get_recommendation_new_history(history)
-    print(result)
-    return json.dumps(result)
-
-
-@app.post("/api/multi-turn/answer")
-async def get_answer(titles: List[RankTitle],
-                     history: List[History]):
-    """ Endpoint for generating an answer given a conversation history."""
-    result = multiturn_model.get_answer_from_history(titles, history)
-    return json.dumps(result)
-
-
 # View document Section
 
 @app.get("/api/articles/view/{id}")
