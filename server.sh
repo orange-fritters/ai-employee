@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# server and venv
+# (1) server and venv
 
 if [[ $PWD != *"server"* ]]; then
     cd server
@@ -8,8 +8,7 @@ fi
 
 source venv/bin/activate
 
-
-# Parse environment variables and run uvicorn
+# (2) Parse environment variables and run uvicorn
 while IFS="=" read -r key value; do
     # Removing double quotes from the key and value
     key=$(echo $key | tr -d '"')
@@ -20,4 +19,5 @@ while IFS="=" read -r key value; do
     echo "Exported: $key=$value"
 done < <(jq -r 'to_entries[] | "\(.key)=\(.value)"' config.json)
 
+# (3) Run uvicorn
 uvicorn server:app --reload --host $(ip addr | grep 'inet ' | grep -v '127.0.0.1' | grep -v 'docker0' | awk '{print $2}' | cut -d'/' -f1) 
