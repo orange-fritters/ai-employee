@@ -1,7 +1,6 @@
 from typing import List
-from pydantic import BaseModel
 import tiktoken
-from model.utils.schemas import History, Option, Recommendation
+from model.utils.schemas import History, Option
 
 
 def process_options_qa(options: List[Option]):

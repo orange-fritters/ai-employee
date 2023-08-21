@@ -1,4 +1,5 @@
 import pickle
+import pandas as pd
 from kiwipiepy import Kiwi
 from rank_bm25 import BM25Okapi
 from model.bm25.text_preprocess import text_preprocess
@@ -6,6 +7,8 @@ from model.bm25.query_expansion import query_expand
 
 
 class BM25():
+    DOCUMENT_FILE_PATH = "model/files/processed_doc.csv"
+
     def __init__(self):
 
         with open("model/bm25/articles_preprocessed.pkl", 'rb') as f:
@@ -20,6 +23,7 @@ class BM25():
         self.excluding_pos = articles_preprocessed['excluding_pos']
         self.tokenized = articles_preprocessed['tokenized']
         self.model = BM25Okapi(self.tokenized)
+        self.data = pd.read_csv(self.DOCUMENT_FILE_PATH)
 
     def get_score(self, query: str):
 

@@ -24,7 +24,7 @@ import {
   swapRank,
 } from "../redux/recommendation.slice";
 import { pushResponse } from "../redux/message.slice";
-import { requestSummary } from "./utils/requests/requestSummary";
+import { requestSummary } from "../requests/requestSummary";
 import { selectFirstTitle } from "../redux/selectors";
 
 /** Message type
@@ -33,7 +33,6 @@ import { selectFirstTitle } from "../redux/selectors";
  * response: response with buttons
  * recommendation: message containing recommendation list
  * initial: initial message @file frontend/src/redux/defaultMessages.ts
- * search: response of the search query
  * time: bar showing time
  */
 
@@ -41,12 +40,11 @@ export interface IMessage {
   sender: "user" | "bot";
   text: string;
   type:
-    | "default"
-    | "response"
-    | "recommendation"
-    | "initial"
-    | "search"
-    | "time";
+    | "default" // default message
+    | "response" // response with buttons
+    | "recommendation" // recommendation list
+    | "initial" // first message when app starts
+    | "time"; // bar showing time
   loading: boolean;
   multiturn?: boolean;
   recArr?: IRecElement[];
@@ -115,7 +113,7 @@ const RecommendationMessage = (props: IMessage): ReactElement => {
         pushResponse({
           sender: "bot",
           text: `${titleClicked}은 어때요?\n\n${summary}\n\n${titleClicked}에 대해 궁금한 점을 물어봐주세요! 대답해드릴게요!`,
-          type: "default",
+          type: "response",
           loading: false,
         })
       );
@@ -186,27 +184,9 @@ const ResponseMessage = (props: IMessage) => {
       </S.MessageBox>
       {!props.loading && (
         <S.ButtonBox loading={props.loading} type={props.type}>
-          <Button type="home" loading={props.loading} />
+          <Button type="search" loading={props.loading} />
           <Button type="recommendation" loading={props.loading} />
         </S.ButtonBox>
-      )}
-    </S.SingleResponse>
-  );
-};
-
-/**
- * Message with home button.
- */
-const SearchMessage = (props: IMessage) => {
-  return (
-    <S.SingleResponse sender={props.sender} type={props.type}>
-      <S.MessageBox sender={props.sender} type={props.type}>
-        {splitText(props.text)}
-      </S.MessageBox>
-      {!props.loading && (
-        <S.SearchButtonBox loading={props.loading} type={props.type}>
-          <Button type="home" loading={props.loading} />
-        </S.SearchButtonBox>
       )}
     </S.SingleResponse>
   );
@@ -222,12 +202,6 @@ const InitialMessage = (props: IMessage) => {
       <S.MessageBox sender={props.sender} type={props.type}>
         {splitText(props.text)}
       </S.MessageBox>
-      {!props.loading && (
-        <S.InitButtonBox loading={props.loading} type={props.type}>
-          <Button type="search" loading={props.loading} />
-          <Button type="multiturn" loading={props.loading} />
-        </S.InitButtonBox>
-      )}
     </S.SingleResponse>
   );
 };
@@ -269,7 +243,6 @@ const Message = (props: IMessage) => {
     recommendation: RecommendationMessage,
     response: ResponseMessage,
     initial: InitialMessage,
-    search: SearchMessage,
     default: DefaultMessage,
   };
 

@@ -1,4 +1,4 @@
-import { IRecElement } from "../../../redux/recommendation.slice";
+import { IRecElement } from "../redux/recommendation.slice";
 
 /**
  * @param  {string} input The input text to be sent to the backend.

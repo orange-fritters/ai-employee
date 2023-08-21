@@ -42,7 +42,6 @@ export const findQuery = (state: RootState) => {
   return recentMessage ? recentMessage.text : undefined;
 };
 
-export const selectID = (state: RootState) => state.multiturn.id;
 
 export const selectRecTitles = (state: RootState) => {
   const titles = state.recommendation.recommendations.map((elem) => elem.title);
@@ -57,15 +56,4 @@ export const selectUserMessages = (state: RootState) => {
   return context ? context : undefined;
 };
 
-export const selectMultiturnPhase = (state: RootState) =>
-  state.multiturn.phase.phase;
 
-export const selectMultiturnID = (state: RootState) => state.multiturn.id;
-
-export const selectMultiturnHistory = (state: RootState) => {
-  const history = state.multiturn.multiturns
-    .filter((elem) => elem.id === state.multiturn.id)
-    .map((elem) => elem.message);
-
-  return history;
-};

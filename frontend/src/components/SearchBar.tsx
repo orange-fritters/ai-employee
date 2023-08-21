@@ -7,10 +7,8 @@ import { selectFirstRecommendation } from "../redux/selectors";
 import {
   handleSubmitWhenAsking,
   handleSubmitWhenDefault,
-  handleSubmitWhenHome,
-  handleSubmitWhenMultiturn,
   handleSubmitWhenSearch,
-} from "./utils/handleSubmit";
+} from "../utils/handleSubmit";
 
 /**
  * Renders the search bar component.
@@ -29,17 +27,11 @@ const SearchBar: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     switch (state.now) {
-      case "home":
-        handleSubmitWhenHome(input, setInput, dispatch);
-        break;
       case "search":
         handleSubmitWhenSearch(input, setInput, dispatch);
         break;
       case "asking":
         handleSubmitWhenAsking(input, rec, setInput, dispatch);
-        break;
-      case "multiturn":
-        handleSubmitWhenMultiturn(input, setInput, dispatch);
         break;
       default:
         handleSubmitWhenDefault(setInput, dispatch);

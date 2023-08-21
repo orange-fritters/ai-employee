@@ -2,44 +2,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { getRecommendation, getRetrieval } from "./handleRecommendation";
-import { pushResponse } from "../../redux/message.slice";
+import { pushResponse } from "../redux/message.slice";
 import {
   IRecElement,
   updateRecommendation,
   updateRecommendationState,
-} from "../../redux/recommendation.slice";
-import { requestSearch } from "./requests/requestSearch";
-import { streamResponse } from "./requests/streamResponse";
-import { requestQuery } from "./requests/requestQuery";
-import { dMessages } from "../../redux/defaultMessages";
-import { handleMultiturn } from "./handleMultiturn";
+} from "../redux/recommendation.slice";
+import { requestSearch } from "../requests/requestSearch";
+import { streamResponse } from "../requests/streamResponse";
+import { requestQuery } from "../requests/requestQuery";
+import { dMessages } from "../redux/defaultMessages";
 
-/**
- * Home: Deals with first time submission, gets recommendation with the user query
- * @param input
- * @param setInput
- * @param dispatch
- */
-const handleSubmitWhenHome = async (
-  input: string,
-  setInput: React.Dispatch<React.SetStateAction<string>>,
-  dispatch: ReturnType<typeof useDispatch>
-) => {
-  getRecommendation(input, dispatch);
-  dispatch(pushResponse({ text: input, sender: "user", loading: false }));
-  setInput("");
-  dispatch(
-    pushResponse({
-      text: "",
-      sender: "bot",
-      loading: true,
-      type: "default",
-    })
-  );
-  dispatch(
-    updateRecommendationState({ recommendationState: { now: "asking" } })
-  );
-};
 
 /**
  * When the user knows specific title or asks for detailed information
@@ -131,7 +104,7 @@ const handleSubmitWhenAsking = async (
       );
       dispatch(
         updateRecommendationState({
-          recommendationState: { now: "home" },
+          recommendationState: { now: "search" },
         })
       );
       dispatch(pushResponse({ ...dMessages[0] }));
@@ -141,33 +114,6 @@ const handleSubmitWhenAsking = async (
   } catch (error) {
     console.error("Error:", error);
   }
-};
-
-/**
- * Starts multiturn conversation
- * Please refer to handleMultiturn.ts
- *
- * @param input
- * @param setInput
- * @param dispatch
- */
-const handleSubmitWhenMultiturn = async (
-  input: string,
-  setInput: React.Dispatch<React.SetStateAction<string>>,
-  dispatch: ReturnType<typeof useDispatch>
-) => {
-  const question = input;
-  setInput("");
-  handleMultiturn(question, dispatch);
-  dispatch(pushResponse({ text: question, sender: "user", loading: false }));
-  dispatch(
-    pushResponse({
-      text: "",
-      sender: "bot",
-      loading: true,
-      type: "default",
-    })
-  );
 };
 
 // handle switch default case
@@ -186,9 +132,7 @@ const handleSubmitWhenDefault = async (
 };
 
 export {
-  handleSubmitWhenHome,
   handleSubmitWhenSearch,
   handleSubmitWhenAsking,
-  handleSubmitWhenMultiturn,
   handleSubmitWhenDefault,
 };

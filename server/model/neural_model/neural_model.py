@@ -9,13 +9,13 @@ from typing import List
 import openai
 from openai import ChatCompletion, OpenAIError
 
-import model.embed.embed_prompt as get_prompt
-import model.embed.exceptions as exceptions
+import model.neural_model.prompts as get_prompt
+import model.neural_model.exceptions as exceptions
 from model.utils.schemas import History, RankTitle, Recommendation, Option
-from model.embed.embed_base import EmbedBase
+from model.neural_model.neural_base import NeuralBase
 
 
-class MultiTurn(EmbedBase):
+class NeuralModel(NeuralBase):
     """Model for embedding translation and scoring"""
 
     OPENAI_MODEL = "gpt-3.5-turbo"

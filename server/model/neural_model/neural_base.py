@@ -5,11 +5,11 @@ import numpy as np
 import openai
 from openai import ChatCompletion, Embedding, OpenAIError
 
-from model.embed.embed_prompt import get_translation_prompt, get_sufficiency_decision_prompt
-from model.embed.exceptions import TranslationFailedError, EmbeddingFailedError
+from model.neural_model.prompts import get_translation_prompt
+from model.neural_model.exceptions import TranslationFailedError, EmbeddingFailedError
 
 
-class EmbedBase:
+class NeuralBase:
     OPENAI_MODEL = "gpt-3.5-turbo"
     EMBEDDING_ENGINE = "text-embedding-ada-002"
 

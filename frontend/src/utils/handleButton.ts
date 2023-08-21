@@ -5,32 +5,17 @@
  */
 import { useDispatch } from "react-redux";
 
-import store from "../../redux/store";
-import { selectRecommendations } from "../../redux/selectors";
-import { deleteLoading, pushResponse } from "../../redux/message.slice";
-import { updateMultiturnState } from "../../redux/multiturn.slice";
+import store from "../redux/store";
+import { selectRecommendations } from "../redux/selectors";
+import { pushResponse } from "../redux/message.slice";
 import {
   updateRecommendation,
   updateRecommendationState,
   IRecElement,
-} from "../../redux/recommendation.slice";
-import { dMessages, dMultiturn, dSearch } from "../../redux/defaultMessages";
+} from "../redux/recommendation.slice";
+import { dMessages, dSearch } from "../redux/defaultMessages";
 
-/**
- * 1. Change the global recommendationState to "search".
- * 2. Push the default messages announcing overall service to the chat history.
- * 3. Clear the recommendationResponse.
- */
-const handleHomeButton = async (
-  dispatch: ReturnType<typeof useDispatch>
-): Promise<void> => {
-  dispatch(
-    updateRecommendationState({ recommendationState: { now: "search" } })
-  );
-  dispatch(pushResponse({ ...dMessages[0] }));
-  dispatch(pushResponse({ ...dMessages[1] }));
-  dispatch(updateRecommendation({ recommendationResponse: [] }));
-};
+
 
 /**
  * 1. Change the global recommendationState to "search".
@@ -91,44 +76,7 @@ const handleRecommendationButton = async (
   }
 };
 
-/**
- * 1. Change the global recommendationState to "multiturn", multiturnState to "init".
- * 2. Push the default messages announcing the start of the multiturn to the chat history.
- */
-const handleMultiturnButton = async (
-  dispatch: ReturnType<typeof useDispatch>
-) => {
-  dispatch(
-    updateRecommendationState({
-      recommendationState: { now: "multiturn" },
-    })
-  );
-  dispatch(updateMultiturnState({ multiturnState: { phase: "init" } }));
-  dispatch(
-    pushResponse({
-      text: "",
-      sender: "bot",
-      loading: true,
-      type: "default",
-    })
-  );
-
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  dispatch(deleteLoading());
-  dispatch(pushResponse({ ...dMultiturn[0] }));
-
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-  // const response = await requestMultiturn("");
-  // if (response.body) {
-  //   const reader = response.body.getReader();
-  //   const decoder = new TextDecoder("utf-8");
-  //   await streamResponse(dispatch, reader, decoder);
-  // }
-};
-
 export {
-  handleHomeButton,
   handleSearchButton,
-  handleRecommendationButton,
-  handleMultiturnButton,
+  handleRecommendationButton
 };

@@ -1,4 +1,4 @@
-import { unicodeToChar } from "../decoder";
+import { unicodeToChar } from "../utils/decoder";
 
 /**
  *

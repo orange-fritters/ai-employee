@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { updateRecommendation } from "../../redux/recommendation.slice";
-import { deleteLoading, pushResponse } from "../../redux/message.slice";
-import { requestSummary } from "./requests/requestSummary";
-import { requestRecommendation } from "./requests/requestRecommendation";
+import { updateRecommendation } from "../redux/recommendation.slice";
+import { deleteLoading, pushResponse } from "../redux/message.slice";
+import { requestSummary } from "../requests/requestSummary";
+import { requestRecommendation } from "../requests/requestRecommendation";
 import { convertToJSON } from "./decoder";
 
 /**
