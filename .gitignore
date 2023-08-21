@@ -7,7 +7,6 @@ notes/.obsidian/hotkeys.json
 notes/.obsidian/workspace.json
 .DS_Store
 frontend/src/conifig.json
-server/articles/
 server/env/
 server/config.json
 .vscode/settings.json
