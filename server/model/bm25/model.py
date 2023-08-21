@@ -2,7 +2,7 @@ from model.bm25.bm25 import BM25
 import numpy as np
 
 
-class Ensemble:
+class Model:
     def __init__(self):
         self.bm25 = BM25()
         self.data = self.bm25.data

@@ -9,11 +9,10 @@ import store from "../redux/store";
 import { selectRecommendations } from "../redux/selectors";
 import { pushResponse } from "../redux/message.slice";
 import {
-  updateRecommendation,
   updateRecommendationState,
   IRecElement,
 } from "../redux/recommendation.slice";
-import { dMessages, dSearch } from "../redux/defaultMessages";
+import { dSearch } from "../redux/defaultMessages";
 
 
 

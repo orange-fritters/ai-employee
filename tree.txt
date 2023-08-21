@@ -2,557 +2,118 @@
 ├── README.md
 ├── config.txt
 ├── frontend
-│   ├── README.md
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   │   ├── favicon.ico
-│   │   ├── icon.svg
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   ├── robots.txt
-│   │   └── title_id.json
-│   ├── src
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   ├── Main.tsx
-│   │   ├── components
-│   │   │   ├── Button.tsx
-│   │   │   ├── Header.tsx
-│   │   │   ├── Message.tsx
-│   │   │   ├── SearchBar.tsx
-│   │   │   ├── styles
-│   │   │   │   ├── Button.style.ts
-│   │   │   │   ├── Header.style.ts
-│   │   │   │   ├── Main.style.ts
-│   │   │   │   ├── Message.style.ts
-│   │   │   │   ├── SearchBar.style.ts
-│   │   │   │   └── styles.ts
-│   │   │   └── utils
-│   │   │       ├── decoder.ts
-│   │   │       ├── handleButton.ts
-│   │   │       ├── handleMultiturn.ts
-│   │   │       ├── handleRecommendation.ts
-│   │   │       ├── handleSubmit.ts
-│   │   │       └── requests
-│   │   │           ├── requestMultiTurn.ts
-│   │   │           ├── requestQuery.ts
-│   │   │           ├── requestRecommendation.ts
-│   │   │           ├── requestSearch.ts
-│   │   │           ├── requestSummary.ts
-│   │   │           └── streamResponse.ts
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   ├── react-app-env.d.ts
-│   │   └── redux
-│   │       ├── defaultMessages.ts
-│   │       ├── message.slice.ts
-│   │       ├── multiturn.slice.ts
-│   │       ├── recommendation.slice.ts
-│   │       ├── selectors.ts
-│   │       └── store.ts
-│   └── tsconfig.json
-├── notes
-│   ├── AI employee planning.md
-│   ├── figure1.png
-│   └── figure2.png
-├── prompt.txt
+│   ├── README.md
+│   ├── build
+│   │   ├── asset-manifest.json
+│   │   ├── favicon.ico
+│   │   ├── icon.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── precache-manifest.e7172b007738d49d6a57c0d1cbdfce20.js
+│   │   ├── robots.txt
+│   │   ├── service-worker.js
+│   │   ├── static
+│   │   │   ├── css
+│   │   │   │   ├── main.571a5900.chunk.css
+│   │   │   │   └── main.571a5900.chunk.css.map
+│   │   │   └── js
+│   │   │       ├── 1.ea8b9aa3.chunk.js
+│   │   │       ├── 1.ea8b9aa3.chunk.js.map
+│   │   │       ├── main.fc29aed4.chunk.js
+│   │   │       ├── main.fc29aed4.chunk.js.map
+│   │   │       ├── runtime~main.229c360f.js
+│   │   │       └── runtime~main.229c360f.js.map
+│   │   └── title_id.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── icon.svg
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   │   └── title_id.json
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── Main.tsx
+│   │   ├── components
+│   │   │   ├── Button.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── Message.tsx
+│   │   │   ├── SearchBar.tsx
+│   │   │   └── styles
+│   │   │       ├── Button.style.ts
+│   │   │       ├── Header.style.ts
+│   │   │       ├── Main.style.ts
+│   │   │       ├── Message.style.ts
+│   │   │       ├── SearchBar.style.ts
+│   │   │       └── styles.ts
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── react-app-env.d.ts
+│   │   ├── redux
+│   │   │   ├── defaultMessages.ts
+│   │   │   ├── message.slice.ts
+│   │   │   ├── recommendation.slice.ts
+│   │   │   ├── selectors.ts
+│   │   │   └── store.ts
+│   │   ├── requests
+│   │   │   ├── requestQuery.ts
+│   │   │   ├── requestRecommendation.ts
+│   │   │   ├── requestSearch.ts
+│   │   │   ├── requestSummary.ts
+│   │   │   └── streamResponse.ts
+│   │   └── utils
+│   │       ├── decoder.ts
+│   │       ├── handleButton.ts
+│   │       ├── handleRecommendation.ts
+│   │       └── handleSubmit.ts
+│   └── tsconfig.json
 ├── prompt_guide.md
 ├── run.sh
-└── server
-    ├── articles
-    │   ├── tokenized_articles
-    │   │   └── html.pkl
-    │   ├── 기타지원_01.html
-    │   ├── 기타지원_02.html
-    │   ├── 기타지원_03.html
-    │   ├── 기타지원_04.html
-    │   ├── 기타지원_05.html
-    │   ├── 기타지원_06.html
-    │   ├── 기타지원_07.html
-    │   ├── 기타지원_08.html
-    │   ├── 기타지원_09.html
-    │   ├── 기타지원_10.html
-    │   ├── 기타지원_11.html
-    │   ├── 기타지원_12.html
-    │   ├── 기타지원_13.html
-    │   ├── 기타지원_14.html
-    │   ├── 기타지원_15.html
-    │   ├── 기타지원_16.html
-    │   ├── 기타지원_17.html
-    │   ├── 기타지원_18.html
-    │   ├── 기타지원_19.html
-    │   ├── 기타지원_20.html
-    │   ├── 기타지원_21.html
-    │   ├── 기타지원_22.html
-    │   ├── 기타지원_23.html
-    │   ├── 기타지원_24.html
-    │   ├── 기타지원_25.html
-    │   ├── 기타지원_26.html
-    │   ├── 기타지원_27.html
-    │   ├── 기타지원_28.html
-    │   ├── 기타지원_29.html
-    │   ├── 기타지원_30.html
-    │   ├── 기타지원_31.html
-    │   ├── 기타지원_32.html
-    │   ├── 기타지원_33.html
-    │   ├── 기타지원_34.html
-    │   ├── 기타지원_35.html
-    │   ├── 기타지원_36.html
-    │   ├── 기타지원_37.html
-    │   ├── 기타지원_38.html
-    │   ├── 기타지원_39.html
-    │   ├── 기타지원_40.html
-    │   ├── 기타지원_41.html
-    │   ├── 기타지원_42.html
-    │   ├── 기타지원_43.html
-    │   ├── 기타지원_44.html
-    │   ├── 기타지원_45.html
-    │   ├── 기타지원_46.html
-    │   ├── 기타지원_47.html
-    │   ├── 기타지원_48.html
-    │   ├── 기타지원_49.html
-    │   ├── 기타지원_50.html
-    │   ├── 기타지원_51.html
-    │   ├── 기타지원_52.html
-    │   ├── 기타지원_53.html
-    │   ├── 기타지원_54.html
-    │   ├── 기타지원_55.html
-    │   ├── 기타지원_56.html
-    │   ├── 기타지원_57.html
-    │   ├── 기타지원_58.html
-    │   ├── 기타지원_59.html
-    │   ├── 기타지원_60.html
-    │   ├── 기타지원_61.html
-    │   ├── 기타지원_62.html
-    │   ├── 기타지원_63.html
-    │   ├── 기타지원_64.html
-    │   ├── 기타지원_65.html
-    │   ├── 기타지원_66.html
-    │   ├── 기타지원_67.html
-    │   ├── 기타지원_68.html
-    │   ├── 기타지원_69.html
-    │   ├── 기타지원_70.html
-    │   ├── 기타지원_71.html
-    │   ├── 기타지원_72.html
-    │   ├── 기타지원_73.html
-    │   ├── 기타지원_74.html
-    │   ├── 기타지원_75.html
-    │   ├── 기타지원_76.html
-    │   ├── 기타지원_77.html
-    │   ├── 기타지원_78.html
-    │   ├── 기타지원_79.html
-    │   ├── 기타지원_80.html
-    │   ├── 기타지원_81.html
-    │   ├── 기타지원_82.html
-    │   ├── 기타지원_83.html
-    │   ├── 기타지원_84.html
-    │   ├── 기타지원_85.html
-    │   ├── 기타지원_86.html
-    │   ├── 노령층지원_01.html
-    │   ├── 노령층지원_02.html
-    │   ├── 노령층지원_03.html
-    │   ├── 노령층지원_04.html
-    │   ├── 노령층지원_05.html
-    │   ├── 노령층지원_06.html
-    │   ├── 노령층지원_07.html
-    │   ├── 노령층지원_08.html
-    │   ├── 노령층지원_09.html
-    │   ├── 노령층지원_10.html
-    │   ├── 노령층지원_11.html
-    │   ├── 노령층지원_12.html
-    │   ├── 노령층지원_13.html
-    │   ├── 노령층지원_14.html
-    │   ├── 노령층지원_15.html
-    │   ├── 노령층지원_16.html
-    │   ├── 노령층지원_17.html
-    │   ├── 노령층지원_18.html
-    │   ├── 노령층지원_19.html
-    │   ├── 노령층지원_20.html
-    │   ├── 법률금융복지지원_01.html
-    │   ├── 법률금융복지지원_02.html
-    │   ├── 법률금융복지지원_03.html
-    │   ├── 법률금융복지지원_04.html
-    │   ├── 법률금융복지지원_05.html
-    │   ├── 법률금융복지지원_06.html
-    │   ├── 법률금융복지지원_07.html
-    │   ├── 법률금융복지지원_08.html
-    │   ├── 법률금융복지지원_09.html
-    │   ├── 법률금융복지지원_10.html
-    │   ├── 법률금융복지지원_11.html
-    │   ├── 법률금융복지지원_12.html
-    │   ├── 법률금융복지지원_13.html
-    │   ├── 법률금융복지지원_14.html
-    │   ├── 법률금융복지지원_15.html
-    │   ├── 법률금융복지지원_16.html
-    │   ├── 법률금융복지지원_17.html
-    │   ├── 법률금융복지지원_18.html
-    │   ├── 법률금융복지지원_19.html
-    │   ├── 법률금융복지지원_20.html
-    │   ├── 법률금융복지지원_21.html
-    │   ├── 법률금융복지지원_22.html
-    │   ├── 법률금융복지지원_23.html
-    │   ├── 법률금융복지지원_24.html
-    │   ├── 보건의료지원_01.html
-    │   ├── 보건의료지원_02.html
-    │   ├── 보건의료지원_03.html
-    │   ├── 보건의료지원_04.html
-    │   ├── 보건의료지원_05.html
-    │   ├── 보건의료지원_06.html
-    │   ├── 보건의료지원_07.html
-    │   ├── 보건의료지원_08.html
-    │   ├── 보건의료지원_09.html
-    │   ├── 보건의료지원_10.html
-    │   ├── 보건의료지원_11.html
-    │   ├── 보건의료지원_12.html
-    │   ├── 보건의료지원_13.html
-    │   ├── 보건의료지원_14.html
-    │   ├── 보건의료지원_15.html
-    │   ├── 보건의료지원_16.html
-    │   ├── 보건의료지원_17.html
-    │   ├── 보건의료지원_18.html
-    │   ├── 보건의료지원_19.html
-    │   ├── 보건의료지원_20.html
-    │   ├── 보건의료지원_21.html
-    │   ├── 보건의료지원_22.html
-    │   ├── 보건의료지원_23.html
-    │   ├── 보건의료지원_24.html
-    │   ├── 보건의료지원_25.html
-    │   ├── 보훈대상자지원_01.html
-    │   ├── 보훈대상자지원_02.html
-    │   ├── 보훈대상자지원_03.html
-    │   ├── 보훈대상자지원_04.html
-    │   ├── 보훈대상자지원_05.html
-    │   ├── 보훈대상자지원_06.html
-    │   ├── 보훈대상자지원_07.html
-    │   ├── 보훈대상자지원_08.html
-    │   ├── 보훈대상자지원_09.html
-    │   ├── 보훈대상자지원_10.html
-    │   ├── 보훈대상자지원_11.html
-    │   ├── 보훈대상자지원_12.html
-    │   ├── 보훈대상자지원_13.html
-    │   ├── 보훈대상자지원_14.html
-    │   ├── 보훈대상자지원_15.html
-    │   ├── 보훈대상자지원_16.html
-    │   ├── 보훈대상자지원_17.html
-    │   ├── 보훈대상자지원_18.html
-    │   ├── 보훈대상자지원_19.html
-    │   ├── 보훈대상자지원_20.html
-    │   ├── 보훈대상자지원_21.html
-    │   ├── 보훈대상자지원_22.html
-    │   ├── 보훈대상자지원_23.html
-    │   ├── 보훈대상자지원_24.html
-    │   ├── 보훈대상자지원_25.html
-    │   ├── 보훈대상자지원_26.html
-    │   ├── 보훈대상자지원_27.html
-    │   ├── 보훈대상자지원_28.html
-    │   ├── 보훈대상자지원_29.html
-    │   ├── 보훈대상자지원_30.html
-    │   ├── 보훈대상자지원_31.html
-    │   ├── 보훈대상자지원_32.html
-    │   ├── 보훈대상자지원_33.html
-    │   ├── 보훈대상자지원_34.html
-    │   ├── 보훈대상자지원_35.html
-    │   ├── 보훈대상자지원_36.html
-    │   ├── 보훈대상자지원_37.html
-    │   ├── 보훈대상자지원_38.html
-    │   ├── 보훈대상자지원_39.html
-    │   ├── 보훈대상자지원_40.html
-    │   ├── 생계지원_01.html
-    │   ├── 생계지원_02.html
-    │   ├── 생계지원_03.html
-    │   ├── 생계지원_04.html
-    │   ├── 생계지원_05.html
-    │   ├── 생계지원_06.html
-    │   ├── 생계지원_07.html
-    │   ├── 생계지원_08.html
-    │   ├── 생계지원_09.html
-    │   ├── 생계지원_10.html
-    │   ├── 생계지원_11.html
-    │   ├── 생계지원_12.html
-    │   ├── 생계지원_13.html
-    │   ├── 생계지원_14.html
-    │   ├── 생계지원_15.html
-    │   ├── 생계지원_16.html
-    │   ├── 생계지원_17.html
-    │   ├── 생계지원_18.html
-    │   ├── 생계지원_19.html
-    │   ├── 생계지원_20.html
-    │   ├── 생계지원_21.html
-    │   ├── 생계지원_22.html
-    │   ├── 생계지원_23.html
-    │   ├── 생계지원_24.html
-    │   ├── 생계지원_25.html
-    │   ├── 생계지원_26.html
-    │   ├── 생계지원_27.html
-    │   ├── 생계지원_28.html
-    │   ├── 생계지원_29.html
-    │   ├── 생계지원_30.html
-    │   ├── 생계지원_31.html
-    │   ├── 생계지원_32.html
-    │   ├── 생계지원_33.html
-    │   ├── 생계지원_34.html
-    │   ├── 생계지원_35.html
-    │   ├── 생계지원_36.html
-    │   ├── 생계지원_37.html
-    │   ├── 생계지원_38.html
-    │   ├── 생계지원_39.html
-    │   ├── 생계지원_40.html
-    │   ├── 생계지원_41.html
-    │   ├── 임신보육지원_01.html
-    │   ├── 임신보육지원_02.html
-    │   ├── 임신보육지원_03.html
-    │   ├── 임신보육지원_04.html
-    │   ├── 임신보육지원_05.html
-    │   ├── 임신보육지원_06.html
-    │   ├── 임신보육지원_07.html
-    │   ├── 임신보육지원_08.html
-    │   ├── 임신보육지원_09.html
-    │   ├── 임신보육지원_10.html
-    │   ├── 임신보육지원_11.html
-    │   ├── 임신보육지원_12.html
-    │   ├── 임신보육지원_13.html
-    │   ├── 임신보육지원_14.html
-    │   ├── 임신보육지원_15.html
-    │   ├── 임신보육지원_16.html
-    │   ├── 임신보육지원_17.html
-    │   ├── 임신보육지원_18.html
-    │   ├── 임신보육지원_19.html
-    │   ├── 임신보육지원_20.html
-    │   ├── 임신보육지원_21.html
-    │   ├── 임신보육지원_22.html
-    │   ├── 임신보육지원_23.html
-    │   ├── 임신보육지원_24.html
-    │   ├── 임신보육지원_25.html
-    │   ├── 임신보육지원_26.html
-    │   ├── 임신보육지원_27.html
-    │   ├── 임신보육지원_28.html
-    │   ├── 임신보육지원_29.html
-    │   ├── 임신보육지원_30.html
-    │   ├── 임신보육지원_31.html
-    │   ├── 임신보육지원_32.html
-    │   ├── 임신보육지원_33.html
-    │   ├── 임신보육지원_34.html
-    │   ├── 임신보육지원_35.html
-    │   ├── 임신보육지원_36.html
-    │   ├── 임신보육지원_37.html
-    │   ├── 임신보육지원_38.html
-    │   ├── 임신보육지원_39.html
-    │   ├── 임신보육지원_40.html
-    │   ├── 임신보육지원_41.html
-    │   ├── 임신보육지원_42.html
-    │   ├── 임신보육지원_43.html
-    │   ├── 임신보육지원_44.html
-    │   ├── 임신보육지원_45.html
-    │   ├── 임신보육지원_46.html
-    │   ├── 임신보육지원_47.html
-    │   ├── 임신보육지원_48.html
-    │   ├── 임신보육지원_49.html
-    │   ├── 임신보육지원_50.html
-    │   ├── 임신보육지원_51.html
-    │   ├── 장애인지원_01.html
-    │   ├── 장애인지원_02.html
-    │   ├── 장애인지원_03.html
-    │   ├── 장애인지원_04.html
-    │   ├── 장애인지원_05.html
-    │   ├── 장애인지원_06.html
-    │   ├── 장애인지원_07.html
-    │   ├── 장애인지원_08.html
-    │   ├── 장애인지원_09.html
-    │   ├── 장애인지원_10.html
-    │   ├── 장애인지원_11.html
-    │   ├── 장애인지원_12.html
-    │   ├── 장애인지원_13.html
-    │   ├── 장애인지원_14.html
-    │   ├── 장애인지원_15.html
-    │   ├── 장애인지원_16.html
-    │   ├── 장애인지원_17.html
-    │   ├── 장애인지원_18.html
-    │   ├── 장애인지원_19.html
-    │   ├── 장애인지원_20.html
-    │   ├── 장애인지원_21.html
-    │   ├── 장애인지원_22.html
-    │   ├── 장애인지원_23.html
-    │   ├── 장애인지원_24.html
-    │   ├── 장애인지원_25.html
-    │   ├── 장애인지원_26.html
-    │   ├── 장애인지원_27.html
-    │   ├── 장애인지원_28.html
-    │   ├── 장애인지원_29.html
-    │   ├── 장애인지원_30.html
-    │   ├── 장애인지원_31.html
-    │   ├── 장애인지원_32.html
-    │   ├── 장애인지원_33.html
-    │   ├── 장애인지원_34.html
-    │   ├── 장애인지원_35.html
-    │   ├── 장애인지원_36.html
-    │   ├── 장애인지원_37.html
-    │   ├── 장애인지원_38.html
-    │   ├── 장애인지원_39.html
-    │   ├── 장애인지원_40.html
-    │   ├── 장애인지원_41.html
-    │   ├── 장애인지원_42.html
-    │   ├── 장애인지원_43.html
-    │   ├── 장애인지원_44.html
-    │   ├── 장애인지원_45.html
-    │   ├── 장애인지원_46.html
-    │   ├── 장애인지원_47.html
-    │   ├── 장애인지원_48.html
-    │   ├── 장애인지원_49.html
-    │   ├── 장애인지원_50.html
-    │   ├── 장애인지원_51.html
-    │   ├── 장애인지원_52.html
-    │   ├── 장애인지원_53.html
-    │   ├── 장애인지원_54.html
-    │   ├── 장애인지원_55.html
-    │   ├── 장애인지원_56.html
-    │   ├── 장애인지원_57.html
-    │   ├── 장애인지원_58.html
-    │   ├── 장애인지원_59.html
-    │   ├── 장애인지원_60.html
-    │   ├── 장애인지원_61.html
-    │   ├── 장애인지원_62.html
-    │   ├── 장애인지원_63.html
-    │   ├── 장애인지원_64.html
-    │   ├── 장애인지원_65.html
-    │   ├── 장애인지원_66.html
-    │   ├── 장애인지원_67.html
-    │   ├── 장애인지원_68.html
-    │   ├── 장애인지원_69.html
-    │   ├── 장애인지원_70.html
-    │   ├── 장애인지원_71.html
-    │   ├── 장애인지원_72.html
-    │   ├── 장애인지원_73.html
-    │   ├── 장애인지원_74.html
-    │   ├── 장애인지원_75.html
-    │   ├── 장애인지원_76.html
-    │   ├── 장애인지원_77.html
-    │   ├── 장애인지원_78.html
-    │   ├── 장애인지원_79.html
-    │   ├── 장애인지원_80.html
-    │   ├── 장애인지원_81.html
-    │   ├── 장애인지원_82.html
-    │   ├── 장애인지원_83.html
-    │   ├── 청소년청년지원_01.html
-    │   ├── 청소년청년지원_02.html
-    │   ├── 청소년청년지원_03.html
-    │   ├── 청소년청년지원_04.html
-    │   ├── 청소년청년지원_05.html
-    │   ├── 청소년청년지원_06.html
-    │   ├── 청소년청년지원_07.html
-    │   ├── 청소년청년지원_08.html
-    │   ├── 청소년청년지원_09.html
-    │   ├── 청소년청년지원_10.html
-    │   ├── 청소년청년지원_11.html
-    │   ├── 청소년청년지원_12.html
-    │   ├── 청소년청년지원_13.html
-    │   ├── 청소년청년지원_14.html
-    │   ├── 청소년청년지원_15.html
-    │   ├── 청소년청년지원_16.html
-    │   ├── 청소년청년지원_17.html
-    │   ├── 청소년청년지원_18.html
-    │   ├── 청소년청년지원_19.html
-    │   ├── 청소년청년지원_20.html
-    │   ├── 청소년청년지원_21.html
-    │   ├── 청소년청년지원_22.html
-    │   ├── 청소년청년지원_23.html
-    │   ├── 청소년청년지원_24.html
-    │   ├── 청소년청년지원_25.html
-    │   ├── 청소년청년지원_26.html
-    │   ├── 청소년청년지원_27.html
-    │   ├── 청소년청년지원_28.html
-    │   ├── 청소년청년지원_29.html
-    │   ├── 청소년청년지원_30.html
-    │   ├── 청소년청년지원_31.html
-    │   ├── 청소년청년지원_32.html
-    │   ├── 청소년청년지원_33.html
-    │   ├── 청소년청년지원_34.html
-    │   ├── 청소년청년지원_35.html
-    │   ├── 청소년청년지원_36.html
-    │   ├── 청소년청년지원_37.html
-    │   ├── 청소년청년지원_38.html
-    │   ├── 청소년청년지원_39.html
-    │   ├── 청소년청년지원_40.html
-    │   ├── 청소년청년지원_41.html
-    │   ├── 청소년청년지원_42.html
-    │   ├── 청소년청년지원_43.html
-    │   ├── 청소년청년지원_44.html
-    │   ├── 청소년청년지원_45.html
-    │   ├── 청소년청년지원_46.html
-    │   ├── 청소년청년지원_47.html
-    │   ├── 청소년청년지원_48.html
-    │   ├── 청소년청년지원_49.html
-    │   ├── 청소년청년지원_50.html
-    │   ├── 청소년청년지원_51.html
-    │   ├── 청소년청년지원_52.html
-    │   ├── 청소년청년지원_53.html
-    │   ├── 청소년청년지원_54.html
-    │   ├── 청소년청년지원_55.html
-    │   ├── 청소년청년지원_56.html
-    │   ├── 취업지원_01.html
-    │   ├── 취업지원_02.html
-    │   ├── 취업지원_03.html
-    │   ├── 취업지원_04.html
-    │   ├── 취업지원_05.html
-    │   ├── 취업지원_06.html
-    │   ├── 취업지원_07.html
-    │   ├── 취업지원_08.html
-    │   ├── 취업지원_09.html
-    │   ├── 취업지원_10.html
-    │   ├── 취업지원_11.html
-    │   ├── 취업지원_12.html
-    │   ├── 취업지원_13.html
-    │   ├── 취업지원_14.html
-    │   ├── 취업지원_15.html
-    │   ├── 취업지원_16.html
-    │   ├── 취업지원_17.html
-    │   ├── 취업지원_18.html
-    │   ├── 취업지원_19.html
-    │   ├── 취업지원_20.html
-    │   ├── 취업지원_21.html
-    │   ├── 취업지원_22.html
-    │   ├── 취업지원_23.html
-    │   ├── 취업지원_24.html
-    │   ├── 취업지원_25.html
-    │   ├── 취업지원_26.html
-    │   ├── 취업지원_27.html
-    │   ├── 취업지원_28.html
-    │   ├── 취업지원_29.html
-    │   ├── 취업지원_30.html
-    │   ├── 취업지원_31.html
-    │   ├── 취업지원_32.html
-    │   ├── 취업지원_33.html
-    │   ├── 취업지원_34.html
-    │   ├── 취업지원_35.html
-    │   └── 취업지원_36.html
-    ├── model
-    │   ├── bm25
-    │   │   ├── articles_preprocessed.pkl
-    │   │   ├── bm25.py
-    │   │   ├── ensemble.py
-    │   │   ├── html_preprocess.py
-    │   │   ├── query_expansion.py
-    │   │   ├── text_preprocess.py
-    │   │   └── word_similarity.pkl
-    │   ├── embed
-    │   │   ├── embed_base.py
-    │   │   ├── embed_prompt.py
-    │   │   ├── exceptions.py
-    │   │   └── multiturn_model.py
-    │   ├── files
-    │   │   ├── articles_eng.parquet
-    │   │   ├── config.txt
-    │   │   ├── info_sheet.csv
-    │   │   └── processed_doc.csv
-    │   ├── io_model.py
-    │   └── utils
-    │       ├── convert_prompt.py
-    │       ├── get_chat.py
-    │       ├── get_response_openai.py
-    │       └── schemas.py
-    ├── requirements.txt
-    └── server.py
-
-17 directories, 538 files
+├── server
+│   ├── Dockerfile
+│   ├── articles
+│   │   ├── tokenized_articles
+│   │   │   └── html.pkl
+│   │   ├── 기타지원_01.html
+│   │   ├── 기타지원_02.html
+│   │   ├── ...
+│   │   ├── 취업지원_34.html
+│   │   ├── 취업지원_35.html
+│   │   └── 취업지원_36.html
+│   ├── config.json
+│   ├── docker_deploy.md
+│   ├── model
+│   │   ├── bm25
+│   │   │   ├── articles_preprocessed.pkl
+│   │   │   ├── bm25.py
+│   │   │   ├── ensemble.py
+│   │   │   ├── html_preprocess.py
+│   │   │   ├── query_expansion.py
+│   │   │   ├── text_preprocess.py
+│   │   │   └── word_similarity.pkl
+│   │   ├── files
+│   │   │   ├── articles_eng.parquet
+│   │   │   ├── info_sheet.csv
+│   │   │   └── processed_doc.csv
+│   │   ├── io_model.py
+│   │   ├── neural_model
+│   │   │   ├── exceptions.py
+│   │   │   ├── neural_base.py
+│   │   │   ├── neural_model.py
+│   │   │   └── prompts.py
+│   │   └── utils
+│   │       ├── convert_prompt.py
+│   │       ├── get_chat.py
+│   │       ├── get_response_openai.py
+│   │       └── schemas.py
+│   ├── requirements.txt
+│   └── server.py
+├── server.sh
+└── tree.txt

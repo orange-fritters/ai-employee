@@ -8,8 +8,7 @@ from fastapi.responses import FileResponse, RedirectResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 from model.io_model import IOModel
-from model.bm25.ensemble import Ensemble
-from model.neural_model.neural_model import NeuralModel
+from server.model.bm25.model import Model
 
 import model.utils.convert_prompt as get_prompt
 from model.neural_model.prompts import get_answer_from_question
@@ -28,8 +27,7 @@ app.add_middleware(
 )
 
 io_model = IOModel('model/files/info_sheet.csv')
-multiturn_model = NeuralModel()
-ensemble = Ensemble()
+ensemble = Model()
 
 
 # Single-turn Section
@@ -72,7 +70,7 @@ async def get_search(search: Search):
     # Function code here
     titles = ensemble.get_topN_title(search.query)
     titles = [RankTitle(**title) for title in titles]
-    options = multiturn_model.get_contents_from_title(titles)
+    options = io_model.get_contents_from_title(titles)
     prompt = get_answer_from_question(search.query, options)
     return StreamingResponse(get_response_prompted(prompt), media_type="text/event-stream")
 

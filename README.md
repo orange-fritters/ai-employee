@@ -1,224 +1,166 @@
-# AI Employee for QA on Welfare Service Guidebook
+# AI-Employee
 
-## Structure
+## Introduction
+This project is about building a closed domain question answering chat bot which answers questions asked by users who are looking for welfare service.
 
+AI-employee retrieve information from the 400 pages sized welfare-service-guide-book and answers the question.
+
+- Basic version : Retrieve, Question Answering
+- Advanced version : +Multiturn recommendation system
+
+## Demo
+
+## Explanation
+
+### Installation 
+
+> Go to [SETUP.md](SETUP.md)
+
+### Code
+
+#### frontend/src
+
+- `App.tsx` : Main component
+- `Main.tsx` : Main page, contains `Header`, `SearchBar`, `Message`, `Button`
+- `components` : Contains `Button`, `Header`, `Message`, `SearchBar`
+  - `styles` : styled-components for each component, **design changes** should be made here
+  - `Button.tsx` 
+    - Two types of Button, (1) Search Button (2) Recommendation Button
+    - Search Button : `utils/handleButton/handleSearchButton` function is called when clicked and goes back to initial state
+    - Recommendation Button : `utils/handleButton/handleRecommendationButton` function is called when clicked and renders recommendation message which is stored in `redux/recommendation.slice`. Show clickable four recommendated services.
+  - `Header.tsx` : Header component
+  - `Message.tsx` : Message component, 5 types of messages, varying with the buttons attached, what to show.
+  - `SearchBar.tsx` : SearchBar component, `utils/handleSubmit.ts` function which is called when user types in the search bar and press enter. Defined with two states, when `search` or additional `ask`. Component sends request to the server and receive response from the server.
+- `redux`
+  - Contains `defaultMessages`, `message.slice`, `recommendation.slice`, `selectors`, `store`
+  - handles state management with redux-toolkit slicers
+    - Slicers are state management tool which is able to handle state and action in a single file with less code
+  - When states inside redux-store changes, components are re-rendered 
+- `requests`
+  - Contains `requestQuery`, `requestRecommendation`, `requestSearch`, `requestSummary`, `streamResponse`
+  - `requestQuery` : ask and answer based on single document
+  - `requestRecommendation` : receive recommendation based on single query
+  - `requestSearch` : send query to the server and receive response with 5 documents
+  - `requestSummary` : send query to the server and receive pregenerated summary 
+  - `streamResponse` : with a response from the server, stream the response to the frontend (word by word text message)
+- `utils`
+  - `decoder.ts` : decode the response from the server (byte to string)
+  - `handleButton.ts` : handle button click event using slicers!
+  - `handleRecommendation.ts` : handle recommendation state using slicers!
+  - `handleSubmit.ts` : handle submit event using slicers!
+
+#### server
+- `articles`
+  - Contains 462 preprocessed html files
+- `model`
+  - `model/bm25` 
+    - `bm25.py` : bm25 model
+    - `model.py` : final model using bm25
+  - `model/neural_model`
+    - `neural_model.py` : neural model, but not used in the compact-version
+  - `model/files`
+    - Contains preprocessed data
+    - `info_sheet.csv` : contains information about each document
+    - `processed_doc.csv` : contains preprocessed document in English, keywords and summary included.
+  - `model/utils`
+    - `convert_prompt.py` : convert to prompt
+    - `get_chat.py` : get chat from openai, **modify when migrate**
+    - `get_response_openai.py` : get response from openai, **modify when migrate** little bit different from `get_chat.py`
+    - `schemas.py` : schemas for server
+  - `io_model.py` : io model, handles input and output, basic file handling
+- `server.py` : server, handles request and response  
+  - `../frontend/build` : build folder of react app. render static files made with react are rendered here.
+  - contains various endpoints.
+
+
+
+
+## Project tree
 ```
 .
 ├── README.md
 ├── config.txt
 ├── frontend
-│   ├── README.md
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   │   ├── favicon.ico
-│   │   ├── icon.svg
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   ├── robots.txt
-│   │   └── title_id.json
-│   ├── src
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   ├── Main.tsx
-│   │   ├── components
-│   │   │   ├── Button.tsx
-│   │   │   ├── Header.tsx
-│   │   │   ├── Message.tsx
-│   │   │   ├── SearchBar.tsx
-│   │   │   ├── styles
-│   │   │   │   ├── Button.style.ts
-│   │   │   │   ├── Header.style.ts
-│   │   │   │   ├── Main.style.ts
-│   │   │   │   ├── Message.style.ts
-│   │   │   │   ├── SearchBar.style.ts
-│   │   │   │   └── styles.ts
-│   │   │   └── utils
-│   │   │       ├── decoder.ts
-│   │   │       ├── handleButton.ts
-│   │   │       ├── handleMultiturn.ts
-│   │   │       ├── handleRecommendation.ts
-│   │   │       ├── handleSubmit.ts
-│   │   │       └── requests
-│   │   │           ├── requestMultiTurn.ts
-│   │   │           ├── requestQuery.ts
-│   │   │           ├── requestRecommendation.ts
-│   │   │           ├── requestSearch.ts
-│   │   │           ├── requestSummary.ts
-│   │   │           └── streamResponse.ts
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   ├── react-app-env.d.ts
-│   │   └── redux
-│   │       ├── defaultMessages.ts
-│   │       ├── message.slice.ts
-│   │       ├── multiturn.slice.ts
-│   │       ├── recommendation.slice.ts
-│   │       ├── selectors.ts
-│   │       └── store.ts
-│   └── tsconfig.json
-├── prompt_guide.md
-└── server
-    ├── articles
-    │   ├── tokenized_articles
-    │   │   └── html.pkl
-    │   ├── 기타지원_01.html
-    │   ├── 기타지원_02.html
-    │   ├── ...
-    │   ├── 취업지원_35.html
-    │   └── 취업지원_36.html
-    ├── model
-    │   ├── bm25
-    │   │   ├── articles_preprocessed.pkl
-    │   │   ├── bm25.py
-    │   │   ├── ensemble.py
-    │   │   ├── html_preprocess.py
-    │   │   ├── query_expansion.py
-    │   │   ├── text_preprocess.py
-    │   │   └── word_similarity.pkl
-    │   ├── embed
-    │   │   ├── embed_base.py
-    │   │   ├── embed_prompt.py
-    │   │   ├── exceptions.py
-    │   │   └── multiturn_model.py
-    │   ├── files
-    │   │   ├── articles_eng.parquet
-    │   │   ├── config.txt
-    │   │   ├── info_sheet.csv
-    │   │   └── processed_doc.csv
-    │   ├── io_model.py
-    │   └── utils
-    │       ├── convert_prompt.py
-    │       ├── get_chat.py
-    │       ├── get_response_openai.py
-    │       └── schemas.py
-    ├── requirements.txt
-    └── server.py
-
-17 directories, 538 files
+│   ├── README.md
+│   ├── build
+│   ├── package.json
+│   ├── public
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── Main.tsx
+│   │   ├── components
+│   │   │   ├── Button.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── Message.tsx
+│   │   │   ├── SearchBar.tsx
+│   │   │   └── styles
+│   │   │       ├── Button.style.ts
+│   │   │       ├── Header.style.ts
+│   │   │       ├── Main.style.ts
+│   │   │       ├── Message.style.ts
+│   │   │       ├── SearchBar.style.ts
+│   │   │       └── styles.ts
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── react-app-env.d.ts
+│   │   ├── redux
+│   │   │   ├── defaultMessages.ts
+│   │   │   ├── message.slice.ts
+│   │   │   ├── recommendation.slice.ts
+│   │   │   ├── selectors.ts
+│   │   │   └── store.ts
+│   │   ├── requests
+│   │   │   ├── requestQuery.ts
+│   │   │   ├── requestRecommendation.ts
+│   │   │   ├── requestSearch.ts
+│   │   │   ├── requestSummary.ts
+│   │   │   └── streamResponse.ts
+│   │   └── utils
+│   │       ├── decoder.ts
+│   │       ├── handleButton.ts
+│   │       ├── handleRecommendation.ts
+│   │       └── handleSubmit.ts
+│   └── tsconfig.json
+├── server
+│   ├── Dockerfile
+│   ├── articles
+│   │   ├── tokenized_articles
+│   │   │   └── html.pkl
+│   │   ├── 기타지원_01.html
+│   │   ├── 기타지원_02.html
+│   │   ├── ...
+│   │   ├── 취업지원_34.html
+│   │   ├── 취업지원_35.html
+│   │   └── 취업지원_36.html
+│   ├── config.json
+│   ├── model
+│   │   ├── bm25
+│   │   │   ├── articles_preprocessed.pkl
+│   │   │   ├── bm25.py
+│   │   │   ├── ensemble.py
+│   │   │   ├── html_preprocess.py
+│   │   │   ├── query_expansion.py
+│   │   │   ├── text_preprocess.py
+│   │   │   └── word_similarity.pkl
+│   │   ├── files
+│   │   │   ├── articles_eng.parquet
+│   │   │   ├── info_sheet.csv
+│   │   │   └── processed_doc.csv
+│   │   ├── io_model.py
+│   │   ├── neural_model
+│   │   │   ├── exceptions.py
+│   │   │   ├── neural_base.py
+│   │   │   ├── neural_model.py
+│   │   │   └── prompts.py
+│   │   └── utils
+│   │       ├── convert_prompt.py
+│   │       ├── get_chat.py
+│   │       ├── get_response_openai.py
+│   │       └── schemas.py
+│   ├── requirements.txt
+│   └── server.py
+└── server.sh
 ```
 
-## Ideas
-
-- Langchain으로 Hallucination 탐지
-- 지니랩스 tts, sst로 배리어프리 App 구현?
-- IR의 경우, first stage + reranking으로 구현
-- gpt api 중에 **text embedding**이 있음
-  - 복지 제도 400개를 미리 embedding해두고 user query와 가장 유사한 복지 제도를 찾는 방식 -z
-- convert embeddings from CSV str type back to list type `df['embedding'] = df['embedding'].apply(ast.literal_eval)`
-
-## Links
-
-### Lecture
-
-[한 입 크기로 잘라먹는 리액트](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8)
-
-### OpenAI
-
-[Best practices for prompt engineering (OpenAI community)](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api)
-
-[Data Augmentation Example](https://chat.openai.com/share/e03baffc-b954-478b-b4a9-344fefbc88e1)
-
-- OpenAI API를 활용한 Data Augmentation Example
-
-[GPT API pricing](https://openai.com/pricing)
-
-[Is openai text-embedding-ada-002 the best embeddings model?](https://www.reddit.com/r/MachineLearning/comments/13aaj2w/d_is_openai_textembeddingada002_the_best/)
-
-- includes various talks about text embedding
-
-[OpenAI Text Embedding](https://openai.com/blog/introducing-text-and-code-embeddings/)
-
-- OpenAI에서 제공하는 text embedding
-- 상당히 저렴함
-- Document Retrieval에 활용
-
-[OpenAI Better Result](https://platform.openai.com/docs/guides/gpt-best-practices/strategy-provide-reference-text)
-
-- OpenAI API를 활용한 방법론
-
-### Postings
-
-[LLM QA 블로그](https://georgesung.github.io/ai/llm-qa-eval-wikipedia/)
-
-- LLM QA에 대한 자세한 비교
-
-[GCP 액션](https://bitrader.tistory.com/457)
-
-- git action을 활용한 GCP 배포
-
-[개발자로서 LLM 사용을 위해 알아두면 좋은 내용들](https://haandol.github.io/2023/05/02/llm-for-ordinary-developers.html#fn:13)
-
-- koAlpaca 사용시 유용한 내용들 다수 포함
-- 미세 조정, 프롬프트 등등
-
-[Prompt Engineering Guide](https://www.promptingguide.ai/)
-
-- 프롬프트 엔지니어링 가이드
-
-### LLMs
-
-[koAlpaca 조금 써본 거](https://chat.koalpaca.com/r/2xWRgdz)
-
-- fine tuning 없이는 그닥
-
-[gpt3.5 조금 써본 거](https://chat.openai.com/share/381216b5-a797-4279-846a-8c92fc744cd3)
-
-- 코알파카보다 훨씬 잘하는데 API만 활용해도 충분할 것 같다.
-- 과장 좀 보태면 목요일까지 프로토타입 만들기 가능...
-
-### Info Retrieval
-
-[awesome-information-retrieval](https://github.com/harpribot/awesome-information-retrieval)
-
-[awesome-pretrained-models-for-information-retrieval](https://github.com/ict-bigdatalab/awesome-pretrained-models-for-information-retrieval)
-
-## Commit Message Convention
-
-1. emoji \[type\] message
-
-```
-✨ [Add] Add html cleansing code
-✨ [Add] Data preprocessing code
-🐛 [Fix] Fix bugs
-🛠️ [Git] resolve merge conflict
-🛠️ [Git] .gitignore
-🔥 [Feat] Implement main logics (incomplete)
-📝 [Docs] Update git files
-📝 [Docs] Add TODO
-📝 [Style] Fix typo
-```
-
-2. type
-
-```
-🔥 Feat : 새로운 기능 추가
-✨ Add : 기능은 아닌 코드 추가
-🐛 Fix : 버그 수정
-📝 Docs : 문서 수정
-📝 Style : 코드 포맷팅, 세미콜론 누락, 코드 리프랙터, 코드 변경이 없는 경우
-🛠️ Git : 깃허브 관련
-```
-
-3. message
-
-- 첫글자는 대문자로 시작
-- 필요한 경우 message 아래에 내용 첨부
-
-```
-Ex
-🔥 [Feat] Implement main logics (incomplete)
-
-TODO
-- vehicle_update 함수 수정 필요
-- request_time 변수 추가 필요
-- calculate_time unit test
-```
-
-## papers
-
-- [Generation-Augmented Retrieval for Open-Domain Question Answering](https://arxiv.org/pdf/2009.08553.pdf)
-
-- [Enhancing Retrieval-Augmented Large Language Models with Iterative Retrieval-Generation Synergy](https://arxiv.org/pdf/2305.15294.pdf)
+## 
