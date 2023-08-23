@@ -59,16 +59,15 @@ def get_sufficiency_decision_prompt(options: List[Option],
     # history = [{"user" : ...}, {"bot": ...}, ...]
     title_str = process_option_get_title(options)
     options_str = process_options_qa(options)
-
+    """   1.0 : One of the option exactly fits the user.
+    0.66 : At least one option is possible.
+    0.33 : We need to ask more questions.
+    0.0 : No option is possible."""
     system = """
 You are an AI assistant.
 In this task, you have been given a set of options and a conversation. 
 Your responsibility is to score 0-1 whether information in the Converation is sufficient to recommend one service from the options.
 Score generous.
-    1.0 : One of the option exactly fits the user.
-    0.66 : At least one option is possible.
-    0.33 : We need to ask more questions.
-    0.0 : No option is possible.
 """
     assistant1 = f"Options:\n``` {options_str} ```"
     assistant2 = f"Conversation:\n``` {history_str} ```"

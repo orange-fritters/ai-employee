@@ -132,7 +132,7 @@ class MultiTurn(EmbedBase):
                 response_json = json.loads(response_content)
                 yes_or_no_score = response_json['sufficiency']
                 yes_or_no_score = float(yes_or_no_score)
-                yes_or_no = "yes" if yes_or_no_score > 0.5 else "no"
+                yes_or_no = "yes" if yes_or_no_score >= 0.4 else "no"
                 print("PROMPT:\n", prompt)
                 print("RESPONSE:\n", response_json)
                 print("DECISION:\n", yes_or_no)
